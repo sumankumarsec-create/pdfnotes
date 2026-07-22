@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOTES. — PDF Notes Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a;
+    --white:#ffffff;
+    --line:#0a0a0a;
+    --grey:#6b6b6b;
+    --grey-light:#e8e8e8;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--white);
+    color:var(--black);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+
+  .noise{
+    position:fixed; inset:0; pointer-events:none; z-index:1000;
+    opacity:.025; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Layout shell ---------- */
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  header.site{
+    border-bottom:2px solid var(--black);
+    padding:28px 0 20px;
+    position:sticky; top:0; background:var(--white); z-index:100;
+  }
+  .top-row{
+    display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:28px;
+    letter-spacing:-0.01em;
+  }
+  .logo span{ font-style:italic; font-weight:500; color:var(--grey); }
+  .site-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--grey);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:64px 0 40px; border-bottom:2px solid var(--black); }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(40px, 6vw, 76px);
+    line-height:0.98;
+    letter-spacing:-0.02em;
+    max-width:820px;
+  }
+  .hero h1 em{ font-style:italic; font-weight:500; }
+  .hero p.sub{
+    margin-top:22px;
+    max-width:520px;
+    font-size:16px;
+    line-height:1.6;
+    color:var(--grey);
+  }
+  .hero-meta{
+    display:flex; gap:48px; margin-top:40px; flex-wrap:wrap;
+  }
+  .hero-meta div{ font-family:'JetBrains Mono', monospace; }
+  .hero-meta .num{ font-size:28px; font-weight:500; }
+  .hero-meta .lbl{ font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); margin-top:2px; }
+
+  /* ---------- Controls ---------- */
+  .controls{
+    padding:28px 0;
+    display:flex; gap:16px; align-items:center; justify-content:space-between;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--grey-light);
+  }
+  .search-box{
+    position:relative;
+    flex:1 1 280px; max-width:420px;
+  }
+  .search-box input{
+    width:100%;
+    border:2px solid var(--black);
+    background:var(--white);
+    padding:12px 16px 12px 40px;
+    font-family:'Inter', sans-serif;
+    font-size:14.5px;
+    color:var(--black);
+    outline:none;
+    transition:background .2s var(--ease);
+  }
+  .search-box input:focus{ background:var(--grey-light); }
+  .search-box input::placeholder{ color:var(--grey); }
+  .search-box svg{
+    position:absolute; left:13px; top:50%; transform:translateY(-50%);
+    width:16px; height:16px; stroke:var(--black);
+  }
+
+  .filters{
+    display:flex; gap:8px; flex-wrap:wrap;
+  }
+  .filter-chip{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    padding:9px 14px;
+    border:1.5px solid var(--black);
+    background:var(--white);
+    color:var(--black);
+    cursor:pointer;
+    transition:background .18s var(--ease), color .18s var(--ease);
+    white-space:nowrap;
+  }
+  .filter-chip:hover{ background:var(--grey-light); }
+  .filter-chip.active{ background:var(--black); color:var(--white); }
+
+  /* ---------- Grid ---------- */
+  main{ padding:44px 0 100px; }
+  .count-row{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--grey);
+    margin-bottom:24px;
+    display:flex; justify-content:space-between;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:1px;
+    background:var(--black);
+    border:1px solid var(--black);
+  }
+
+  .card{
+    background:var(--white);
+    padding:28px 26px 24px;
+    display:flex; flex-direction:column;
+    position:relative;
+    transition:background .22s var(--ease), color .22s var(--ease);
+    min-height:280px;
+  }
+  .card:hover{ background:var(--black); color:var(--white); }
+  .card:hover .cat, .card:hover .desc, .card:hover .meta-row span{ color:var(--white); opacity:.72; }
+  .card:hover .dl-btn{ background:var(--white); color:var(--black); border-color:var(--white); }
+  .card:hover .dl-btn svg{ stroke:var(--black); }
+
+  .featured-tag{
+    position:absolute; top:0; right:0;
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    background:var(--black);
+    color:var(--white);
+    padding:5px 10px;
+  }
+  .card:hover .featured-tag{ background:var(--white); color:var(--black); }
+
+  .cat{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--grey);
+    margin-bottom:14px;
+  }
+  .card h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:22px;
+    line-height:1.14;
+    letter-spacing:-0.01em;
+    margin-bottom:12px;
+  }
+  .desc{
+    font-size:13.5px;
+    line-height:1.55;
+    color:var(--grey);
+    flex:1;
+    margin-bottom:20px;
+  }
+  .meta-row{
+    display:flex; gap:16px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    color:var(--grey);
+    margin-bottom:16px;
+    letter-spacing:.02em;
+  }
+
+  .btn-row{ display:flex; gap:8px; }
+
+  .dl-btn, .preview-btn{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    border:1.5px solid currentColor;
+    padding:12px 16px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:12.5px;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    text-decoration:none;
+    cursor:pointer;
+    transition:transform .15s var(--ease), background .18s var(--ease), color .18s var(--ease);
+    background:none;
+  }
+  .dl-btn{
+    flex:1.3;
+    background:var(--black);
+    color:var(--white);
+  }
+  .dl-btn:active, .preview-btn:active{ transform:scale(.97); }
+  .dl-btn svg{ width:14px; height:14px; stroke:var(--white); transition:stroke .18s var(--ease); }
+
+  .preview-btn{
+    flex:1;
+    background:var(--white);
+    color:var(--black);
+  }
+  .preview-btn:hover{ background:var(--black); color:var(--white); }
+  .preview-btn svg{ width:14px; height:14px; stroke:var(--black); transition:stroke .18s var(--ease); }
+  .preview-btn:hover svg{ stroke:var(--white); }
+
+  /* ---------- Preview modal ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:900;
+    background:rgba(10,10,10,.82);
+    display:none;
+    align-items:center; justify-content:center;
+    padding:32px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-panel{
+    position:relative;
+    background:var(--white);
+    border:2px solid var(--black);
+    width:100%; max-width:900px;
+    height:100%; max-height:860px;
+    min-width:340px; min-height:320px;
+    display:flex; flex-direction:column;
+  }
+  .modal-panel.resizing{ user-select:none; }
+  .resize-handle{
+    position:absolute; right:0; bottom:0;
+    width:22px; height:22px;
+    cursor:nwse-resize;
+    display:flex; align-items:flex-end; justify-content:flex-end;
+    padding:3px;
+    touch-action:none;
+    z-index:2;
+  }
+  .resize-handle svg{ width:14px; height:14px; stroke:var(--black); opacity:.45; }
+  .resize-handle:hover svg{ opacity:1; }
+  .modal-head{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px;
+    padding:16px 20px;
+    border-bottom:2px solid var(--black);
+  }
+  .modal-title-block{ min-width:0; }
+  .modal-cat{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey);
+  }
+  .modal-title{
+    font-family:'Fraunces', serif; font-weight:600; font-size:18px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .modal-actions{ display:flex; gap:8px; flex-shrink:0; }
+  .modal-actions a, .modal-actions button{
+    display:flex; align-items:center; justify-content:center;
+    width:38px; height:38px;
+    border:1.5px solid var(--black);
+    background:var(--white); color:var(--black);
+    cursor:pointer; text-decoration:none;
+    transition:background .15s var(--ease), color .15s var(--ease);
+  }
+  .modal-actions a:hover, .modal-actions button:hover{ background:var(--black); color:var(--white); }
+  .modal-actions svg{ width:16px; height:16px; stroke:currentColor; }
+  .modal-body{ flex:1; background:var(--grey-light); min-height:0; }
+  .modal-body iframe{ width:100%; height:100%; border:none; display:block; }
+  .modal-panel.resizing iframe{ pointer-events:none; }
+
+  .empty-state{
+    grid-column:1/-1;
+    padding:80px 20px;
+    text-align:center;
+    background:var(--white);
+  }
+  .empty-state p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--grey);
+  }
+
+  footer{
+    border-top:2px solid var(--black);
+    padding:28px 0;
+  }
+  .foot-row{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--grey);
+  }
+
+  @media (max-width:640px){
+    .wrap{ padding:0 18px; }
+    .hero{ padding:44px 0 32px; }
+    .hero-meta{ gap:28px; }
+    .controls{ flex-direction:column; align-items:stretch; }
+    .search-box{ max-width:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<header class="site">
+  <div class="wrap top-row">
+    <div class="logo">NOTES<span>.</span></div>
+    <div class="site-tag">Study &amp; Reference Archive — Black / White Edition</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Notes worth <em>keeping.</em></h1>
+    <p class="sub">A small, growing archive of clean PDF study notes — search, filter, preview, download. No accounts, no clutter, no colour.</p>
+    <div class="hero-meta">
+      <div><div class="num" id="stat-total">0</div><div class="lbl">Notes</div></div>
+      <div><div class="num" id="stat-cats">0</div><div class="lbl">Subjects</div></div>
+      <div><div class="num" id="stat-pages">0</div><div class="lbl">Total Pages</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="controls">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search" type="text" placeholder="Search notes by title or topic…" autocomplete="off">
+    </div>
+    <div class="filters" id="filters"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="count-row">
+    <span id="count-label">Showing all notes</span>
+    <span>Sorted by featured</span>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>NOTES. — a static, offline-friendly archive</span>
+    <span id="year"></span>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-panel" id="modalPanel">
+    <div class="modal-head">
+      <div class="modal-title-block">
+        <div class="modal-cat" id="modalCat"></div>
+        <div class="modal-title" id="modalTitle"></div>
+      </div>
+      <div class="modal-actions">
+        <a id="modalDownload" href="#" download title="Download">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        </a>
+        <button id="modalClose" title="Close (Esc)">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <iframe id="modalFrame" src="" title="PDF preview"></iframe>
+    </div>
+    <div class="resize-handle" id="resizeHandle" title="Drag to resize">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="21" y1="10" x2="10" y2="21"/><line x1="21" y1="16" x2="16" y2="21"/><line x1="21" y1="21" x2="21" y2="21"/></svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  const NOTES = [
+    {
+      id: "rest-assured",
+      title: "REST Assured API Automation Framework",
+      category: "Software Testing",
+      description: "Complete architecture, code, and concept reference for building a Java test automation framework with REST Assured and TestNG — covers GET/POST/PUT/PATCH/DELETE, POJOs, schema validation, auth flows, and reporting.",
+      file: "pdfs/rest-assured-api-framework.pdf",
+      pages: 45,
+      featured: true
+    },
+    {
+      id: "calculus",
+      title: "Calculus: Limits & Derivatives",
+      category: "Mathematics",
+      description: "What a limit actually means, the derivative as instantaneous rate of change, core differentiation rules, and the mistakes that trip most students up.",
+      file: "pdfs/calculus-limits-derivatives.pdf",
+      pages: 1,
+      featured: false
+    },
+    {
+      id: "physics",
+      title: "Classical Mechanics: Newton's Three Laws",
+      category: "Physics",
+      description: "Inertia, F = ma, and action–reaction pairs — with a worked numerical example to make the second law concrete.",
+      file: "pdfs/physics-newtons-laws.pdf",
+      pages: 1,
+      featured: false
+    },
+    {
+      id: "cs",
+      title: "Data Structures: Arrays, Lists & Trees",
+      category: "Computer Science",
+      description: "Arrays vs linked lists, stacks and queues, binary search trees, and a complexity cheat sheet for the operations you'll actually be asked about.",
+      file: "pdfs/cs-data-structures.pdf",
+      pages: 1,
+      featured: false
+    },
+    {
+      id: "chem",
+      title: "Organic Chemistry: Core Reaction Types",
+      category: "Chemistry",
+      description: "Substitution, addition, and elimination reactions — SN1 vs SN2, E1 vs E2 — and how to tell which pathway a reaction will take.",
+      file: "pdfs/chemistry-organic-reactions.pdf",
+      pages: 1,
+      featured: false
+    },
+    {
+      id: "bio",
+      title: "Cell Biology: Structure & Function",
+      category: "Biology",
+      description: "Prokaryotic vs eukaryotic cells, the job of every major organelle, and why the membrane is selectively permeable rather than a simple wall.",
+      file: "pdfs/biology-cell-structure.pdf",
+      pages: 1,
+      featured: false
+    },
+    {
+      id: "history",
+      title: "World War II: Causes & Turning Points",
+      category: "History",
+      description: "The root causes of the war, the battles that changed its direction, and the political aftermath that shaped the second half of the century.",
+      file: "pdfs/history-world-war-two.pdf",
+      pages: 1,
+      featured: false
+    }
+  ];
+
+  const grid = document.getElementById('grid');
+  const filtersEl = document.getElementById('filters');
+  const searchEl = document.getElementById('search');
+  const countLabel = document.getElementById('count-label');
+
+  let activeCategories = new Set(); // empty = "All"
+  let query = '';
+
+  function downloadIcon(){
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>';
+  }
+
+  function eyeIcon(){
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>';
+  }
+
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalPanel = document.getElementById('modalPanel');
+  const modalFrame = document.getElementById('modalFrame');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalCat = document.getElementById('modalCat');
+  const modalDownload = document.getElementById('modalDownload');
+  const modalClose = document.getElementById('modalClose');
+  const resizeHandle = document.getElementById('resizeHandle');
+
+  function resetPanelSize(){
+    modalPanel.style.position = '';
+    modalPanel.style.left = '';
+    modalPanel.style.top = '';
+    modalPanel.style.width = '';
+    modalPanel.style.height = '';
+    modalPanel.style.maxWidth = '';
+    modalPanel.style.maxHeight = '';
+    modalPanel.style.margin = '';
+  }
+
+  function openPreview(note){
+    resetPanelSize();
+    modalCat.textContent = note.category;
+    modalTitle.textContent = note.title;
+    modalDownload.href = note.file;
+    modalFrame.src = note.file;
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePreview(){
+    modalOverlay.classList.remove('open');
+    modalFrame.src = '';
+    document.body.style.overflow = '';
+    resetPanelSize();
+  }
+
+  modalClose.addEventListener('click', closePreview);
+  modalOverlay.addEventListener('click', e => {
+    if (e.target === modalOverlay) closePreview();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closePreview();
+  });
+
+  // ---- Resizable preview panel (drag the bottom-right handle) ----
+  let resizing = false, startX = 0, startY = 0, startW = 0, startH = 0;
+
+  function beginResize(e){
+    e.preventDefault();
+    const rect = modalPanel.getBoundingClientRect();
+    modalPanel.style.position = 'fixed';
+    modalPanel.style.left = rect.left + 'px';
+    modalPanel.style.top = rect.top + 'px';
+    modalPanel.style.width = rect.width + 'px';
+    modalPanel.style.height = rect.height + 'px';
+    modalPanel.style.maxWidth = 'none';
+    modalPanel.style.maxHeight = 'none';
+    modalPanel.style.margin = '0';
+    startX = e.clientX;
+    startY = e.clientY;
+    startW = rect.width;
+    startH = rect.height;
+    resizing = true;
+    modalPanel.classList.add('resizing');
+    if (resizeHandle.setPointerCapture && e.pointerId !== undefined){
+      resizeHandle.setPointerCapture(e.pointerId);
+    }
+  }
+
+  function doResize(e){
+    if (!resizing) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    const minW = 340, minH = 320;
+    const maxW = window.innerWidth - 24;
+    const maxH = window.innerHeight - 24;
+    const newW = Math.min(maxW, Math.max(minW, startW + dx));
+    const newH = Math.min(maxH, Math.max(minH, startH + dy));
+    modalPanel.style.width = newW + 'px';
+    modalPanel.style.height = newH + 'px';
+  }
+
+  function endResize(){
+    if (!resizing) return;
+    resizing = false;
+    modalPanel.classList.remove('resizing');
+  }
+
+  resizeHandle.addEventListener('pointerdown', beginResize);
+  window.addEventListener('pointermove', doResize);
+  window.addEventListener('pointerup', endResize);
+  window.addEventListener('pointercancel', endResize);
+
+  function renderStats(){
+    document.getElementById('stat-total').textContent = NOTES.length;
+    document.getElementById('stat-cats').textContent = new Set(NOTES.map(n => n.category)).size;
+    document.getElementById('stat-pages').textContent = NOTES.reduce((a,n) => a + n.pages, 0);
+  }
+
+  function renderFilters(){
+    const cats = ['All', ...new Set(NOTES.map(n => n.category))];
+    filtersEl.innerHTML = cats.map(c => {
+      const isActive = c === 'All' ? activeCategories.size === 0 : activeCategories.has(c);
+      return `<button class="filter-chip${isActive ? ' active' : ''}" data-cat="${c}">${c}</button>`;
+    }).join('');
+    filtersEl.querySelectorAll('.filter-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const c = btn.dataset.cat;
+        if (c === 'All'){
+          activeCategories.clear();
+        } else if (activeCategories.has(c)){
+          activeCategories.delete(c);
+        } else {
+          activeCategories.add(c);
+        }
+        renderFilters();
+        renderGrid();
+      });
+    });
+  }
+
+  function renderGrid(){
+    const q = query.trim().toLowerCase();
+    const filtered = NOTES.filter(n => {
+      const matchesCat = activeCategories.size === 0 || activeCategories.has(n.category);
+      const matchesQuery = !q || n.title.toLowerCase().includes(q) || n.category.toLowerCase().includes(q) || n.description.toLowerCase().includes(q);
+      return matchesCat && matchesQuery;
+    }).sort((a,b) => (b.featured === true) - (a.featured === true));
+
+    countLabel.textContent = filtered.length === NOTES.length
+      ? `Showing all ${NOTES.length} notes`
+      : `Showing ${filtered.length} of ${NOTES.length} notes`;
+
+    if (filtered.length === 0){
+      grid.innerHTML = `<div class="empty-state"><p>Nothing matches that search.</p></div>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(n => `
+      <article class="card" data-id="${n.id}">
+        ${n.featured ? '<span class="featured-tag">Featured</span>' : ''}
+        <div class="cat">${n.category}</div>
+        <h3>${n.title}</h3>
+        <p class="desc">${n.description}</p>
+        <div class="meta-row">
+          <span>${n.pages} page${n.pages === 1 ? '' : 's'}</span>
+          <span>PDF</span>
+        </div>
+        <div class="btn-row">
+          <a class="dl-btn" href="${n.file}" download>
+            ${downloadIcon()} Download
+          </a>
+          <button class="preview-btn" type="button" data-preview-id="${n.id}">
+            ${eyeIcon()} Preview
+          </button>
+        </div>
+      </article>
+    `).join('');
+
+    grid.querySelectorAll('.preview-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const note = NOTES.find(n => n.id === btn.dataset.previewId);
+        if (note) openPreview(note);
+      });
+    });
+  }
+
+  searchEl.addEventListener('input', e => {
+    query = e.target.value;
+    renderGrid();
+  });
+
+  document.getElementById('year').textContent = '© ' + new Date().getFullYear() + ' NOTES. All rights reserved.';
+
+  renderStats();
+  renderFilters();
+  renderGrid();
+</script>
+
+</body>
+</html>
