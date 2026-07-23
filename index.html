@@ -190,7 +190,7 @@
   .card:hover .dl-btn svg{ stroke:var(--black); }
 
   .featured-tag{
-    position:absolute; top:0; right:0;
+    position:absolute; top:0; left:0;
     font-family:'JetBrains Mono', monospace;
     font-size:9.5px;
     letter-spacing:.12em;
@@ -200,6 +200,48 @@
     padding:5px 10px;
   }
   .card:hover .featured-tag{ background:var(--white); color:var(--black); }
+
+  .share-btn{
+    position:absolute; top:10px; right:10px; z-index:2;
+    width:30px; height:30px;
+    display:flex; align-items:center; justify-content:center;
+    border:1.5px solid var(--black);
+    background:var(--white); color:var(--black);
+    cursor:pointer;
+    transition:background .15s var(--ease), color .15s var(--ease), border-color .15s var(--ease);
+  }
+  .share-btn svg{ width:14px; height:14px; stroke:currentColor; }
+  .share-btn:hover{ background:var(--black); color:var(--white); }
+  .card:hover .share-btn{ border-color:var(--white); }
+  .card:hover .share-btn:hover{ background:var(--white); color:var(--black); border-color:var(--black); }
+
+  .share-popover{
+    position:fixed; z-index:970;
+    min-width:190px;
+    background:var(--white); border:1.5px solid var(--black);
+    box-shadow:0 10px 28px rgba(0,0,0,.25);
+    display:none; flex-direction:column;
+    font-family:'Inter', sans-serif;
+  }
+  .share-popover.open{ display:flex; }
+  .share-popover-title{
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--grey); padding:10px 12px 6px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .share-opt{
+    display:flex; align-items:center; gap:9px;
+    padding:10px 12px;
+    border:none; border-top:1px solid var(--grey-light);
+    background:none; color:var(--black);
+    font-family:'Inter', sans-serif; font-size:13px;
+    text-align:left; text-decoration:none;
+    cursor:pointer;
+    transition:background .15s var(--ease);
+  }
+  .share-opt:hover{ background:var(--grey-light); }
+  .share-opt svg{ width:15px; height:15px; stroke:currentColor; flex-shrink:0; }
 
   .cat{
     font-family:'JetBrains Mono', monospace;
@@ -585,6 +627,18 @@
   </div>
 </div>
 
+<div class="share-popover" id="sharePopover">
+  <div class="share-popover-title" id="sharePopoverTitle"></div>
+  <a class="share-opt" id="shareWhatsapp" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.35 0-2.62-.32-3.73-.9L3 21l1.9-5.77A8.5 8.5 0 1 1 21 11.5z"/></svg>
+    Share on WhatsApp
+  </a>
+  <button class="share-opt" type="button" id="shareCopyLink">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>
+    <span id="shareCopyLabel">Copy link</span>
+  </button>
+</div>
+
 <button class="chat-fab" id="chatFab" aria-label="Open site guide chat" type="button">
   <svg class="chat-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.35 0-2.62-.32-3.73-.9L3 21l1.9-5.77A8.5 8.5 0 1 1 21 11.5z"/></svg>
   <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
@@ -733,6 +787,10 @@
 
   function eyeIcon(){
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>';
+  }
+
+  function shareIcon(){
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="10.6" x2="15.4" y2="6.4"/><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"/></svg>';
   }
 
   // ---------------- Per-note download / preview counters ----------------
@@ -900,6 +958,83 @@
   window.addEventListener('pointerup', endResize);
   window.addEventListener('pointercancel', endResize);
 
+  // ---------------- Share popover (per-note WhatsApp share + copy link) ----------------
+  const sharePopover = document.getElementById('sharePopover');
+  const sharePopoverTitle = document.getElementById('sharePopoverTitle');
+  const shareWhatsapp = document.getElementById('shareWhatsapp');
+  const shareCopyLink = document.getElementById('shareCopyLink');
+  const shareCopyLabel = document.getElementById('shareCopyLabel');
+  let activeShareCard = null;
+
+  function noteShareUrl(note){
+    return `https://pdfsent.com/?note=${encodeURIComponent(note.id)}`;
+  }
+
+  function openSharePopover(note, btn){
+    if (sharePopover.classList.contains('open') && activeShareCard === btn){
+      closeSharePopover();
+      return;
+    }
+    const url = noteShareUrl(note);
+    sharePopoverTitle.textContent = note.title;
+    shareCopyLabel.textContent = 'Copy link';
+    const waText = encodeURIComponent(`${note.title} — a free PDF study note on NOTES.\n${url}`);
+    shareWhatsapp.href = `https://wa.me/?text=${waText}`;
+    shareCopyLink.dataset.url = url;
+
+    sharePopover.classList.add('open');
+    activeShareCard = btn;
+
+    // Position near the clicked button, keeping it on-screen.
+    const rect = btn.getBoundingClientRect();
+    const popW = 210; // approx min-width + border
+    let left = rect.right - popW;
+    left = Math.max(10, Math.min(left, window.innerWidth - popW - 10));
+    let top = rect.bottom + 6;
+    sharePopover.style.left = left + 'px';
+    sharePopover.style.top = top + 'px';
+
+    const popRect = sharePopover.getBoundingClientRect();
+    if (popRect.bottom > window.innerHeight - 10){
+      sharePopover.style.top = (rect.top - popRect.height - 6) + 'px';
+    }
+  }
+
+  function closeSharePopover(){
+    sharePopover.classList.remove('open');
+    activeShareCard = null;
+  }
+
+  shareCopyLink.addEventListener('click', async () => {
+    const url = shareCopyLink.dataset.url;
+    try {
+      await navigator.clipboard.writeText(url);
+      shareCopyLabel.textContent = 'Copied!';
+    } catch (e){
+      shareCopyLabel.textContent = url;
+    }
+    setTimeout(() => { if (sharePopover.classList.contains('open')) shareCopyLabel.textContent = 'Copy link'; }, 1600);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (sharePopover.classList.contains('open') && !sharePopover.contains(e.target) && !e.target.closest('.share-btn')){
+      closeSharePopover();
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sharePopover.classList.contains('open')) closeSharePopover();
+  });
+  window.addEventListener('scroll', () => { if (sharePopover.classList.contains('open')) closeSharePopover(); }, true);
+
+  // Deep link support: https://pdfsent.com/?note=<id> opens that note's preview automatically.
+  function openSharedNoteFromUrl(){
+    const params = new URLSearchParams(window.location.search);
+    const noteId = params.get('note');
+    if (!noteId) return;
+    const note = NOTES.find(n => n.id === noteId);
+    if (note) openPreview(note);
+  }
+
   function renderStats(){
     document.getElementById('stat-total').textContent = NOTES.length;
     document.getElementById('stat-cats').textContent = new Set(NOTES.map(n => n.category)).size;
@@ -948,6 +1083,7 @@
     grid.innerHTML = filtered.map(n => `
       <article class="card" data-id="${n.id}">
         ${n.featured ? '<span class="featured-tag">Featured</span>' : ''}
+        <button class="share-btn" type="button" data-share-id="${n.id}" title="Share this note" aria-label="Share this note">${shareIcon()}</button>
         <div class="cat">${n.category}</div>
         <h3>${n.title}</h3>
         <p class="desc">${n.description}</p>
@@ -979,6 +1115,14 @@
     grid.querySelectorAll('.dl-btn').forEach(a => {
       a.addEventListener('click', () => {
         bumpNoteCount(a.dataset.noteId, 'dl');
+      });
+    });
+
+    grid.querySelectorAll('.share-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const note = NOTES.find(n => n.id === btn.dataset.shareId);
+        if (note) openSharePopover(note, btn);
       });
     });
   }
@@ -1034,6 +1178,7 @@
   renderFilters();
   renderGrid();
   injectStructuredData();
+  openSharedNoteFromUrl();
 
   // ---------------- Chat guide widget (runs entirely in your browser — nothing is sent, stored, or tracked) ----------------
   const chatAnswers = {
