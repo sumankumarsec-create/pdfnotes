@@ -749,10 +749,15 @@
     }
   }
 
+  // Counts are intentionally NOT fetched on page load. The counter service
+  // increments on every read (there's no read-without-incrementing mode), so
+  // fetching it just to display a number would inflate it on every visit or
+  // refresh with no real download/preview happening. Instead, no number is
+  // shown until the user's own click both performs and reveals the count.
   function countLabelText(id, action){
     const val = ensureNoteCounts(id)[action];
+    if (val === null) return action === 'dl' ? 'Downloads' : 'Previews';
     const noun = action === 'dl' ? 'download' : 'preview';
-    if (val === null) return `… ${noun}s`;
     return `${val} ${noun}${val === 1 ? '' : 's'}`;
   }
 
@@ -763,21 +768,6 @@
   function updateCountDisplay(id, action){
     const el = document.getElementById((action === 'dl' ? 'dlCount-' : 'pvCount-') + id);
     if (el) el.textContent = countLabelText(id, action);
-  }
-
-  async function primeNoteCount(id, action){
-    const val = await fetchBadgeCount(noteBadgeUrl(id, action));
-    if (val !== null){
-      ensureNoteCounts(id)[action] = val;
-      updateCountDisplay(id, action);
-    }
-  }
-
-  function primeAllNoteCounts(){
-    NOTES.forEach(n => {
-      primeNoteCount(n.id, 'dl');
-      primeNoteCount(n.id, 'pv');
-    });
   }
 
   async function bumpNoteCount(id, action){
@@ -989,7 +979,6 @@
   renderStats();
   renderFilters();
   renderGrid();
-  primeAllNoteCounts();
 
   // ---------------- Chat guide widget (runs entirely in your browser — nothing is sent, stored, or tracked) ----------------
   const chatAnswers = {
