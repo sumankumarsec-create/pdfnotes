@@ -60,6 +60,12 @@
     text-transform:uppercase;
     color:var(--grey);
   }
+  .header-right{
+    display:flex; flex-direction:column; align-items:flex-end; gap:8px;
+  }
+  .visitor-badge{
+    height:20px; display:block;
+  }
 
   /* ---------- Hero ---------- */
   .hero{ padding:64px 0 40px; border-bottom:2px solid var(--black); }
@@ -346,7 +352,10 @@
 <header class="site">
   <div class="wrap top-row">
     <div class="logo">NOTES<span>.</span></div>
-    <div class="site-tag">Study &amp; Reference Archive — Black / White Edition</div>
+    <div class="header-right">
+      <div class="site-tag">Study &amp; Reference Archive — Black / White Edition</div>
+      <img class="visitor-badge" src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fpdfsent.com&amp;labelColor=%230a0a0a&amp;countColor=%230a0a0a&amp;style=flat-square" alt="Visitor count" loading="lazy" onerror="this.style.display='none'">
+    </div>
   </div>
 </header>
 
