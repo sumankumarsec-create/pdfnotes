@@ -827,7 +827,20 @@
     modalPanel.style.margin = '';
   }
 
+  // iOS Safari can't scroll a PDF embedded inside a nested <iframe> — it only
+  // ever renders page 1. Detect iOS (including iPadOS 13+, which reports as
+  // "MacIntel" but has touch support) and open the PDF in its own tab there
+  // instead, where Safari's native multi-page PDF viewer works correctly.
+  function isIOSDevice(){
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
   function openPreview(note){
+    if (isIOSDevice()){
+      window.open(note.file, '_blank');
+      return;
+    }
     resetPanelSize();
     modalCat.textContent = note.category;
     modalTitle.textContent = note.title;
