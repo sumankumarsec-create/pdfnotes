@@ -60,6 +60,13 @@
   h3{ font-family:'Fraunces', serif; font-weight:600; font-size:22px; margin:32px 0 12px; letter-spacing:-0.01em; }
   p{ font-size:16px; line-height:1.7; color:#2a2a2a; margin-bottom:18px; max-width:640px; }
   p.lead{ font-size:18px; line-height:1.65; color:var(--black); }
+  ul, ol{ margin:0 0 18px 20px; max-width:640px; }
+  li{ font-size:16px; line-height:1.7; color:#2a2a2a; margin-bottom:8px; }
+  p.subpoint{ font-weight:600; color:var(--black); margin-bottom:8px; }
+  .callout{ border-left:3px solid var(--black); padding:2px 0 2px 18px; margin:0 0 22px; max-width:640px; }
+  .callout li{ margin-bottom:10px; }
+  p.answer-weak{ color:var(--grey); font-style:italic; }
+  p.answer-strong{ color:var(--black); }
   a.inline{ color:var(--black); }
   .back{ display:inline-block; margin-top:8px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--black); text-decoration:none; border-bottom:1px solid var(--black); }
   .empty-state{ display:none; font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--grey); padding:40px 0; }
@@ -94,7 +101,92 @@
     <button class="filter-chip" data-cat="Site Updates">Site Updates</button>
   </nav>
 
-  <div id="postList"></div>
+  <div id="postList">
+    <article class="post" data-cat="Interview Tips">
+      <div class="post-meta">
+        <span class="post-tag">Interview Tips</span>
+        <span class="byline">24 July 2026</span>
+      </div>
+      <h2 class="post-title">How to Ace Your Next Job Interview: Tips &amp; Strategies</h2>
+
+      <p class="lead">Landing an interview is a win in itself — but stepping into the room, or logging into the call, can still feel daunting. Standing out in today's market takes a strategic approach that goes beyond memorizing your resume. Here's the preparation framework, the psychology, and the follow-up that turn an interview into an offer.</p>
+
+      <h3>1. The pre-interview blueprint: research and target</h3>
+      <p>Success in an interview is directly proportional to preparation. Companies don't just hire credentials — they hire problem solvers who understand their mission.</p>
+
+      <p class="subpoint">Decode the job description</p>
+      <p>Don't just skim the posting. Read it line by line to identify the core competencies the employer values most.</p>
+      <ul>
+        <li>Look for recurring keywords — "cross-functional collaboration," "data-driven decisions," "agile methodologies."</li>
+        <li>Circle the top three technical skills and top three soft skills requested.</li>
+        <li>Align your own career wins directly with those specific keywords.</li>
+      </ul>
+
+      <p class="subpoint">Deep-dive into company culture</p>
+      <p>Spend an hour on the company's digital footprint — not just the homepage, but its current trajectory and internal values.</p>
+      <ul>
+        <li><strong>Company website:</strong> the "About Us" page, mission statement, and recent press releases.</li>
+        <li><strong>Social media:</strong> LinkedIn, X, and Instagram, to gauge workplace culture and public voice.</li>
+        <li><strong>Review sites:</strong> Glassdoor and Indeed, for insider perspectives on interview process and management style.</li>
+      </ul>
+
+      <h3>2. Master the STAR method for behavioral questions</h3>
+      <p>Most interviewers lean heavily on behavioral questions — "Tell me about a time when..." or "Describe a situation where..." The STAR method keeps answers structured, concise, and focused on results instead of rambling.</p>
+
+      <div class="callout">
+        <ul>
+          <li><strong>S — Situation:</strong> set the scene and provide context.</li>
+          <li><strong>T — Task:</strong> explain the challenge or goal at hand.</li>
+          <li><strong>A — Action:</strong> detail the specific steps <em>you</em> took to solve it.</li>
+          <li><strong>R — Result:</strong> share the quantifiable outcome of your actions.</li>
+        </ul>
+      </div>
+
+      <p class="subpoint">The STAR method in action</p>
+      <p class="answer-weak">Weak answer: "I used to manage difficult clients at my old job and always made them happy."</p>
+      <p class="answer-strong">STAR answer: "At my last agency, an enterprise client was ready to cancel over a missed deadline (Situation). My task was to salvage the relationship and retain the account (Task). I scheduled an immediate call, took full ownership of the oversight, and presented a revised 30-day roadmap with daily status updates (Action). The client renewed their annual contract — retaining $50,000 in revenue (Result)."</p>
+      <p>Always land on the result. Use hard percentages, dollar amounts, or time saved wherever possible to prove the value.</p>
+
+      <h3>3. How to answer the 3 most common interview questions</h3>
+
+      <p class="subpoint">"Tell me about yourself."</p>
+      <p>This is an elevator pitch, not a chronological resume read-out. Use a Present – Past – Future structure:</p>
+      <ol>
+        <li><strong>Present:</strong> current role, key expertise, and a recent major achievement.</li>
+        <li><strong>Past:</strong> the career trajectory that built the foundational skills.</li>
+        <li><strong>Future:</strong> why this specific role is the natural next step.</li>
+      </ol>
+
+      <p class="subpoint">"What is your greatest weakness?"</p>
+      <p>Skip the clichés — "I'm a perfectionist," "I work too hard." Choose a genuine, non-essential weakness, then pivot straight to how it's being actively addressed.</p>
+      <p>Example: "I used to struggle with public speaking. I joined a local Toastmasters chapter last year and started leading our weekly team presentations — it's significantly boosted my confidence speaking to large groups."</p>
+
+      <p class="subpoint">"Why do you want to work here?"</p>
+      <p>Never salary or remote flexibility. Make the answer about them: connect personal career goals or values to the company's products, culture, or recent achievements.</p>
+
+      <h3>4. The power of asking smart questions</h3>
+      <p>An interview is a two-way street. "No questions" signals a lack of interest. Strategic questions shift the dynamic from interrogation to a collaborative conversation:</p>
+      <ul>
+        <li>"What does success look like in the first 90 days of this role?"</li>
+        <li>"What's the biggest challenge the team is facing that I'd be helping to solve?"</li>
+        <li>"If you could design the ideal candidate from scratch, what trait would they have that isn't on the job description?"</li>
+      </ul>
+
+      <h3>5. Nail the closing and post-interview follow-up</h3>
+      <p class="subpoint">The professional close</p>
+      <p>Before leaving the room or hanging up, explicitly restate enthusiasm for the role and ask about next steps: "Thank you so much for your time today — I'm genuinely excited about this opportunity. Could you share what the next steps look like?"</p>
+
+      <p class="subpoint">Send a personal thank-you email</p>
+      <p>Within 24 hours, to everyone who interviewed:</p>
+      <ul>
+        <li>Express gratitude for their time.</li>
+        <li>Mention a specific topic or moment from the conversation to jog their memory.</li>
+        <li>Reiterate how your skills line up with their immediate needs.</li>
+      </ul>
+
+      <p>Thorough research, structured storytelling through the STAR method, and a proactive follow-up together make a top-tier candidate. Prepare well, speak with clarity, and treat the meeting as a mutual exploration of fit.</p>
+    </article>
+  </div>
 
   <div class="empty-state" id="blogEmptyState">No posts yet — check back soon.</div>
 
@@ -149,9 +241,19 @@ document.getElementById('year').textContent = '© ' + new Date().getFullYear() +
 (function injectBlogStructuredData(){
   const data = {
     "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "NOTES. Blog",
-    "url": "https://pdfsent.com/blog.html"
+    "@graph": [
+      { "@type": "Blog", "name": "NOTES. Blog", "url": "https://pdfsent.com/blog.html" },
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Ace Your Next Job Interview: Tips & Strategies",
+        "description": "A practical guide to interview preparation, the STAR method for behavioral questions, answering the most common questions, asking smart questions, and following up after the interview.",
+        "datePublished": "2026-07-24",
+        "dateModified": "2026-07-24",
+        "author": { "@type": "Person", "name": "NOTES. maintainer" },
+        "publisher": { "@type": "Organization", "name": "NOTES." },
+        "mainEntityOfPage": "https://pdfsent.com/blog.html"
+      }
+    ]
   };
   const script = document.createElement('script');
   script.type = 'application/ld+json';
