@@ -94,34 +94,9 @@
     <button class="filter-chip" data-cat="Site Updates">Site Updates</button>
   </nav>
 
-  <div id="postList">
-    <article class="post" data-cat="Site Updates">
-      <div class="post-meta">
-        <span class="post-tag">Site Updates</span>
-        <span class="byline">24 July 2026 · by the person who maintains this site</span>
-      </div>
-      <h2 class="post-title">Why this archive exists</h2>
+  <div id="postList"></div>
 
-      <p class="lead">Every note here started somewhere else — a margin note during a test run, a half-finished doc before an interview, a PDF I emailed myself so I wouldn't lose it. This is why they ended up on one page instead of staying scattered.</p>
-
-      <h3>The problem with scattered notes</h3>
-      <p>I work in software testing and automation, and I'd been collecting notes for years across whichever app was convenient that week — split across tools, half behind logins I'd forgotten, none easy to hand off without exporting or apologizing for the formatting. Sites built to just read notes had the opposite problem: sign-ups, ad interstitials, and walls of unrelated links standing between a search and a PDF.</p>
-
-      <h3>What I built instead</h3>
-      <p>NOTES. is deliberately plain — black text, white background, no accounts. Every note previews in the browser and downloads as a PDF in one click, with a search box and category filters and nothing else in the way. It's a static site: nothing depends on a backend that can go down, and no activity is logged, because none is kept.</p>
-
-      <h3>What's inside, and how it grows</h3>
-      <p>It started with the material closest to what I do day-to-day — REST Assured, cloud security fundamentals, Jenkins CI/CD — and has grown into computer science and general interview prep. Every note is added by hand, written for the site or cleaned up from my own study material and credited where it came from elsewhere. Nothing is scraped or auto-generated, which is also why it grows steadily rather than all at once.</p>
-
-      <h3>Why "worth keeping"</h3>
-      <p>Most notes taken while studying are disposable — useful for a day, then forgotten. What makes it onto this site are the ones I kept coming back to: dense enough to matter months later, clear enough for someone with less context to still follow. That's the bar, and it's why the archive grows slowly instead of trying to cover everything at once.</p>
-
-      <h3>What's next</h3>
-      <p>More subjects, more depth in the ones already here, and more posts under the topics above as there's something worth saying. Spot something worth fixing or crediting differently? The <a class="inline" href="contact.html">contact page</a> reaches the same one person who builds everything else here.</p>
-    </article>
-  </div>
-
-  <div class="empty-state" id="blogEmptyState">Nothing filed under this topic yet — check back soon.</div>
+  <div class="empty-state" id="blogEmptyState">No posts yet — check back soon.</div>
 
   <a class="back" href="index.html">← Back to the archive</a>
 </main>
@@ -167,24 +142,16 @@ document.getElementById('year').textContent = '© ' + new Date().getFullYear() +
       applyFilter(chip.dataset.cat);
     });
   });
+
+  applyFilter('All');
 })();
 
 (function injectBlogStructuredData(){
   const data = {
     "@context": "https://schema.org",
-    "@graph": [
-      { "@type": "Blog", "name": "NOTES. Blog", "url": "https://pdfsent.com/blog.html" },
-      {
-        "@type": "BlogPosting",
-        "headline": "Why this archive exists",
-        "description": "The story behind NOTES. — why a solo QA and test-automation engineer built a free, no-account archive of PDF study notes instead of using another cluttered note app.",
-        "datePublished": "2026-07-24",
-        "dateModified": "2026-07-24",
-        "author": { "@type": "Person", "name": "NOTES. maintainer" },
-        "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog.html"
-      }
-    ]
+    "@type": "Blog",
+    "name": "NOTES. Blog",
+    "url": "https://pdfsent.com/blog.html"
   };
   const script = document.createElement('script');
   script.type = 'application/ld+json';
