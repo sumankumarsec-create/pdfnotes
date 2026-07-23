@@ -335,6 +335,20 @@
     text-transform:uppercase;
     color:var(--grey);
   }
+  .footer-nav{
+    display:flex; flex-wrap:wrap; gap:20px;
+    margin-bottom:18px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+  .footer-nav a{
+    color:var(--black); text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:border-color .15s var(--ease);
+  }
+  .footer-nav a:hover{ border-color:var(--black); }
 
   @media (max-width:640px){
     .wrap{ padding:0 18px; }
@@ -390,9 +404,17 @@
 </main>
 
 <footer>
-  <div class="wrap foot-row">
-    <span>NOTES. — a static, offline-friendly archive</span>
-    <span id="year"></span>
+  <div class="wrap">
+    <nav class="footer-nav">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+    </nav>
+    <div class="foot-row">
+      <span>NOTES. — a static, offline-friendly archive</span>
+      <span id="year"></span>
+    </div>
   </div>
 </footer>
 
