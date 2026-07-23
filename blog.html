@@ -39,16 +39,6 @@
   h1 em{ font-style:italic; font-weight:500; }
   .subhead{ font-size:16px; line-height:1.6; color:var(--grey); max-width:640px; margin-bottom:28px; }
 
-  /* category menu — same chip pattern as the archive's filters */
-  .filters{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:44px; padding-bottom:28px; border-bottom:1px solid var(--grey-light); }
-  .filter-chip{
-    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.03em; text-transform:uppercase;
-    padding:9px 14px; border:1.5px solid var(--black); background:var(--white); color:var(--black);
-    cursor:pointer; transition:background .18s var(--ease), color .18s var(--ease); white-space:nowrap;
-  }
-  .filter-chip:hover{ background:var(--grey-light); }
-  .filter-chip.active{ background:var(--black); color:var(--white); }
-
   article.post{ margin-bottom:56px; }
   .post-meta{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
   .post-tag{
@@ -67,6 +57,13 @@
   .footer-nav{ display:flex; flex-wrap:wrap; gap:20px; margin-bottom:18px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; }
   .footer-nav a{ color:var(--black); text-decoration:none; border-bottom:1px solid transparent; transition:border-color .15s var(--ease); }
   .footer-nav a:hover{ border-color:var(--black); }
+  .footer-topics{ display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-bottom:16px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; }
+  .footer-topics-label{ color:var(--grey); }
+  .footer-topics button{
+    font:inherit; letter-spacing:inherit; text-transform:inherit; color:var(--black); background:none; border:none; padding:0;
+    cursor:pointer; border-bottom:1px solid transparent; transition:border-color .15s var(--ease);
+  }
+  .footer-topics button:hover, .footer-topics button.active{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } }
 </style>
@@ -84,19 +81,6 @@
   <div class="kicker">Blog</div>
   <h1>Notes worth <em>keeping.</em></h1>
   <p class="subhead">Updates, guides, and the story behind the archive — filed under whichever subject it belongs to.</p>
-
-  <nav class="filters" id="blogFilters">
-    <button class="filter-chip active" data-cat="All">All</button>
-    <button class="filter-chip" data-cat="Software Testing">Software Testing</button>
-    <button class="filter-chip" data-cat="Test Automation">Test Automation</button>
-    <button class="filter-chip" data-cat="Cloud Security">Cloud Security</button>
-    <button class="filter-chip" data-cat="Cybersecurity">Cybersecurity</button>
-    <button class="filter-chip" data-cat="Computer Science">Computer Science</button>
-    <button class="filter-chip" data-cat="Java & Programming">Java &amp; Programming</button>
-    <button class="filter-chip" data-cat="Interview Prep">Interview Prep</button>
-    <button class="filter-chip" data-cat="Study Tips">Study Tips</button>
-    <button class="filter-chip" data-cat="Site Updates">Site Updates</button>
-  </nav>
 
   <div id="postList">
     <article class="post" data-cat="Site Updates">
@@ -132,6 +116,9 @@
 
 <footer>
   <div class="wrap">
+    <nav class="footer-topics" id="blogFooterTopics">
+      <span class="footer-topics-label">Browse by topic:</span>
+    </nav>
     <nav class="footer-nav">
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
@@ -149,10 +136,32 @@
 <script>
 document.getElementById('year').textContent = '© ' + new Date().getFullYear() + ' NOTES. All rights reserved.';
 
-(function setupBlogFilters(){
-  const chips = Array.from(document.querySelectorAll('#blogFilters .filter-chip'));
+(function setupBlogFooterTopics(){
+  // The topic menu is built only from categories that actually have a post right now —
+  // never a fixed list of empty categories. New topics appear here automatically
+  // the moment a post is published under them.
   const posts = Array.from(document.querySelectorAll('#postList .post'));
   const emptyState = document.getElementById('blogEmptyState');
+  const nav = document.getElementById('blogFooterTopics');
+  const postList = document.getElementById('postList');
+
+  // Categories from actual posts, plus a couple of near-term topics pinned ahead of
+  // their first post (Interview Prep, Study Tips) — kept intentionally short.
+  const pinnedCategories = ['Interview Prep', 'Study Tips'];
+  const postCategories = posts.map(p => p.dataset.cat);
+  const categories = Array.from(new Set([...postCategories, ...pinnedCategories]));
+
+  const buttons = [{ cat: 'All', active: true }, ...categories.map(cat => ({ cat, active: false }))]
+    .map(({ cat, active }) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = cat;
+      btn.dataset.cat = cat;
+      if (active) btn.classList.add('active');
+      return btn;
+    });
+
+  buttons.forEach(btn => nav.appendChild(btn));
 
   function applyFilter(cat){
     let visible = 0;
@@ -164,11 +173,12 @@ document.getElementById('year').textContent = '© ' + new Date().getFullYear() +
     emptyState.style.display = visible === 0 ? 'block' : 'none';
   }
 
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      applyFilter(chip.dataset.cat);
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.cat);
+      postList.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 })();
