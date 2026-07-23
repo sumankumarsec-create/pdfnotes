@@ -209,13 +209,18 @@
     margin-bottom:20px;
   }
   .meta-row{
-    display:flex; gap:16px;
+    display:flex; flex-wrap:wrap; gap:8px 16px;
     font-family:'JetBrains Mono', monospace;
     font-size:10.5px;
     color:var(--grey);
     margin-bottom:16px;
     letter-spacing:.02em;
   }
+  .meta-row .stat{
+    display:flex; align-items:center; gap:4px;
+  }
+  .meta-row .stat svg{ width:11px; height:11px; stroke:var(--grey); flex-shrink:0; }
+  .card:hover .meta-row .stat svg{ stroke:var(--white); }
 
   .btn-row{ display:flex; gap:8px; }
 
@@ -732,6 +737,74 @@
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>';
   }
 
+  // ---------------- Per-note download / preview counters ----------------
+  // Uses the same free, no-signup visitor-badge service as the header counter.
+  // Counts are fetched live from the server; nothing is stored locally and
+  // nothing personal is sent — only an anonymous hit against a per-note key.
+  const noteCounts = {}; // { id: { dl: number|null, pv: number|null } }
+
+  function ensureNoteCounts(id){
+    if (!noteCounts[id]) noteCounts[id] = { dl: null, pv: null };
+    return noteCounts[id];
+  }
+
+  function noteBadgeUrl(id, action){
+    const path = encodeURIComponent(`https://pdfsent.com/notes/${id}/${action}`);
+    return `https://api.visitorbadge.io/api/visitors?path=${path}&labelColor=%230a0a0a&countColor=%230a0a0a&style=flat-square`;
+  }
+
+  async function fetchBadgeCount(url){
+    try {
+      const res = await fetch(url);
+      if (!res.ok) return null;
+      const text = await res.text();
+      const m = text.match(/aria-label="[^"]*:\s*(\d+)"/);
+      return m ? parseInt(m[1], 10) : null;
+    } catch (e){
+      return null;
+    }
+  }
+
+  function countLabelText(id, action){
+    const val = ensureNoteCounts(id)[action];
+    const noun = action === 'dl' ? 'download' : 'preview';
+    if (val === null) return `… ${noun}s`;
+    return `${val} ${noun}${val === 1 ? '' : 's'}`;
+  }
+
+  function countText(id, action){
+    return countLabelText(id, action);
+  }
+
+  function updateCountDisplay(id, action){
+    const el = document.getElementById((action === 'dl' ? 'dlCount-' : 'pvCount-') + id);
+    if (el) el.textContent = countLabelText(id, action);
+  }
+
+  async function primeNoteCount(id, action){
+    const val = await fetchBadgeCount(noteBadgeUrl(id, action));
+    if (val !== null){
+      ensureNoteCounts(id)[action] = val;
+      updateCountDisplay(id, action);
+    }
+  }
+
+  function primeAllNoteCounts(){
+    NOTES.forEach(n => {
+      primeNoteCount(n.id, 'dl');
+      primeNoteCount(n.id, 'pv');
+    });
+  }
+
+  async function bumpNoteCount(id, action){
+    if (!id) return;
+    const val = await fetchBadgeCount(noteBadgeUrl(id, action));
+    if (val !== null){
+      ensureNoteCounts(id)[action] = val;
+      updateCountDisplay(id, action);
+    }
+  }
+
   const modalOverlay = document.getElementById('modalOverlay');
   const modalPanel = document.getElementById('modalPanel');
   const modalFrame = document.getElementById('modalFrame');
@@ -880,9 +953,11 @@
         <div class="meta-row">
           <span>${n.pages} page${n.pages === 1 ? '' : 's'}</span>
           <span>PDF</span>
+          <span class="stat">${downloadIcon()} <span id="dlCount-${n.id}">${countText(n.id, 'dl')}</span></span>
+          <span class="stat">${eyeIcon()} <span id="pvCount-${n.id}">${countText(n.id, 'pv')}</span></span>
         </div>
         <div class="btn-row">
-          <a class="dl-btn" href="${n.file}" download>
+          <a class="dl-btn" href="${n.file}" download data-note-id="${n.id}">
             ${downloadIcon()} Download
           </a>
           <button class="preview-btn" type="button" data-preview-id="${n.id}">
@@ -896,6 +971,13 @@
       btn.addEventListener('click', () => {
         const note = NOTES.find(n => n.id === btn.dataset.previewId);
         if (note) openPreview(note);
+        bumpNoteCount(btn.dataset.previewId, 'pv');
+      });
+    });
+
+    grid.querySelectorAll('.dl-btn').forEach(a => {
+      a.addEventListener('click', () => {
+        bumpNoteCount(a.dataset.noteId, 'dl');
       });
     });
   }
@@ -910,6 +992,7 @@
   renderStats();
   renderFilters();
   renderGrid();
+  primeAllNoteCounts();
 
   // ---------------- Chat guide widget (runs entirely in your browser — nothing is sent, stored, or tracked) ----------------
   const chatAnswers = {
