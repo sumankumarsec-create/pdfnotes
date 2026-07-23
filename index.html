@@ -357,6 +357,118 @@
     .controls{ flex-direction:column; align-items:stretch; }
     .search-box{ max-width:none; }
   }
+
+  /* ---------- Chat guide widget ---------- */
+  .chat-fab{
+    position:fixed; right:24px; bottom:24px; z-index:950;
+    width:56px; height:56px; border-radius:50%;
+    background:var(--black); color:var(--white);
+    border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.25);
+    transition:transform .18s var(--ease);
+  }
+  .chat-fab:hover{ transform:scale(1.06); }
+  .chat-fab svg{ width:24px; height:24px; stroke:var(--white); }
+  .chat-fab .close-icon{ display:none; }
+  .chat-fab.open .chat-icon{ display:none; }
+  .chat-fab.open .close-icon{ display:block; }
+
+  .chat-hint{
+    position:fixed; right:90px; bottom:34px; z-index:940;
+    max-width:220px;
+    background:var(--black); color:var(--white);
+    font-family:'Inter', sans-serif; font-size:13px; line-height:1.5;
+    padding:12px 14px;
+    border:1px solid var(--black);
+    opacity:0; transform:translateY(6px);
+    pointer-events:none;
+    transition:opacity .3s var(--ease), transform .3s var(--ease);
+  }
+  .chat-hint.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  .chat-hint button{
+    display:block; margin-top:8px;
+    background:none; border:none; color:var(--white);
+    font-family:'JetBrains Mono', monospace; font-size:10.5px;
+    letter-spacing:.06em; text-transform:uppercase;
+    text-decoration:underline; cursor:pointer; padding:0;
+  }
+
+  .chat-panel{
+    position:fixed; right:24px; bottom:92px; z-index:945;
+    width:340px; max-width:calc(100vw - 32px);
+    height:460px; max-height:calc(100vh - 140px);
+    background:var(--white); border:2px solid var(--black);
+    display:none; flex-direction:column;
+    box-shadow:0 12px 32px rgba(0,0,0,.3);
+  }
+  .chat-panel.open{ display:flex; }
+  .chat-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 16px; border-bottom:2px solid var(--black);
+  }
+  .chat-head-title{ font-family:'Fraunces', serif; font-weight:600; font-size:16px; }
+  .chat-head-title em{ font-style:italic; font-weight:500; color:var(--grey); }
+  .chat-head-sub{
+    font-family:'JetBrains Mono', monospace; font-size:9.5px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--grey); margin-top:2px;
+  }
+  .chat-close-btn{
+    background:none; border:none; cursor:pointer; padding:4px;
+    display:flex;
+  }
+  .chat-close-btn svg{ width:18px; height:18px; stroke:var(--black); }
+
+  .chat-body{
+    flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px;
+  }
+  .chat-msg{
+    max-width:85%;
+    padding:10px 13px;
+    font-size:13.5px; line-height:1.5;
+    border:1.5px solid var(--black);
+  }
+  .chat-msg.bot{ align-self:flex-start; background:var(--white); color:var(--black); }
+  .chat-msg.user{ align-self:flex-end; background:var(--black); color:var(--white); }
+  .chat-msg a{ color:inherit; }
+
+  .chat-quick{
+    display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 12px;
+  }
+  .chat-quick button{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px;
+    letter-spacing:.02em; text-transform:uppercase;
+    padding:7px 10px; border:1.5px solid var(--black);
+    background:var(--white); color:var(--black); cursor:pointer;
+    transition:background .15s var(--ease), color .15s var(--ease);
+  }
+  .chat-quick button:hover{ background:var(--black); color:var(--white); }
+
+  .chat-input-row{
+    display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--grey-light);
+  }
+  .chat-input-row input{
+    flex:1; border:1.5px solid var(--black); padding:9px 12px;
+    font-family:'Inter', sans-serif; font-size:13px; outline:none;
+  }
+  .chat-input-row button{
+    border:1.5px solid var(--black); background:var(--black); color:var(--white);
+    padding:0 14px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .chat-input-row button svg{ width:16px; height:16px; stroke:var(--white); }
+
+  .chat-footnote{
+    font-family:'JetBrains Mono', monospace; font-size:9px;
+    letter-spacing:.04em; color:var(--grey); text-align:center;
+    padding:0 16px 12px;
+  }
+
+  @media (max-width:480px){
+    .chat-panel{ right:12px; left:12px; width:auto; bottom:84px; }
+    .chat-hint{ right:16px; max-width:180px; }
+    .chat-fab{ right:16px; bottom:16px; }
+  }
 </style>
 </head>
 <body>
@@ -441,6 +553,37 @@
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="21" y1="10" x2="10" y2="21"/><line x1="21" y1="16" x2="16" y2="21"/><line x1="21" y1="21" x2="21" y2="21"/></svg>
     </div>
   </div>
+</div>
+
+<button class="chat-fab" id="chatFab" aria-label="Open site guide chat" type="button">
+  <svg class="chat-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.35 0-2.62-.32-3.73-.9L3 21l1.9-5.77A8.5 8.5 0 1 1 21 11.5z"/></svg>
+  <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+</button>
+
+<div class="chat-hint" id="chatHint">
+  New here? I can explain how this site works — no sign-up, nothing shared.
+  <button id="chatHintClose" type="button">Dismiss</button>
+</div>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-head">
+    <div>
+      <div class="chat-head-title">NOTES<em>. Guide</em></div>
+      <div class="chat-head-sub">Runs in your browser · nothing sent or stored</div>
+    </div>
+    <button class="chat-close-btn" id="chatClose" type="button" aria-label="Close chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-quick" id="chatQuick"></div>
+  <div class="chat-input-row">
+    <input id="chatInput" type="text" placeholder="Ask a question…" autocomplete="off">
+    <button id="chatSend" type="button" aria-label="Send">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+  <div class="chat-footnote">No data is collected, logged, or shared by this chat.</div>
 </div>
 
 <script>
@@ -758,6 +901,136 @@
   renderStats();
   renderFilters();
   renderGrid();
+
+  // ---------------- Chat guide widget (runs entirely in your browser — nothing is sent, stored, or tracked) ----------------
+  const chatAnswers = {
+    site: "NOTES. is a free, independently run archive of PDF study notes — software testing, cloud security, computer science, and general subjects like maths, physics, and history. No accounts, no paywalls, no algorithmic feed.",
+    download: "Click <strong>Download</strong> on any card — it saves the PDF straight to your device. No sign-in or email required.",
+    preview: "Click <strong>Preview</strong> on any card to open the PDF right here in a resizable window. Nothing downloads until you choose to.",
+    data: "This chat runs entirely in your browser. Nothing you type is sent anywhere, stored, or tracked — see the <a href=\"privacy.html\">Privacy Policy</a> for the full picture.",
+    filter: "Use the filter chips above the grid to pick one or more subjects, or type into the search box — both narrow the list instantly.",
+    contact: "Head to the <a href=\"contact.html\">Contact page</a> — there's an email you can reach any time.",
+    free: "Yes — everything here is free, always. No trial and no premium tier.",
+    about: "It's maintained by one person as a side project. The <a href=\"about.html\">About page</a> has the full story.",
+    fallback: "I don't have a canned answer for that yet. Try the <a href=\"contact.html\">Contact page</a> and a real person will get back to you."
+  };
+
+  const chatQuickReplies = [
+    { label: "What is this site?", key: "site" },
+    { label: "How do I download a note?", key: "download" },
+    { label: "How do I preview a PDF?", key: "preview" },
+    { label: "Is my data collected?", key: "data" },
+    { label: "How do I filter by subject?", key: "filter" },
+    { label: "How do I contact you?", key: "contact" }
+  ];
+
+  const chatKeywordMap = [
+    { words: ["what is", "what's this", "about this site", "explain"], key: "site" },
+    { words: ["download"], key: "download" },
+    { words: ["preview", "read online", "view"], key: "preview" },
+    { words: ["data", "privacy", "track", "cookie", "collect"], key: "data" },
+    { words: ["filter", "subject", "category", "topic", "search"], key: "filter" },
+    { words: ["contact", "email", "reach"], key: "contact" },
+    { words: ["free", "cost", "price", "pay"], key: "free" },
+    { words: ["who", "maintain", "author", "made this"], key: "about" }
+  ];
+
+  const chatFab = document.getElementById('chatFab');
+  const chatHint = document.getElementById('chatHint');
+  const chatHintClose = document.getElementById('chatHintClose');
+  const chatPanel = document.getElementById('chatPanel');
+  const chatClose = document.getElementById('chatClose');
+  const chatBody = document.getElementById('chatBody');
+  const chatQuick = document.getElementById('chatQuick');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+
+  let chatOpened = false;
+
+  function addBotMsg(html){
+    const div = document.createElement('div');
+    div.className = 'chat-msg bot';
+    div.innerHTML = html;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function addUserMsg(text){
+    const div = document.createElement('div');
+    div.className = 'chat-msg user';
+    div.textContent = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function renderChatQuick(){
+    chatQuick.innerHTML = '';
+    chatQuickReplies.forEach(q => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = q.label;
+      btn.addEventListener('click', () => handleChatQuestion(q.label, q.key));
+      chatQuick.appendChild(btn);
+    });
+  }
+
+  function matchChatKey(text){
+    const t = text.toLowerCase();
+    for (const entry of chatKeywordMap){
+      if (entry.words.some(w => t.includes(w))) return entry.key;
+    }
+    return null;
+  }
+
+  function handleChatQuestion(displayText, key){
+    addUserMsg(displayText);
+    const answerKey = key || matchChatKey(displayText) || 'fallback';
+    setTimeout(() => addBotMsg(chatAnswers[answerKey]), 250);
+  }
+
+  function hideChatHint(){
+    chatHint.classList.remove('show');
+  }
+
+  function openChat(){
+    chatPanel.classList.add('open');
+    chatFab.classList.add('open');
+    hideChatHint();
+    if (!chatOpened){
+      chatOpened = true;
+      addBotMsg("Hi — I'm the NOTES. guide. This site is a free archive of PDF study notes: search, filter, preview, or download, with no sign-up and nothing tracked. What would you like to know?");
+      renderChatQuick();
+    }
+    chatInput.focus();
+  }
+
+  function closeChat(){
+    chatPanel.classList.remove('open');
+    chatFab.classList.remove('open');
+  }
+
+  chatFab.addEventListener('click', () => {
+    if (chatPanel.classList.contains('open')) closeChat();
+    else openChat();
+  });
+  chatClose.addEventListener('click', closeChat);
+  chatHintClose.addEventListener('click', hideChatHint);
+
+  chatSend.addEventListener('click', () => {
+    const val = chatInput.value.trim();
+    if (!val) return;
+    handleChatQuestion(val, null);
+    chatInput.value = '';
+  });
+  chatInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter'){
+      e.preventDefault();
+      chatSend.click();
+    }
+  });
+
+  setTimeout(() => { chatHint.classList.add('show'); }, 1600);
+  setTimeout(hideChatHint, 9000);
 </script>
 
 </body>
