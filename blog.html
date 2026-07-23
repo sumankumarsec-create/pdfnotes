@@ -49,7 +49,12 @@
   .filter-chip:hover{ background:var(--grey-light); }
   .filter-chip.active{ background:var(--black); color:var(--white); }
 
-  article.post{ margin-bottom:56px; }
+  article.post{ margin-bottom:32px; }
+  .post-card{
+    border:1.5px solid var(--black); padding:28px; cursor:pointer;
+    transition:background .18s var(--ease);
+  }
+  .post-card:hover{ background:var(--grey-light); }
   .post-meta{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
   .post-tag{
     font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
@@ -57,6 +62,15 @@
   }
   .byline{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--grey); }
   h2.post-title{ font-family:'Fraunces', serif; font-weight:600; font-size:32px; line-height:1.1; letter-spacing:-0.015em; margin-bottom:22px; }
+  .post-card .lead{ margin-bottom:0; }
+  .read-toggle{
+    display:inline-block; margin-top:14px; font-family:'JetBrains Mono', monospace; font-size:11px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--black); border-bottom:1px solid var(--black);
+  }
+  .post-body{ display:none; padding:0 28px 28px; border:1.5px solid var(--black); border-top:none; }
+  article.post.expanded .post-body{ display:block; }
+  article.post.expanded .post-card{ border-bottom:none; }
+  .post-body-inner{ padding-top:28px; }
   h3{ font-family:'Fraunces', serif; font-weight:600; font-size:22px; margin:32px 0 12px; letter-spacing:-0.01em; }
   p{ font-size:16px; line-height:1.7; color:#2a2a2a; margin-bottom:18px; max-width:640px; }
   p.lead{ font-size:18px; line-height:1.65; color:var(--black); }
@@ -102,15 +116,20 @@
   </nav>
 
   <div id="postList">
-    <article class="post" data-cat="Interview Tips">
-      <div class="post-meta">
-        <span class="post-tag">Interview Tips</span>
-        <span class="byline">24 July 2026</span>
+    <article class="post" data-cat="Interview Tips" data-slug="how-to-ace-interview">
+      <div class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Interview Tips</span>
+          <span class="byline">24 July 2026</span>
+        </div>
+        <h2 class="post-title">How to Ace Your Next Job Interview: Tips &amp; Strategies</h2>
+
+        <p class="lead">Landing an interview is a win in itself — but stepping into the room, or logging into the call, can still feel daunting. Standing out in today's market takes a strategic approach that goes beyond memorizing your resume. Here's the preparation framework, the psychology, and the follow-up that turn an interview into an offer.</p>
+
+        <span class="read-toggle">Read the full guide →</span>
       </div>
-      <h2 class="post-title">How to Ace Your Next Job Interview: Tips &amp; Strategies</h2>
 
-      <p class="lead">Landing an interview is a win in itself — but stepping into the room, or logging into the call, can still feel daunting. Standing out in today's market takes a strategic approach that goes beyond memorizing your resume. Here's the preparation framework, the psychology, and the follow-up that turn an interview into an offer.</p>
-
+      <div class="post-body"><div class="post-body-inner">
       <h3>1. The pre-interview blueprint: research and target</h3>
       <p>Success in an interview is directly proportional to preparation. Companies don't just hire credentials — they hire problem solvers who understand their mission.</p>
 
@@ -185,6 +204,7 @@
       </ul>
 
       <p>Thorough research, structured storytelling through the STAR method, and a proactive follow-up together make a top-tier candidate. Prepare well, speak with clarity, and treat the meeting as a mutual exploration of fit.</p>
+      </div></div>
     </article>
   </div>
 
@@ -236,6 +256,38 @@ document.getElementById('year').textContent = '© ' + new Date().getFullYear() +
   });
 
   applyFilter('All');
+
+  // Clicking a post's box expands it in place and deep-links to it (?post=<slug>),
+  // the same way note cards deep-link with ?note=<id> on the homepage.
+  posts.forEach(article => {
+    const card = article.querySelector('.post-card');
+    const toggle = article.querySelector('.read-toggle');
+    const slug = article.dataset.slug;
+    if (!card || !slug) return;
+
+    card.addEventListener('click', () => {
+      const opening = !article.classList.contains('expanded');
+      article.classList.toggle('expanded', opening);
+      if (toggle) toggle.textContent = opening ? '↑ Show less' : 'Read the full guide →';
+      const url = opening ? `blog.html?post=${slug}` : 'blog.html';
+      history.pushState(null, '', url);
+      if (opening) article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  function openPostFromUrl(){
+    const slug = new URLSearchParams(window.location.search).get('post');
+    if (!slug) return;
+    const article = posts.find(p => p.dataset.slug === slug);
+    if (!article) return;
+    const matchingChip = chips.find(c => c.dataset.cat === article.dataset.cat);
+    if (matchingChip) matchingChip.click();
+    article.classList.add('expanded');
+    const toggle = article.querySelector('.read-toggle');
+    if (toggle) toggle.textContent = '↑ Show less';
+    article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  openPostFromUrl();
 })();
 
 (function injectBlogStructuredData(){
