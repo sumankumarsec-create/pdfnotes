@@ -703,7 +703,7 @@
       </div>
       <form id="newsletterForm" class="newsletter-form">
         <label for="newsletterEmail" class="visually-hidden">Email address</label>
-        <input id="newsletterEmail" type="email" placeholder="you@example.com" required autocomplete="email">
+        <input id="newsletterEmail" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
         <button type="submit">Notify Me</button>
       </form>
       <div class="newsletter-msg" id="newsletterMsg" aria-live="polite"></div>
@@ -1585,10 +1585,8 @@
   injectStructuredData();
 
   // ---------------- Newsletter signup (footer) ----------------
-  // NEWSLETTER_ENDPOINT is intentionally blank until a real form backend
-  // (e.g. Formspree or Buttondown) is wired up — set the URL below to
-  // activate live submissions instead of the "coming soon" placeholder.
-  const NEWSLETTER_ENDPOINT = '';
+  // Wired to Formspree — submissions go to the account owner's Formspree inbox.
+  const NEWSLETTER_ENDPOINT = 'https://formspree.io/f/mnjewdgl';
   const newsletterForm = document.getElementById('newsletterForm');
   const newsletterMsg = document.getElementById('newsletterMsg');
   if (newsletterForm){
