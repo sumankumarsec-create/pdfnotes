@@ -293,6 +293,13 @@
     letter-spacing:-0.01em;
     margin-bottom:12px;
   }
+  .card h3 a{
+    color:inherit; text-decoration:none;
+    background-image:linear-gradient(currentColor, currentColor);
+    background-position:0 100%; background-repeat:no-repeat; background-size:0% 1px;
+    transition:background-size .18s var(--ease);
+  }
+  .card h3 a:hover, .card h3 a:focus-visible{ background-size:100% 1px; }
   .desc{
     font-size:13.5px;
     line-height:1.55;
@@ -1197,7 +1204,7 @@
   let activeShareCard = null;
 
   function noteShareUrl(note){
-    return `https://pdfsent.com/?note=${encodeURIComponent(note.id)}`;
+    return `https://pdfsent.com/notes/${encodeURIComponent(note.id)}.html`;
   }
 
   function openSharePopover(note, btn){
@@ -1316,7 +1323,7 @@
         ${n.featured ? '<span class="featured-tag">Featured</span>' : ''}
         <button class="share-btn" type="button" data-share-id="${n.id}" title="Share this note" aria-label="Share this note">${shareIcon()}</button>
         <div class="cat">${n.category}</div>
-        <h3>${n.title}</h3>
+        <h3><a href="notes/${n.id}.html">${n.title}</a></h3>
         <p class="desc">${n.description}</p>
         <div class="meta-row">
           <span>${n.pages} page${n.pages === 1 ? '' : 's'}</span>
@@ -1386,7 +1393,8 @@
         "@type": "LearningResource",
         "name": n.title,
         "description": n.description,
-        "url": `https://pdfsent.com/${n.file}`,
+        "url": `https://pdfsent.com/notes/${n.id}.html`,
+        "contentUrl": `https://pdfsent.com/${n.file}`,
         "encodingFormat": "application/pdf",
         "about": n.category,
         "learningResourceType": "Study notes",
