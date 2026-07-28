@@ -18,6 +18,20 @@
 <meta name="twitter:title" content="NOTES. — PDF Notes Archive">
 <meta name="twitter:description" content="A free, no-account archive of clean PDF study notes — software testing, cloud security, computer science, and general subjects.">
 <meta name="twitter:image" content="https://pdfsent.com/og-image.png">
+<meta name="theme-color" content="#0a0a0a">
+<!-- Search Console verification: once you have a verification code from
+     https://search.google.com/search-console, send it over and it goes here:
+<meta name="google-site-verification" content="PASTE_YOUR_CODE_HERE"> -->
+<!-- Google Analytics (GA4): once you have a Measurement ID (from
+     https://analytics.google.com — free), send it over and this gets activated:
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+-->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8827355390995789"
      crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,6 +50,25 @@
   *{ box-sizing:border-box; margin:0; padding:0; }
 
   html{ scroll-behavior:smooth; }
+
+  /* ---------- Accessibility utilities ---------- */
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  .skip-link{
+    position:absolute; left:-9999px; top:0; z-index:1200;
+    background:var(--black); color:var(--white);
+    padding:12px 18px;
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.04em;
+    text-decoration:none;
+  }
+  .skip-link:focus{ left:12px; top:12px; }
+
+  a:focus-visible, button:focus-visible{
+    outline:2.5px solid var(--black); outline-offset:2px;
+  }
+  .card:hover a:focus-visible, .card:hover button:focus-visible{ outline-color:var(--white); }
 
   body{
     background:var(--white);
@@ -131,6 +164,7 @@
     transition:background .2s var(--ease);
   }
   .search-box input:focus{ background:var(--grey-light); }
+  .search-box input:focus-visible{ outline:2.5px solid var(--black); outline-offset:2px; }
   .search-box input::placeholder{ color:var(--grey); }
   .search-box svg{
     position:absolute; left:13px; top:50%; transform:translateY(-50%);
@@ -373,6 +407,28 @@
   .modal-body iframe{ width:100%; height:100%; border:none; display:block; }
   .modal-panel.resizing iframe{ pointer-events:none; }
 
+  .modal-related{
+    display:flex; gap:8px; align-items:center;
+    padding:10px 20px; overflow-x:auto;
+    border-top:2px solid var(--black); flex-shrink:0;
+  }
+  .modal-related:empty{ display:none; }
+  .modal-related .rel-label{
+    flex-shrink:0;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey);
+    margin-right:2px;
+  }
+  .modal-related a{
+    flex-shrink:0; white-space:nowrap;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px; letter-spacing:.01em;
+    padding:8px 12px; border:1.5px solid var(--black);
+    color:var(--black); text-decoration:none;
+    transition:background .15s var(--ease), color .15s var(--ease);
+  }
+  .modal-related a:hover{ background:var(--black); color:var(--white); }
+
   .empty-state{
     grid-column:1/-1;
     padding:80px 20px;
@@ -384,6 +440,38 @@
     font-style:italic;
     font-size:20px;
     color:var(--grey);
+  }
+
+  .newsletter{
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+    flex-wrap:wrap;
+    padding:24px 0;
+    border-top:2px solid var(--black);
+  }
+  .newsletter-copy{ display:flex; flex-direction:column; gap:2px; max-width:360px; }
+  .newsletter-copy strong{ font-family:'Fraunces', serif; font-weight:600; font-size:16px; }
+  .newsletter-copy span{ font-size:12.5px; color:var(--grey); }
+  .newsletter-form{ display:flex; gap:8px; flex:1 1 320px; max-width:400px; }
+  .newsletter-form input{
+    flex:1; border:2px solid var(--black); padding:10px 14px;
+    font-family:'Inter', sans-serif; font-size:13.5px; outline:none;
+  }
+  .newsletter-form input:focus-visible{ outline:2.5px solid var(--black); outline-offset:2px; }
+  .newsletter-form button{
+    border:2px solid var(--black); background:var(--black); color:var(--white);
+    padding:10px 16px; font-family:'Inter', sans-serif; font-weight:600;
+    font-size:12px; letter-spacing:.03em; text-transform:uppercase;
+    cursor:pointer; white-space:nowrap;
+    transition:background .15s var(--ease), color .15s var(--ease);
+  }
+  .newsletter-form button:hover{ background:var(--white); color:var(--black); }
+  .newsletter-msg{
+    font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--grey);
+    margin-top:8px; width:100%;
+  }
+  @media (max-width:640px){
+    .newsletter{ flex-direction:column; align-items:stretch; }
+    .newsletter-form{ max-width:none; }
   }
 
   footer{
@@ -419,6 +507,13 @@
     .hero-meta{ gap:28px; }
     .controls{ flex-direction:column; align-items:stretch; }
     .search-box{ max-width:none; }
+    /* 16px prevents iOS Safari from auto-zooming the page on input focus */
+    .search-box input, .chat-input-row input, .newsletter-form input{ font-size:16px; }
+  }
+
+  @media (max-width:480px){
+    .modal-overlay{ padding:10px; }
+    .modal-panel{ min-width:0; min-height:260px; }
   }
 
   /* ---------- Chat guide widget ---------- */
@@ -522,6 +617,7 @@
     flex:1; border:1.5px solid var(--black); padding:9px 12px;
     font-family:'Inter', sans-serif; font-size:13px; outline:none;
   }
+  .chat-input-row input:focus-visible{ outline:2px solid var(--black); outline-offset:1px; }
   .chat-input-row button{
     border:1.5px solid var(--black); background:var(--black); color:var(--white);
     padding:0 14px; cursor:pointer;
@@ -544,6 +640,8 @@
 </style>
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
 
 <div class="noise"></div>
 
@@ -572,16 +670,17 @@
 <div class="wrap">
   <div class="controls">
     <div class="search-box">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="search" type="text" placeholder="Search notes by title or topic…" autocomplete="off">
+      <label for="search" class="visually-hidden">Search notes by title or topic</label>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="search" type="text" placeholder="Search notes by title or topic… ( / )" autocomplete="off">
     </div>
-    <div class="filters" id="filters"></div>
+    <div class="filters" id="filters" role="group" aria-label="Filter notes by subject"></div>
   </div>
 </div>
 
-<main class="wrap">
+<main class="wrap" id="main-content">
   <div class="count-row">
-    <span id="count-label">Showing all notes</span>
+    <span id="count-label" aria-live="polite">Showing all notes</span>
     <span>Sorted by featured</span>
   </div>
   <div class="grid" id="grid"></div>
@@ -589,6 +688,18 @@
 
 <footer>
   <div class="wrap">
+    <div class="newsletter">
+      <div class="newsletter-copy">
+        <strong>New notes, straight to your inbox.</strong>
+        <span>No spam — just an email when something new is added.</span>
+      </div>
+      <form id="newsletterForm" class="newsletter-form">
+        <label for="newsletterEmail" class="visually-hidden">Email address</label>
+        <input id="newsletterEmail" type="email" placeholder="you@example.com" required autocomplete="email">
+        <button type="submit">Notify Me</button>
+      </form>
+      <div class="newsletter-msg" id="newsletterMsg" aria-live="polite"></div>
+    </div>
     <nav class="footer-nav">
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
@@ -604,7 +715,7 @@
 </footer>
 
 <div class="modal-overlay" id="modalOverlay">
-  <div class="modal-panel" id="modalPanel">
+  <div class="modal-panel" id="modalPanel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-head">
       <div class="modal-title-block">
         <div class="modal-cat" id="modalCat"></div>
@@ -622,6 +733,7 @@
     <div class="modal-body">
       <iframe id="modalFrame" src="" title="PDF preview"></iframe>
     </div>
+    <div class="modal-related" id="modalRelated"></div>
     <div class="resize-handle" id="resizeHandle" title="Drag to resize">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="21" y1="10" x2="10" y2="21"/><line x1="21" y1="16" x2="16" y2="21"/><line x1="21" y1="21" x2="21" y2="21"/></svg>
     </div>
@@ -633,6 +745,10 @@
   <a class="share-opt" id="shareWhatsapp" href="#" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.35 0-2.62-.32-3.73-.9L3 21l1.9-5.77A8.5 8.5 0 1 1 21 11.5z"/></svg>
     Share on WhatsApp
+  </a>
+  <a class="share-opt" id="shareTwitter" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16"/><path d="M4 20L20 4"/><path d="M4 4h6l10 16h-6z"/></svg>
+    Share on X
   </a>
   <button class="share-opt" type="button" id="shareCopyLink">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>
@@ -943,7 +1059,27 @@
   const modalCat = document.getElementById('modalCat');
   const modalDownload = document.getElementById('modalDownload');
   const modalClose = document.getElementById('modalClose');
+  const modalRelated = document.getElementById('modalRelated');
   const resizeHandle = document.getElementById('resizeHandle');
+  let lastFocusedEl = null;
+
+  function renderRelatedNotes(note){
+    const related = NOTES.filter(n => n.id !== note.id && n.category === note.category).slice(0, 3);
+    if (related.length === 0){ modalRelated.innerHTML = ''; return; }
+    modalRelated.innerHTML = '<span class="rel-label">More like this</span>' + related.map(n =>
+      `<a href="?note=${encodeURIComponent(n.id)}" data-related-id="${n.id}">${n.title}</a>`
+    ).join('');
+    modalRelated.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const n = NOTES.find(x => x.id === a.dataset.relatedId);
+        if (n){
+          history.pushState(null, '', `?note=${encodeURIComponent(n.id)}`);
+          openPreview(n);
+        }
+      });
+    });
+  }
 
   function resetPanelSize(){
     modalPanel.style.position = '';
@@ -970,20 +1106,28 @@
       window.open(note.file, '_blank');
       return;
     }
+    lastFocusedEl = document.activeElement;
     resetPanelSize();
     modalCat.textContent = note.category;
     modalTitle.textContent = note.title;
     modalDownload.href = note.file;
     modalFrame.src = note.file;
+    renderRelatedNotes(note);
     modalOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    modalClose.focus();
   }
 
   function closePreview(){
     modalOverlay.classList.remove('open');
     modalFrame.src = '';
+    modalRelated.innerHTML = '';
     document.body.style.overflow = '';
     resetPanelSize();
+    if (lastFocusedEl && typeof lastFocusedEl.focus === 'function'){
+      lastFocusedEl.focus();
+    }
+    lastFocusedEl = null;
   }
 
   modalClose.addEventListener('click', closePreview);
@@ -1047,6 +1191,7 @@
   const sharePopover = document.getElementById('sharePopover');
   const sharePopoverTitle = document.getElementById('sharePopoverTitle');
   const shareWhatsapp = document.getElementById('shareWhatsapp');
+  const shareTwitter = document.getElementById('shareTwitter');
   const shareCopyLink = document.getElementById('shareCopyLink');
   const shareCopyLabel = document.getElementById('shareCopyLabel');
   let activeShareCard = null;
@@ -1065,6 +1210,7 @@
     shareCopyLabel.textContent = 'Copy link';
     const waText = encodeURIComponent(`${note.title} — a free PDF study note on NOTES.\n${url}`);
     shareWhatsapp.href = `https://wa.me/?text=${waText}`;
+    shareTwitter.href = `https://twitter.com/intent/tweet?text=${waText}`;
     shareCopyLink.dataset.url = url;
 
     sharePopover.classList.add('open');
@@ -1217,6 +1363,16 @@
     renderGrid();
   });
 
+  // Press "/" anywhere on the page to jump straight into search (skipped while
+  // already typing in a text field, so it doesn't hijack normal typing).
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+    const tag = document.activeElement && document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    e.preventDefault();
+    searchEl.focus();
+  });
+
   document.getElementById('year').textContent = '© ' + new Date().getFullYear() + ' NOTES. All rights reserved.';
 
   // ---------------- SEO: structured data (JSON-LD) ----------------
@@ -1237,6 +1393,14 @@
         "isAccessibleForFree": true
       }
     }));
+    const faqEntities = (typeof chatQuickReplies !== 'undefined' ? chatQuickReplies : []).map(q => ({
+      "@type": "Question",
+      "name": q.label,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": chatAnswers[q.key].replace(/<[^>]+>/g, '')
+      }
+    }));
     const data = {
       "@context": "https://schema.org",
       "@graph": [
@@ -1250,7 +1414,11 @@
           "@type": "ItemList",
           "name": "NOTES. — PDF Study Notes",
           "itemListElement": itemListElement
-        }
+        },
+        ...(faqEntities.length ? [{
+          "@type": "FAQPage",
+          "mainEntity": faqEntities
+        }] : [])
       ]
     };
     const script = document.createElement('script');
@@ -1262,7 +1430,6 @@
   renderStats();
   renderFilters();
   renderGrid();
-  injectStructuredData();
   openSharedNoteFromUrl();
 
   // ---------------- Chat guide widget (runs entirely in your browser — nothing is sent, stored, or tracked) ----------------
@@ -1394,6 +1561,45 @@
 
   setTimeout(() => { chatHint.classList.add('show'); }, 1600);
   setTimeout(hideChatHint, 9000);
+
+  // Structured data is injected here (not earlier) because the FAQPage
+  // entity it builds reads from chatAnswers/chatQuickReplies, defined above.
+  injectStructuredData();
+
+  // ---------------- Newsletter signup (footer) ----------------
+  // NEWSLETTER_ENDPOINT is intentionally blank until a real form backend
+  // (e.g. Formspree or Buttondown) is wired up — set the URL below to
+  // activate live submissions instead of the "coming soon" placeholder.
+  const NEWSLETTER_ENDPOINT = '';
+  const newsletterForm = document.getElementById('newsletterForm');
+  const newsletterMsg = document.getElementById('newsletterMsg');
+  if (newsletterForm){
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const emailEl = document.getElementById('newsletterEmail');
+      const email = emailEl.value.trim();
+      if (!email) return;
+      if (!NEWSLETTER_ENDPOINT){
+        newsletterMsg.textContent = 'Signup is being set up — check back soon!';
+        return;
+      }
+      try {
+        const res = await fetch(NEWSLETTER_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(newsletterForm)
+        });
+        if (res.ok){
+          newsletterMsg.textContent = "Thanks — you're on the list!";
+          newsletterForm.reset();
+        } else {
+          newsletterMsg.textContent = 'Something went wrong — try again later.';
+        }
+      } catch (err){
+        newsletterMsg.textContent = 'Something went wrong — try again later.';
+      }
+    });
+  }
 </script>
 
 </body>
