@@ -456,6 +456,43 @@
     color:var(--grey);
   }
 
+  .resume-cta{
+    border:2px solid var(--black);
+    background:var(--black);
+    color:var(--white);
+    margin:32px 0 8px;
+  }
+  .resume-cta-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:32px;
+    flex-wrap:wrap;
+    padding:32px;
+  }
+  .resume-cta-copy{ max-width:600px; }
+  .resume-cta .kicker{ color:var(--grey); margin-bottom:10px; }
+  .resume-cta h2{
+    font-family:'Fraunces', serif; font-weight:600; font-size:26px;
+    line-height:1.2; letter-spacing:-0.01em; margin-bottom:10px; color:var(--white);
+  }
+  .resume-cta p{
+    font-size:14.5px; line-height:1.65; color:#c9c9c9; margin:0;
+  }
+  .resume-cta-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--white); color:var(--black);
+    border:2px solid var(--white);
+    padding:14px 22px;
+    font-family:'Inter', sans-serif; font-weight:600; font-size:13px;
+    letter-spacing:.03em; text-transform:uppercase;
+    text-decoration:none; white-space:nowrap;
+    transition:background .15s var(--ease), color .15s var(--ease), border-color .15s var(--ease);
+  }
+  .resume-cta-btn:hover{ background:var(--black); color:var(--white); border-color:var(--white); }
+  .resume-cta-btn:focus-visible{ outline:2.5px solid var(--white); outline-offset:3px; }
+  @media (max-width:640px){
+    .resume-cta-inner{ padding:24px; }
+    .resume-cta-btn{ width:100%; justify-content:center; }
+  }
+
   .newsletter{
     display:flex; justify-content:space-between; align-items:center; gap:20px;
     flex-wrap:wrap;
@@ -682,6 +719,17 @@
 </section>
 
 <div class="wrap">
+  <section class="resume-cta" aria-labelledby="resume-cta-heading">
+    <div class="resume-cta-inner">
+      <div class="resume-cta-copy">
+        <div class="kicker">Free Service</div>
+        <h2 id="resume-cta-heading">Get your resume reviewed — free.</h2>
+        <p>Any resume, any career stage — student, career-change, freelance, executive. Send it over and get honest, practical feedback, no cost and no catch. Also happy to help with cover letters, LinkedIn summaries, or any other writing you're stuck on.</p>
+      </div>
+      <a class="resume-cta-btn" href="mailto:support@pdfsent.com?subject=Free%20Resume%20Review">Email your resume →</a>
+    </div>
+  </section>
+
   <div class="controls">
     <div class="search-box">
       <label for="search" class="visually-hidden">Search notes by title or topic</label>
