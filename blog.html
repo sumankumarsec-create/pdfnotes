@@ -143,6 +143,43 @@
   </nav>
 
   <div id="postList">
+    <article class="post" data-cat="Tech & Tools" data-slug="ai-wasnt-supposed-to-hire-engineers-back">
+      <div class="post-card" role="button" tabindex="0" aria-expanded="false">
+        <div class="post-meta">
+          <span class="post-tag">Tech & Tools</span>
+          <span class="byline">30 July 2026</span>
+        </div>
+        <h2 class="post-title">AI Was Supposed to Replace Software Engineers. So Why Are Companies Hiring Them Again?</h2>
+
+        <p class="lead">For the past few years we've heard the same prediction on repeat: AI will replace software engineers. When ChatGPT and GitHub Copilot exploded, it looked like the future had already arrived — tech CEOs talked about AI writing most of their code, startups claimed they needed a fraction of the engineers they used to, and thousands of developers lost their jobs. For a while it really did look like the profession was becoming obsolete. Then something quieter and stranger started happening: companies began hiring engineers back.</p>
+
+        <span class="read-toggle">Read the full guide →</span>
+      </div>
+
+      <div class="post-body"><div class="post-body-inner">
+      <h3>It started before ChatGPT</h3>
+      <p>Most people assume the AI-replaces-coders story begins with ChatGPT, but it actually starts a year earlier. In 2021, GitHub Copilot introduced AI-assisted coding — nothing that could build a full application on its own, but something that could autocomplete functions and shave real time off a developer's day. That alone was enough to spark the fear. Articles started asking, half-seriously, whether programmers would soon be unnecessary. Nobody had a confident answer yet.</p>
+
+      <h3>Then ChatGPT changed the conversation</h3>
+      <p>When ChatGPT launched in late 2022, AI-assisted coding stopped being a niche developer tool and became something anyone could use. You no longer needed years of programming experience to get working code — you could describe what you wanted in plain English and get something functional back. That same period happened to coincide with one of the worst tech job markets in years, with layoffs announced almost weekly. People connected the two trends immediately: AI is improving, developers are losing jobs, therefore AI must be the cause. It was a tidy story, but it wasn't the whole one — a lot of companies had simply overhired during the pandemic and were now correcting course. AI became a convenient explanation for a decision that had already been made for other reasons.</p>
+
+      <h3>The hype peaked in 2024–2025</h3>
+      <p>By 2024 and into 2025, confidence in AI coding had reached a new level. Major tech companies proudly announced that AI was writing a significant share of their codebase. Founders claimed a small team could now do the work of a much larger engineering org. The pitch was simple and seductive: if AI can write code for $20 a month, why keep paying six-figure salaries for humans to do it? Plenty of companies believed it — hiring slowed, some engineering teams shrank, and AI became the centerpiece of the strategy rather than a tool inside it.</p>
+
+      <h3>Then reality hit</h3>
+      <p>Once these companies actually started shipping real products built on AI-generated code, they ran into something they hadn't priced in: writing code and building software aren't the same activity. AI is genuinely good at producing code fast. But software engineering is understanding requirements, designing systems that hold up under load, debugging problems nobody's seen before, keeping a large codebase maintainable, reviewing architecture, and making dozens of judgment calls a day that never show up in a prompt. That's the part AI still struggles with.</p>
+
+      <h3>The problem nobody was talking about out loud</h3>
+      <p>One of the more insidious issues with AI-generated code is that it usually <em>looks</em> right — until it isn't. A comparison operator flipped the wrong way. An edge case quietly missed. Code that sails through testing and then breaks in production under conditions nobody thought to simulate. These aren't the kind of bugs a linter catches; they're the kind an experienced engineer catches because they've been burned by the same shape of problem before. And when AI is generating thousands of lines at a time, even a small error rate compounds into something expensive fast.</p>
+
+      <h3>More code isn't the same as better code</h3>
+      <p>There's a second, quieter problem: volume. A human engineer solving a problem will often reach for the simplest function that does the job. AI tends to reach for more — extra helper classes, additional abstraction layers, complexity that wasn't asked for but arrived anyway. The code still works. But now somebody has to read it, maintain it, and understand why it's shaped that way six months from now. Codebases grow bigger, slower to reason about, and more expensive to touch. More than one company ended up hiring experienced engineers specifically to clean up the code AI had written for them.</p>
+
+      <h3>Companies are quietly hiring again</h3>
+      <p>This is the part that doesn't make headlines. Instead of publicly admitting the AI-first bet hadn't paid off, a lot of companies just started hiring software engineers again — in some cases the very people they'd laid off a year or two earlier. Those returning engineers already know the systems, the architecture, and the way the team works, so they can start improving AI-generated code immediately instead of spending months ramping up. Most of this hiring is happening quietly, through recruiters, referrals, alumni networks, and personal connections rather than public job postings. Nobody's putting out a press release that says "we were wrong about AI." But the hiring data is telling a different story than the headlines from two years ago.</p>
+      </div></div>
+    </article>
+
     <article class="post" data-cat="How to Study" data-slug="discipline-was-never-the-problem">
       <div class="post-card" role="button" tabindex="0" aria-expanded="false">
         <div class="post-meta">
@@ -466,6 +503,16 @@ document.getElementById('year').textContent = '© ' + new Date().getFullYear() +
     "@context": "https://schema.org",
     "@graph": [
       { "@type": "Blog", "name": "NOTES. Blog", "url": "https://pdfsent.com/blog.html" },
+      {
+        "@type": "BlogPosting",
+        "headline": "AI Was Supposed to Replace Software Engineers. So Why Are Companies Hiring Them Again?",
+        "description": "Why the AI-replaces-engineers narrative hasn't held up in practice — the gap between writing code and building software, the hidden bugs in AI-generated code, and why companies are quietly rehiring the engineers they laid off.",
+        "datePublished": "2026-07-30",
+        "dateModified": "2026-07-30",
+        "author": { "@type": "Person", "name": "NOTES. maintainer" },
+        "publisher": { "@type": "Organization", "name": "NOTES." },
+        "mainEntityOfPage": "https://pdfsent.com/blog.html"
+      },
       {
         "@type": "BlogPosting",
         "headline": "The Morning I Realised Discipline Was Never the Problem",
