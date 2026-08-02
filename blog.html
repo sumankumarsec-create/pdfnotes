@@ -130,6 +130,18 @@
   </nav>
 
   <div id="postList">
+    <article class="post" data-cat="How to Study">
+      <a class="post-card" href="blog/why-nothing-feels-interesting-anymore.html">
+        <div class="post-meta">
+          <span class="post-tag">How to Study</span>
+          <span class="byline">2 August 2026</span>
+        </div>
+        <h2 class="post-title">Why Nothing Feels Interesting Anymore: The Science Behind Lost Curiosity</h2>
+        <p class="lead">Have you opened a book, started reading, and lost interest within minutes? Or sat down to learn something new, only to find yourself scrolling instead? Most people assume they've become lazy, unmotivated, or "just not curious anymore." Neuroscience suggests something different: curiosity isn't gone. It's been hijacked.</p>
+        <span class="read-toggle">Read the full guide →</span>
+      </a>
+    </article>
+
     <article class="post" data-cat="Interview Tips">
       <a class="post-card" href="blog/why-your-resume-keeps-getting-rejected.html">
         <div class="post-meta">
@@ -248,64 +260,115 @@ document.getElementById('year').textContent = '© ' + new Date().getFullYear() +
   const data = {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Blog", "name": "NOTES. Blog", "url": "https://pdfsent.com/blog.html" },
-      {
-        "@type": "BlogPosting",
-        "headline": "Why Your Resume Keeps Getting Rejected (And How Recruiters Actually Read It)",
-        "description": "How recruiters actually scan a resume in the first 20 seconds, why keywords alone don't prove a qualification, the four-part What/How/Why/Where framework, and the 'hot dogs vs. hamburgers' rule for prioritizing what goes first.",
-        "url": "https://pdfsent.com/blog/why-your-resume-keeps-getting-rejected.html",
-        "datePublished": "2026-08-02",
-        "dateModified": "2026-08-02",
-        "author": { "@type": "Person", "name": "NOTES. maintainer" },
-        "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog/why-your-resume-keeps-getting-rejected.html"
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "AI Was Supposed to Replace Software Engineers. So Why Are Companies Hiring Them Again?",
-        "description": "Why the AI-replaces-engineers narrative hasn't held up in practice — the gap between writing code and building software, the hidden bugs in AI-generated code, and why companies are quietly rehiring the engineers they laid off.",
-        "url": "https://pdfsent.com/blog/ai-wasnt-supposed-to-hire-engineers-back.html",
-        "datePublished": "2026-07-30",
-        "dateModified": "2026-07-30",
-        "author": { "@type": "Person", "name": "NOTES. maintainer" },
-        "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog/ai-wasnt-supposed-to-hire-engineers-back.html"
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "The Morning I Realised Discipline Was Never the Problem",
-        "description": "Why focus isn't something you force but something you design — how highly focused people build systems and routines that remove distractions before they appear, instead of relying on willpower.",
-        "url": "https://pdfsent.com/blog/discipline-was-never-the-problem.html",
-        "datePublished": "2026-07-28",
-        "dateModified": "2026-07-28",
-        "author": { "@type": "Person", "name": "NOTES. maintainer" },
-        "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog/discipline-was-never-the-problem.html"
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "The Right Order to Invest Your Money (Most People Get This Backwards)",
-        "description": "Why sequence beats timing when it comes to building wealth — emergency fund, high-interest debt, employer match, IRA, HSA, and taxable brokerage accounts, in the order that actually protects and compounds your money.",
-        "url": "https://pdfsent.com/blog/right-order-invest-money.html",
-        "datePublished": "2026-07-28",
-        "dateModified": "2026-07-28",
-        "author": { "@type": "Person", "name": "NOTES. maintainer" },
-        "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog/right-order-invest-money.html"
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "How to Ace Your Next Job Interview: Tips & Strategies",
-        "description": "A practical guide to interview preparation, the STAR method for behavioral questions, answering the most common questions, asking smart questions, and following up after the interview.",
-        "url": "https://pdfsent.com/blog/how-to-ace-interview.html",
-        "datePublished": "2026-07-24",
-        "dateModified": "2026-07-24",
-        "author": { "@type": "Person", "name": "NOTES. maintainer" },
-        "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog/how-to-ace-interview.html"
-      }
+        {
+            "@type": "Blog",
+            "name": "NOTES. Blog",
+            "url": "https://pdfsent.com/blog.html"
+        },
+        {
+            "@type": "BlogPosting",
+            "headline": "Why Nothing Feels Interesting Anymore: The Science Behind Lost Curiosity",
+            "description": "Have you opened a book, started reading, and lost interest within minutes? Or sat down to learn something new, only to find yourself scrolling instead? Most people assume they've become lazy, unmotiva…",
+            "url": "https://pdfsent.com/blog/why-nothing-feels-interesting-anymore.html",
+            "datePublished": "2026-08-02",
+            "dateModified": "2026-08-02",
+            "author": {
+                "@type": "Person",
+                "name": "NOTES. maintainer"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "NOTES."
+            },
+            "mainEntityOfPage": "https://pdfsent.com/blog/why-nothing-feels-interesting-anymore.html"
+        },
+        {
+            "@type": "BlogPosting",
+            "headline": "Why Your Resume Keeps Getting Rejected (And How Recruiters Actually Read It)",
+            "description": "\"Is it the market, or is it my resume?\" If you've applied to hundreds of jobs and gotten nothing but rejection emails, you've probably asked yourself this. The honest answer is both — the market is to…",
+            "url": "https://pdfsent.com/blog/why-your-resume-keeps-getting-rejected.html",
+            "datePublished": "2026-08-02",
+            "dateModified": "2026-08-02",
+            "author": {
+                "@type": "Person",
+                "name": "NOTES. maintainer"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "NOTES."
+            },
+            "mainEntityOfPage": "https://pdfsent.com/blog/why-your-resume-keeps-getting-rejected.html"
+        },
+        {
+            "@type": "BlogPosting",
+            "headline": "AI Was Supposed to Replace Software Engineers. So Why Are Companies Hiring Them Again?",
+            "description": "For the past few years we've heard the same prediction on repeat: AI will replace software engineers. When ChatGPT and GitHub Copilot exploded, it looked like the future had already arrived — tech CEO…",
+            "url": "https://pdfsent.com/blog/ai-wasnt-supposed-to-hire-engineers-back.html",
+            "datePublished": "2026-07-30",
+            "dateModified": "2026-07-30",
+            "author": {
+                "@type": "Person",
+                "name": "NOTES. maintainer"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "NOTES."
+            },
+            "mainEntityOfPage": "https://pdfsent.com/blog/ai-wasnt-supposed-to-hire-engineers-back.html"
+        },
+        {
+            "@type": "BlogPosting",
+            "headline": "The Morning I Realised Discipline Was Never the Problem",
+            "description": "At 7:30 on a Monday morning, I sat at my desk with a cup of coffee beside my laptop. I had the perfect plan. Twenty minutes later, I had somehow checked my email twice, watched three short videos, and…",
+            "url": "https://pdfsent.com/blog/discipline-was-never-the-problem.html",
+            "datePublished": "2026-07-28",
+            "dateModified": "2026-07-28",
+            "author": {
+                "@type": "Person",
+                "name": "NOTES. maintainer"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "NOTES."
+            },
+            "mainEntityOfPage": "https://pdfsent.com/blog/discipline-was-never-the-problem.html"
+        },
+        {
+            "@type": "BlogPosting",
+            "headline": "The Right Order to Invest Your Money (Most People Get This Backwards)",
+            "description": "Most people get excited about the wrong part of investing first. They want to pick the winning stock, the right ETF, the next big thing — while they're still carrying a credit card balance at 22% inte…",
+            "url": "https://pdfsent.com/blog/right-order-invest-money.html",
+            "datePublished": "2026-07-28",
+            "dateModified": "2026-07-28",
+            "author": {
+                "@type": "Person",
+                "name": "NOTES. maintainer"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "NOTES."
+            },
+            "mainEntityOfPage": "https://pdfsent.com/blog/right-order-invest-money.html"
+        },
+        {
+            "@type": "BlogPosting",
+            "headline": "How to Ace Your Next Job Interview: Tips &amp; Strategies",
+            "description": "Landing an interview is a win in itself — but stepping into the room, or logging into the call, can still feel daunting. Standing out in today's market takes a strategic approach that goes beyond memo…",
+            "url": "https://pdfsent.com/blog/how-to-ace-interview.html",
+            "datePublished": "2026-07-24",
+            "dateModified": "2026-07-24",
+            "author": {
+                "@type": "Person",
+                "name": "NOTES. maintainer"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "NOTES."
+            },
+            "mainEntityOfPage": "https://pdfsent.com/blog/how-to-ace-interview.html"
+        }
     ]
-  };
+};
   const script = document.createElement('script');
   script.type = 'application/ld+json';
   script.textContent = JSON.stringify(data);
