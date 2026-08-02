@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Computer Science</div>
   <h1>Java Interview Prep — Part 2</h1>
+  
   <p class="desc">Array programs, searching &amp; sorting, and matrix programs (Q41–Q70) — each question paired with the logic explained in plain English and working Java code, covering Kadane's algorithm, binary search, merge/quick/counting/bucket sort, and matrix operations.</p>
   <div class="note-meta">
     <span>22 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/java-interview-prep-part-2.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=java-interview-2">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>Array and sorting questions show up in almost every Java interview, and this part walks through them the way I'd actually explain them on a whiteboard — plain English first, code after. Kadane's algorithm and the sort family (merge, quick, counting, bucket) are the two sections worth slowing down on; the rest clicks quickly once those two land. Pairs well with Part 4 if you're doing a full prep pass rather than a quick refresh.</p>
   </div>
 
   <section class="related">

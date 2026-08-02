@@ -108,6 +108,15 @@
     font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
   }
   .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -137,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/java-data-structures-simple-book.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=java-data-structures-simple-book">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>My wife wrote this one, and I added it because it solves a real problem the other DSA resources on this site don't: it starts from zero, not from &quot;assumes you already code comfortably.&quot; The dry-run-by-hand approach — tracing code manually instead of memorising patterns — is the part that actually builds intuition, and it's rare to see a book commit to that as fully as this one does. If the other Java DS courses here felt like they skipped a step, this is the step they skipped.</p>
   </div>
 
   <section class="related">

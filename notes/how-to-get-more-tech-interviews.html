@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Career &amp; Productivity</div>
   <h1>How to Get More Job Interviews in Tech</h1>
+  
   <p class="desc">A practical system for generating more interviews across full-time, freelance, remote, and contract tech work — why cold applications alone rarely work, and how to shift effort toward referrals, direct outreach, and visible proof of work instead. Covers resume keyword-matching for ATS filters, messaging hiring managers directly, role-specific tactics for corporate, freelance, and remote roles, a tracking system to iterate on your funnel, common mistakes that suppress your interview rate, and a first-week action checklist.</p>
   <div class="note-meta">
     <span>4 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/how-to-get-more-tech-interviews.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=how-to-get-more-tech-interviews">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>Short by design — four pages, because the core idea doesn't need padding: cold applications alone don't work as well as referrals and direct outreach, and most people already know this but don't act on it. The ATS keyword-matching section is the most immediately actionable part. If you want a mindset shift plus a checklist you can start on today, this is built for exactly that, not a comprehensive job-search manual.</p>
   </div>
 
   <section class="related">

@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Computer Science</div>
   <h1>Java Interview Prep — Part 4</h1>
+  
   <p class="desc">Multithreading &amp; concurrency, Collections internals, OOP &amp; design patterns, exception handling, system design/LLD, and pattern-printing programs (Q99–Q122) — producer-consumer, executors, HashMap internals, Singleton/Factory/Builder/Observer, and a vending-machine LLD walkthrough.</p>
   <div class="note-meta">
     <span>23 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/java-interview-prep-part-4.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=java-interview-4">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>This is the part of Java interview prep people skip because it's harder — concurrency, Collections internals, and low-level design. I kept the vending-machine LLD walkthrough in because that kind of question trips people up not from lack of knowledge but from not knowing how to structure the answer out loud under pressure. If you're comfortable with basic Java and want to go up a level, this is where to start.</p>
   </div>
 
   <section class="related">

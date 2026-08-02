@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Cloud Security</div>
   <h1>Cloud Security: Zero to Hero</h1>
+  
   <p class="desc">A practical, vendor-neutral course on securing AWS, Azure, and Google Cloud — from the shared responsibility model and IAM through real breach patterns, misconfiguration, secrets management, container defence, and a graded interview question bank.</p>
   <div class="note-meta">
     <span>31 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/cloud-security-zero-to-hero.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=cloud-security">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>Most cloud security content picks one provider and stays there. I wanted something that forced the vendor-neutral thinking — shared responsibility model, IAM, misconfiguration patterns — because that's what actually transfers between AWS, Azure, and GCP interviews. The breach-pattern section is the strongest part of the whole thing; it's the difference between knowing a concept and knowing why it actually matters in production. Best for someone prepping across multiple cloud interviews, not someone committed to one ecosystem yet.</p>
   </div>
 
   <section class="related">

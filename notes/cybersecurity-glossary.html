@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Cybersecurity</div>
   <h1>Cybersecurity Words — Easy Glossary</h1>
+  
   <p class="desc">1000+ cybersecurity terms, each paired with a plain-word twin and a one-line meaning, grouped by topic — from core concepts like the CIA Triad through to advanced attack and defence terminology. Built for learners who want the real word and the everyday phrase side by side.</p>
   <div class="note-meta">
     <span>25 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/cybersecurity-glossary.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=cybersecurity-glossary">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>I put this together because cybersecurity vocabulary is one of those things where you nod along in meetings until someone says &quot;the CIA triad&quot; and you realise you've never actually looked it up properly. Each term gets the plain-word twin next to it on purpose — the goal was a glossary you could scan in ten minutes before an interview, not a textbook. Most useful if you're moving into security from another QA or dev background and need the vocabulary fast. Less useful if you already work in security day to day — you'll know most of this already.</p>
   </div>
 
   <a class="back" href="../index.html">← Back to the full archive</a>

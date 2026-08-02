@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Cloud Security</div>
   <h1>AWS Cloud Security — 100 Cross-Questions</h1>
+  
   <p class="desc">Trap questions, follow-ups, and scenario drills across 18 topics (Q1–Q100) — the questions an interviewer asks after your first answer. Built to test the reasoning behind a fact, not just the fact itself, with a 5-day study pace built in.</p>
   <div class="note-meta">
     <span>8 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/aws-cloud-security-cross-questions.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=aws-cross-questions">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>Regular AWS security questions are easy to memorise and easy to fumble on the follow-up. That's the whole point of this one — it's built around the second and third question an interviewer asks, not the first. Use the 5-day pace if you're prepping seriously; skim it in one sitting if you just want to see where your gaps are. Not a first AWS security resource — you need the basics already, this is for the follow-up questions that expose people who only memorised.</p>
   </div>
 
   <section class="related">
