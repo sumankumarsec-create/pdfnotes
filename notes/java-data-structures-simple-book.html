@@ -103,6 +103,11 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
 </style>
 </head>
 <body>
@@ -122,6 +127,7 @@
   </nav>
   <div class="kicker">Computer Science</div>
   <h1>Java Data Structures: The Very Simple Book</h1>
+  <div class="author-byline">Written by <span class="author-name">Shammi Bharti</span></div>
   <p class="desc">A from-scratch Java and data structures book built around dry-running code by hand rather than memorising it. Starts at the ground floor — every keyword, every operator, decisions and loops, methods and the call stack, recursion, arrays and strings — before building objects and reasoning about cost (Big-O, brute force vs. optimised). The core of the book hand-builds every major structure from nothing (linked list, stack, queue, hash table, trees, heap/priority queue, graphs, trie), then covers the Java Collections Framework you'd actually use day to day. Closes with 100 worked programs across numbers, arrays, strings, and structures, plus a chapter on the mistakes that cost the most hours and how to dry-run properly.</p>
   <div class="note-meta">
     <span>134 pages</span>
@@ -161,7 +167,7 @@
   </div>
 </footer>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NOTES.","item":"https://pdfsent.com/"},{"@type":"ListItem","position":2,"name":"Computer Science","item":"https://pdfsent.com/?cat=Computer%20Science"},{"@type":"ListItem","position":3,"name":"Java Data Structures: The Very Simple Book","item":"https://pdfsent.com/notes/java-data-structures-simple-book.html"}]},{"@type":"LearningResource","name":"Java Data Structures: The Very Simple Book","description":"A from-scratch Java and data structures book built around dry-running code by hand rather than memorising it. Starts at the ground floor — every keyword, every operator, decisions and loops, methods and the call stack, recursion, arrays and strings — before building objects and reasoning about cost (Big-O, brute force vs. optimised). The core of the book hand-builds every major structure from nothing (linked list, stack, queue, hash table, trees, heap/priority queue, graphs, trie), then covers the Java Collections Framework you'd actually use day to day. Closes with 100 worked programs across numbers, arrays, strings, and structures, plus a chapter on the mistakes that cost the most hours and how to dry-run properly.","url":"https://pdfsent.com/notes/java-data-structures-simple-book.html","contentUrl":"https://pdfsent.com/pdfs/java-data-structures-simple-book.pdf","encodingFormat":"application/pdf","about":"Computer Science","learningResourceType":"Study notes","isAccessibleForFree":true,"isPartOf":{"@type":"WebSite","name":"NOTES.","url":"https://pdfsent.com/"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NOTES.","item":"https://pdfsent.com/"},{"@type":"ListItem","position":2,"name":"Computer Science","item":"https://pdfsent.com/?cat=Computer%20Science"},{"@type":"ListItem","position":3,"name":"Java Data Structures: The Very Simple Book","item":"https://pdfsent.com/notes/java-data-structures-simple-book.html"}]},{"@type":"LearningResource","name":"Java Data Structures: The Very Simple Book","description":"A from-scratch Java and data structures book built around dry-running code by hand rather than memorising it. Starts at the ground floor — every keyword, every operator, decisions and loops, methods and the call stack, recursion, arrays and strings — before building objects and reasoning about cost (Big-O, brute force vs. optimised). The core of the book hand-builds every major structure from nothing (linked list, stack, queue, hash table, trees, heap/priority queue, graphs, trie), then covers the Java Collections Framework you'd actually use day to day. Closes with 100 worked programs across numbers, arrays, strings, and structures, plus a chapter on the mistakes that cost the most hours and how to dry-run properly.","url":"https://pdfsent.com/notes/java-data-structures-simple-book.html","contentUrl":"https://pdfsent.com/pdfs/java-data-structures-simple-book.pdf","encodingFormat":"application/pdf","about":"Computer Science","learningResourceType":"Study notes","isAccessibleForFree":true,"isPartOf":{"@type":"WebSite","name":"NOTES.","url":"https://pdfsent.com/"},"author":{"@type":"Person","name":"Shammi Bharti"}}]}</script>
 <script>document.getElementById('year').textContent = '© ' + new Date().getFullYear() + ' NOTES. All rights reserved.';</script>
 </body>
 </html>
