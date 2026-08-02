@@ -870,7 +870,8 @@
       description: "Complete architecture, code, and concept reference for building a Java test automation framework with REST Assured and TestNG — covers GET/POST/PUT/PATCH/DELETE, POJOs, schema validation, auth flows, and reporting.",
       file: "pdfs/rest-assured-api-framework.pdf",
       pages: 45,
-      featured: true
+      featured: true,
+      curation: "I built this framework doc after wiring up REST Assured for the third time across different teams and getting tired of hunting my old code every time. If you already know Java and TestNG basics and just need the actual working piece — POJOs, schema validation, auth handling — skip the theory-heavy tutorials and start here. The auth flow section is where it earns its keep, because that's the part every \"getting started\" guide skips and every real project needs on day one. Best for QA engineers past the beginner stage who need a reference to copy-adapt from, not a first introduction to API testing.",
     },
     {
       id: "cybersecurity-glossary",
@@ -879,7 +880,8 @@
       description: "1000+ cybersecurity terms, each paired with a plain-word twin and a one-line meaning, grouped by topic — from core concepts like the CIA Triad through to advanced attack and defence terminology. Built for learners who want the real word and the everyday phrase side by side.",
       file: "pdfs/cybersecurity-glossary.pdf",
       pages: 25,
-      featured: false
+      featured: false,
+      curation: "I put this together because cybersecurity vocabulary is one of those things where you nod along in meetings until someone says \"the CIA triad\" and you realise you've never actually looked it up properly. Each term gets the plain-word twin next to it on purpose — the goal was a glossary you could scan in ten minutes before an interview, not a textbook. Most useful if you're moving into security from another QA or dev background and need the vocabulary fast. Less useful if you already work in security day to day — you'll know most of this already.",
     },
     {
       id: "jenkins-cicd-qa",
@@ -888,7 +890,8 @@
       description: "Complete interview notes for automation QA engineers — 18 chapters covering Jenkins architecture, Jenkinsfile pipelines, Git and Maven integration, build triggers, environment management, and parameterized builds, plus 30 interview Q&A and a one-page cheat sheet.",
       file: "pdfs/jenkins-cicd-automation-qa.pdf",
       pages: 20,
-      featured: false
+      featured: false,
+      curation: "This came out of prepping for interviews where the Jenkins questions kept catching me off guard — not the basic \"what is CI/CD\" stuff, but the Jenkinsfile and pipeline-as-code details. The 30 interview Q&A at the end is the part I'd actually reread before an interview; the rest is reference material for when you're stuck. If you already run Jenkins pipelines daily this will feel basic. If you've only clicked buttons in a Jenkins UI someone else configured, this fills that gap.",
     },
     {
       id: "testng-framework",
@@ -897,7 +900,8 @@
       description: "Full TestNG reference — annotations and execution order, testng.xml suites/tests/parameters, DataProviders, groups and dependencies (skip vs fail), parallel execution and thread safety, hard vs soft assertions, listeners, a custom retry analyzer, Selenium integration, best practices, and 50 interview cross-questions.",
       file: "pdfs/testng-framework-complete-course.pdf",
       pages: 18,
-      featured: false
+      featured: false,
+      curation: "TestNG is one of those frameworks everyone uses but half-understands — most people know @Test and @BeforeMethod and stop there. The parts worth your time here are execution order, DataProviders, and the custom retry analyzer, because those are what actually separate a flaky suite from a reliable one. The 50 cross-questions at the end are genuinely interview-style, not generic — I'd work through those before the reference chapters if you're short on time.",
     },
     {
       id: "aws-cross-questions",
@@ -906,7 +910,8 @@
       description: "Trap questions, follow-ups, and scenario drills across 18 topics (Q1–Q100) — the questions an interviewer asks after your first answer. Built to test the reasoning behind a fact, not just the fact itself, with a 5-day study pace built in.",
       file: "pdfs/aws-cloud-security-cross-questions.pdf",
       pages: 8,
-      featured: false
+      featured: false,
+      curation: "Regular AWS security questions are easy to memorise and easy to fumble on the follow-up. That's the whole point of this one — it's built around the second and third question an interviewer asks, not the first. Use the 5-day pace if you're prepping seriously; skim it in one sitting if you just want to see where your gaps are. Not a first AWS security resource — you need the basics already, this is for the follow-up questions that expose people who only memorised.",
     },
     {
       id: "cloud-security",
@@ -915,7 +920,8 @@
       description: "A practical, vendor-neutral course on securing AWS, Azure, and Google Cloud — from the shared responsibility model and IAM through real breach patterns, misconfiguration, secrets management, container defence, and a graded interview question bank.",
       file: "pdfs/cloud-security-zero-to-hero.pdf",
       pages: 31,
-      featured: true
+      featured: true,
+      curation: "Most cloud security content picks one provider and stays there. I wanted something that forced the vendor-neutral thinking — shared responsibility model, IAM, misconfiguration patterns — because that's what actually transfers between AWS, Azure, and GCP interviews. The breach-pattern section is the strongest part of the whole thing; it's the difference between knowing a concept and knowing why it actually matters in production. Best for someone prepping across multiple cloud interviews, not someone committed to one ecosystem yet.",
     },
     {
       id: "java-interview-2",
@@ -924,7 +930,8 @@
       description: "Array programs, searching & sorting, and matrix programs (Q41–Q70) — each question paired with the logic explained in plain English and working Java code, covering Kadane's algorithm, binary search, merge/quick/counting/bucket sort, and matrix operations.",
       file: "pdfs/java-interview-prep-part-2.pdf",
       pages: 22,
-      featured: false
+      featured: false,
+      curation: "Array and sorting questions show up in almost every Java interview, and this part walks through them the way I'd actually explain them on a whiteboard — plain English first, code after. Kadane's algorithm and the sort family (merge, quick, counting, bucket) are the two sections worth slowing down on; the rest clicks quickly once those two land. Pairs well with Part 4 if you're doing a full prep pass rather than a quick refresh.",
     },
     {
       id: "java-interview-4",
@@ -933,7 +940,8 @@
       description: "Multithreading & concurrency, Collections internals, OOP & design patterns, exception handling, system design/LLD, and pattern-printing programs (Q99–Q122) — producer-consumer, executors, HashMap internals, Singleton/Factory/Builder/Observer, and a vending-machine LLD walkthrough.",
       file: "pdfs/java-interview-prep-part-4.pdf",
       pages: 23,
-      featured: false
+      featured: false,
+      curation: "This is the part of Java interview prep people skip because it's harder — concurrency, Collections internals, and low-level design. I kept the vending-machine LLD walkthrough in because that kind of question trips people up not from lack of knowledge but from not knowing how to structure the answer out loud under pressure. If you're comfortable with basic Java and want to go up a level, this is where to start.",
     },
     {
       id: "mobile-web-automation-conflicts",
@@ -942,7 +950,8 @@
       description: "100 real-world conflicts across mobile and web test automation, each paired with a resolution and concrete implementation steps — flaky tests from animations, device/state isolation, deep link and push notification testing, Appium/driver version management, parallel execution and device-farm scaling, CAPTCHA/MFA/OTP blockers, headless vs headed mismatches, tool trade-offs (open-source vs paid, AI self-healing locators, codeless tools), and team/process conflicts like QA being blamed for slow releases, siloed automation engineers, and device-lab vs cloud budget decisions.",
       file: "pdfs/mobile-web-automation-conflicts.pdf",
       pages: 13,
-      featured: false
+      featured: false,
+      curation: "Every one of these 100 conflicts is something I've actually hit, or a teammate has — not hypothetical scenarios written to fill a page count. Flaky tests from animations and device or state isolation are the two I'd flag as underrated; most automation guides skip them because they're messy problems, not clean textbook ones. The team and process conflicts near the end — QA getting blamed for slow releases, siloed automation engineers — are worth reading even if you're not the one writing the automation.",
     },
     {
       id: "java-interview-deep-easy",
@@ -951,7 +960,8 @@
       description: "21 topics of core Java through concurrency and Java 8, each explained with a simple everyday analogy first, then full technical depth, a working code example with output, an interview tip, and common interview Q&A — variables and scope, the four pillars of OOP, abstract class vs interface, key keywords (this/super/static/final), arrays/strings/number systems, exception handling, the Collections Framework, multithreading and concurrency, Java 8+ features, JVM memory management and garbage collection, serialization, design patterns and generics, annotations and reflection, inner classes, immutability, and file handling.",
       file: "pdfs/java-interview-notes-deep-and-easy.pdf",
       pages: 56,
-      featured: true
+      featured: true,
+      curation: "This is the one I'd hand to someone who understands Java syntax but freezes when asked to explain why something works. The analogy-first structure is deliberate — I've watched people recite the four pillars of OOP without being able to explain encapsulation in one plain sentence, and that's the gap this closes. JVM memory management and garbage collection is the chapter most people underprepare for, and it's also the one interviewers actually ask about most.",
     },
     {
       id: "java-data-structures-course",
@@ -960,7 +970,8 @@
       description: "A phase-by-phase Java 17+ data structures course spanning 16 structures from foundation to advanced — Big O notation and the stack/heap memory model, generics, then arrays, strings, ArrayList, Stack, Queue and Deque, then HashMap, LinkedList, Binary Tree, BST and Heap, and finally AVL Tree, Trie, Graph BFS/DFS, Segment Tree and Union-Find. Every topic works through concept, visual, complexity, Java code, dry run, edge cases, and practice.",
       file: "pdfs/java-data-structures-complete-course.pdf",
       pages: 29,
-      featured: false
+      featured: false,
+      curation: "Sixteen structures is a real commitment, so here's the honest read: the first half, arrays through HashMap, is where most interview questions actually live, and the second half — AVL, Trie, Segment Tree, Union-Find — is where the differentiating questions live for senior roles. Prepping for a mid-level role, you can stop after Heap and still be well covered. Every topic dry-runs the code, which is the part that actually builds intuition — reading code and tracing code by hand are different skills.",
     },
     {
       id: "operating-systems",
@@ -969,7 +980,8 @@
       description: "A two-part OS reference — core functions, history, today's major OS families, and where things are heading, followed by a step-by-step guide to building a toy operating system from bootloader to shell: the GDT, IDT, paging, the heap, process scheduling, device drivers, system calls, and a file system, with a case study and build checklist.",
       file: "pdfs/operating-systems-notes.pdf",
       pages: 31,
-      featured: false
+      featured: false,
+      curation: "Most OS material stays theoretical — process scheduling, paging, the usual diagrams. The second half here, building a toy OS from bootloader to shell, is what actually makes the theory stick, because you can't fake understanding the GDT and IDT when you're the one implementing them. If you only have time for one part, the build-your-own section teaches you more per hour than the concepts section, even though it's the harder half.",
     },
     {
       id: "linux-command-line-course",
@@ -978,7 +990,8 @@
       description: "From first principles to networking commands — how the shell resolves and runs a command, navigating and reading the filesystem, files and directories, finding things with find/grep/locate, permissions and ownership, processes and resource use, text processing and pipes, networking commands, package management, and shell scripting basics, plus a one-page cheat sheet.",
       file: "pdfs/linux-command-line-course.pdf",
       pages: 7,
-      featured: false
+      featured: false,
+      curation: "I kept this short on purpose — seven pages, because the command line doesn't need two hundred pages, it needs the right forty commands explained properly. The section on how the shell resolves and runs a command is the one most \"Linux basics\" content skips entirely, and it's the thing that makes everything after it make sense. If you already script daily, skip to the networking commands section — that's the part most developers never fully learn.",
     },
     {
       id: "jensen-huang-life-in-habits",
@@ -987,7 +1000,8 @@
       description: "A twenty-page productivity portrait of NVIDIA's co-founder — not his net worth, but the discipline underneath it. Covers his origins, the founding years, mindset, daily routines, leadership style, vision, personal life, and mentorship, distilled into what any of it is actually worth borrowing.",
       file: "pdfs/jensen-huang-life-in-habits.pdf",
       pages: 20,
-      featured: false
+      featured: false,
+      curation: "I didn't want another \"billionaire success secrets\" piece — those are mostly survivorship bias dressed up as advice. What made this worth writing was separating what's actually replicable, the daily habits and how he structures decisions, from what isn't, being early to a category that later became enormous. Read it for the habits section, and stay skeptical of anything in it that sounds like a shortcut.",
     },
     {
       id: "java-exceptions-zero-to-hero",
@@ -996,7 +1010,8 @@
       description: "A plain-English, example-first guide to Java exception handling in 16 modules — what an exception really is, checked vs. unchecked, try/catch/finally flow, catching multiple exceptions, try-with-resources, throw vs. throws, building custom exceptions, exception chaining, the 10 exceptions you'll meet every day, uncatchable errors, common gotchas, best practices, and real-project patterns — plus two rounds of interview questions and a one-page cheat sheet.",
       file: "pdfs/java-exceptions-zero-to-hero.pdf",
       pages: 20,
-      featured: false
+      featured: false,
+      curation: "Exception handling is one of those topics everyone thinks they know until an interviewer asks about exception chaining or a try-with-resources edge case. The \"10 exceptions you'll meet every day\" chapter is the most practically useful part — it's what you'll actually debug in production, not just interview trivia. Good for a focused refresh; not meant to be your only Java resource.",
     },
     {
       id: "bug-severity-priority-classification",
@@ -1005,7 +1020,8 @@
       description: "A practice set of 100 realistic sample bugs across ten QA areas — authentication, payments, UI/UX, performance, API, database, security, mobile, search, and notifications — each rated for Severity and Priority with a one-line reason for the call. Opens with a plain-English breakdown of what separates the two scales, the Critical/High/Medium/Low and P1–P4 definitions, and a 2x2 matrix of high/low severity vs. priority combinations, including the classic mismatches that trip people up in interviews.",
       file: "pdfs/bug-severity-priority-classification.pdf",
       pages: 14,
-      featured: false
+      featured: false,
+      curation: "Severity vs. priority is a QA fundamental that somehow still trips people up in interviews, because the textbook definition and the real judgment call aren't quite the same thing. I built the 100 sample bugs around realistic scenarios specifically so you'd have to make the call yourself before checking the reasoning — that's a different skill than memorising the 2x2 matrix. Worth doing even if you think you already know the difference; the classic mismatches near the end catch most people.",
     },
     {
       id: "leetcode-two-sum-and-beyond",
@@ -1014,7 +1030,8 @@
       description: "A solved problem set built around the Two Sum family and the patterns it teaches — two pointers, prefix sums with hashing, and pair-counting — across 21 LeetCode problems from easy to hard, including 3Sum, 4Sum, Subarray Sum Equals K, Max Number of K-Sum Pairs, and Number of Excellent Pairs. Every problem gets a plain-English approach, working Java solution code, and its time/space complexity, with high-frequency interview patterns flagged so you know what to master first.",
       file: "pdfs/leetcode-two-sum-and-beyond.pdf",
       pages: 14,
-      featured: false
+      featured: false,
+      curation: "Two Sum gets treated as a beginner problem, but the pattern underneath it — hashing for O(n) lookups — is what actually unlocks 3Sum, 4Sum, and the harder variants. I picked these 21 specifically because they build on each other instead of being 21 unrelated problems, which is how most LeetCode lists get put together. If you can solve Two Sum but freeze on 3Sum, this is built for exactly that gap.",
     },
     {
       id: "pet-care-dropshipping-course",
@@ -1023,7 +1040,8 @@
       description: "A practical, disclaimer-forward guide to dropshipping pet care products through Shopify + CJdropshipping — realistic expectations and real costs first, then niche and product research, store setup, pricing and margins, trust signals, SEO and blog content, low-budget paid ads, organic and influencer marketing, customer service and fulfillment, and the actual math behind reaching $10,000/month. Closes with common mistakes that kill new stores, a 30-day action plan, an FAQ, and a resource checklist.",
       file: "pdfs/pet-care-dropshipping-course.pdf",
       pages: 20,
-      featured: false
+      featured: false,
+      curation: "I put the realistic-expectations section first on purpose, because most dropshipping content sells the dream and buries the actual math. Pet care specifically because it's a niche with real repeat-purchase behaviour, not a trend chasing whatever the algorithm favours this month. If you're looking for a get-rich-quick pitch, this isn't it — the 30-day action plan is deliberately unglamorous, which is also why it's more useful than most of what's out there.",
     },
     {
       id: "python-zero-to-hero",
@@ -1032,7 +1050,8 @@
       description: "A complete beginner-to-professional Python course in 20 chapters, built to be read top to bottom in one sitting — how Python runs, variables and data types, operators, strings, lists and tuples, dictionaries and sets, conditionals, loops, functions, error handling, file I/O, modules/packages/pip, object-oriented programming, comprehensions and lambdas, scope and copy gotchas, and the standard library, followed by a mini command-line to-do app project, a cheat sheet, and the common beginner mistakes to avoid.",
       file: "pdfs/python-zero-to-hero.pdf",
       pages: 22,
-      featured: false
+      featured: false,
+      curation: "Built to be read top to bottom in one sitting rather than dipped into — that's a real design choice, not marketing copy, because Python's early chapters on types and operators set up assumptions the later chapters on OOP and comprehensions depend on. The scope and copy gotchas chapter is the one experienced-in-other-languages readers most need and most often skip, because it's exactly where Python behaves differently from what they expect.",
     },
     {
       id: "how-to-get-more-tech-interviews",
@@ -1041,7 +1060,8 @@
       description: "A practical system for generating more interviews across full-time, freelance, remote, and contract tech work — why cold applications alone rarely work, and how to shift effort toward referrals, direct outreach, and visible proof of work instead. Covers resume keyword-matching for ATS filters, messaging hiring managers directly, role-specific tactics for corporate, freelance, and remote roles, a tracking system to iterate on your funnel, common mistakes that suppress your interview rate, and a first-week action checklist.",
       file: "pdfs/how-to-get-more-tech-interviews.pdf",
       pages: 4,
-      featured: false
+      featured: false,
+      curation: "Short by design — four pages, because the core idea doesn't need padding: cold applications alone don't work as well as referrals and direct outreach, and most people already know this but don't act on it. The ATS keyword-matching section is the most immediately actionable part. If you want a mindset shift plus a checklist you can start on today, this is built for exactly that, not a comprehensive job-search manual.",
     },
     {
       id: "psychology-dream-big-do-nothing",
@@ -1050,7 +1070,8 @@
       description: "Six well-documented mental patterns that quietly keep ambition stuck in the imagination — why the gap between dreamers and doers isn't talent, it's whether someone can act while their mind resists. Covers mistaking thinking for progress, fear of failure disguised as motivation, waiting for a 'right moment' that never arrives, decision fatigue from overthinking, identity misalignment with the goal, and staying addicted to potential instead of effort — with a one-page summary of all six at a glance.",
       file: "pdfs/psychology-dream-big-do-nothing.pdf",
       pages: 10,
-      featured: false
+      featured: false,
+      curation: "I've caught myself in at least four of these six patterns at different points, which is honestly why I wanted this written down properly instead of as another vague motivational post. \"Staying addicted to potential instead of effort\" is the one that stings most, and in my experience the one people recognise in themselves last. Read the one-page summary first if you're skeptical, then decide if the full six are worth your time.",
     },
     {
       id: "dsa-complete-course",
@@ -1059,7 +1080,8 @@
       description: "A 27-chapter DSA course in Java covering complexity analysis (Big-O/Ω/Θ), arrays, strings, linked lists, stacks, queues, recursion, sorting and searching, trees, BSTs and balanced trees, heaps, hashing, tries, graphs and traversal, shortest path and MST, union-find, segment/Fenwick trees, divide and conquer, greedy algorithms, dynamic programming, and bit manipulation. Every topic follows the same template — definition, intuition, real-life example, diagram, Java code, dry run, brute-force vs. optimized, complexity, common mistakes, interview tips, and practice questions — closing with a master complexity cheat sheet and a practice roadmap.",
       file: "pdfs/dsa-complete-course.pdf",
       pages: 65,
-      featured: false
+      featured: false,
+      curation: "This is the deep version of the DSA prep — 27 chapters, and actually deep, not 27 topics skimmed. Dynamic programming and graphs are where most people's DSA prep falls apart, and this doesn't shortcut either one. The consistent template per topic — dry run, brute-force vs. optimised, common mistakes — matters more than it sounds; it's what lets you compare your understanding across topics instead of learning each one in isolation.",
     },
     {
       id: "the-fluent-mind",
@@ -1068,7 +1090,8 @@
       description: "A 30-chapter, six-part course in American English and literature, built for a 12-week self-study program with a full answer key. Part I covers how English actually works — sound system, grammar, and vocabulary as a system rather than a list. Part II builds spoken fluency: pronunciation, connected speech, conversation architecture, and professional speaking. Part III moves to writing — sentence craft, paragraph and essay structure, and argument. Part IV and V teach close reading of literature and the literary tradition, using passages drawn entirely from the public domain. Part VI is the practice engine — drills, a 12-week schedule, and reference material to keep the rest from decaying.",
       file: "pdfs/the-fluent-mind.pdf",
       pages: 133,
-      featured: false
+      featured: false,
+      curation: "Different category from the rest of the archive, and worth explaining why it's here: English fluency is a career skill for a huge number of people in tech, not just a language-learning nice-to-have. What makes this different from a generic English course is the 12-week structure with an actual answer key — you can tell if you're improving, not just guess. The public-domain literature passages in Parts IV and V are a genuinely good choice, since the reading material won't disappear behind a paywall later.",
     },
     {
       id: "java-data-structures-simple-book",
@@ -1078,7 +1101,8 @@
       file: "pdfs/java-data-structures-simple-book.pdf",
       pages: 134,
       author: "Shammi Bharti",
-      featured: false
+      featured: false,
+      curation: "My wife wrote this one, and I added it because it solves a real problem the other DSA resources on this site don't: it starts from zero, not from \"assumes you already code comfortably.\" The dry-run-by-hand approach — tracing code manually instead of memorising patterns — is the part that actually builds intuition, and it's rare to see a book commit to that as fully as this one does. If the other Java DS courses here felt like they skipped a step, this is the step they skipped.",
     },
   ];
 
