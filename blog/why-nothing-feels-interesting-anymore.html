@@ -50,14 +50,14 @@
   .logo span{ font-style:italic; font-weight:500; color:var(--grey); }
   .site-tag{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey); }
   .header-right{ display:flex; align-items:center; gap:14px; }
-  .store-link{
+  .store-link, .blog-link{
     display:inline-flex; align-items:center; gap:6px;
     font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
     color:var(--black); text-decoration:none; border:1.5px solid var(--black); padding:6px 12px;
     transition:background .18s var(--ease), color .18s var(--ease);
   }
-  .store-link:hover{ background:var(--black); color:var(--white); }
-  .store-link svg{ width:14px; height:14px; stroke:currentColor; flex-shrink:0; }
+  .store-link:hover, .blog-link:hover{ background:var(--black); color:var(--white); }
+  .store-link svg, .blog-link svg{ width:14px; height:14px; stroke:currentColor; flex-shrink:0; }
   main{ padding:56px 0 80px; }
   .breadcrumb{
     font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
@@ -118,6 +118,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M3 9a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5 9v10h14V9"/><path d="M9 21v-6h6v6"/></svg>
         Store
       </a>
+      <a class="blog-link" href="../blogs/" aria-label="Blog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
+        Blog
+      </a>
       <div class="site-tag">Study &amp; Reference Archive — Black / White Edition</div>
     </div>
   </div>
@@ -125,7 +129,7 @@
 
 <main class="wrap" id="main-content">
   <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="../blog.html">Blog</a> / <span>How to Study</span>
+    <a href="../blogs/">Blog</a> / <span>How to Study</span>
   </nav>
   <div class="post-meta">
     <span class="post-tag">How to Study</span>
@@ -203,14 +207,13 @@
       <li><a href="ai-wasnt-supposed-to-hire-engineers-back.html"><span class="rel-cat">Tech &amp; Tools</span>AI Was Supposed to Replace Software Engineers. So Why Are Companies Hiring Them Again?</a></li>
     </ul>
   </section>
-  <a class="back" href="../blog.html">← Back to the blog</a>
+  <a class="back" href="../blogs/">← Back to the blog</a>
 </main>
 
 <footer>
   <div class="wrap">
     <nav class="footer-nav">
       <a href="../about.html">About</a>
-      <a href="../blog.html">Blog</a>
       <a href="../contact.html">Contact</a>
       <a href="../privacy.html">Privacy Policy</a>
       <a href="../terms.html">Terms of Use</a>
@@ -222,7 +225,7 @@
   </div>
 </footer>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NOTES.","item":"https://pdfsent.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://pdfsent.com/blog.html"},{"@type":"ListItem","position":3,"name":"Why Nothing Feels Interesting Anymore: The Science Behind Lost Curiosity","item":"https://pdfsent.com/blog/why-nothing-feels-interesting-anymore.html"}]},{"@type":"BlogPosting","headline":"Why Nothing Feels Interesting Anymore: The Science Behind Lost Curiosity","description":"Have you opened a book, started reading, and lost interest within minutes? Or sat down to learn something new, only to find yourself scrolling instead?…","url":"https://pdfsent.com/blog/why-nothing-feels-interesting-anymore.html","datePublished":"2026-08-02","dateModified":"2026-08-02","author":{"@type":"Person","name":"NOTES. maintainer"},"publisher":{"@type":"Organization","name":"NOTES."},"mainEntityOfPage":"https://pdfsent.com/blog/why-nothing-feels-interesting-anymore.html","image":"https://pdfsent.com/images/blog-dopamine-curiosity.jpg"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NOTES.","item":"https://pdfsent.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://pdfsent.com/blogs/"},{"@type":"ListItem","position":3,"name":"Why Nothing Feels Interesting Anymore: The Science Behind Lost Curiosity","item":"https://pdfsent.com/blog/why-nothing-feels-interesting-anymore.html"}]},{"@type":"BlogPosting","headline":"Why Nothing Feels Interesting Anymore: The Science Behind Lost Curiosity","description":"Have you opened a book, started reading, and lost interest within minutes? Or sat down to learn something new, only to find yourself scrolling instead?…","url":"https://pdfsent.com/blog/why-nothing-feels-interesting-anymore.html","datePublished":"2026-08-02","dateModified":"2026-08-02","author":{"@type":"Person","name":"NOTES. maintainer"},"publisher":{"@type":"Organization","name":"NOTES."},"mainEntityOfPage":"https://pdfsent.com/blog/why-nothing-feels-interesting-anymore.html","image":"https://pdfsent.com/images/blog-dopamine-curiosity.jpg"}]}</script>
 <script>document.getElementById('year').textContent = '© ' + new Date().getFullYear() + ' NOTES. All rights reserved.';</script>
 </body>
 </html>
