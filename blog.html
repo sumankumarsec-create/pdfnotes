@@ -102,6 +102,7 @@
   ul, ol{ margin:0 0 18px 20px; max-width:640px; }
   li{ font-size:16px; line-height:1.7; color:#2a2a2a; margin-bottom:8px; }
   p.subpoint{ font-weight:600; color:var(--black); margin-bottom:8px; }
+  .post-image{ width:100%; max-width:640px; height:auto; border:1.5px solid var(--black); margin:0 0 26px; display:block; }
   .callout{ border-left:3px solid var(--black); padding:2px 0 2px 18px; margin:0 0 22px; max-width:640px; }
   .callout li{ margin-bottom:10px; }
   p.answer-weak{ color:var(--grey); font-style:italic; }
@@ -143,6 +144,65 @@
   </nav>
 
   <div id="postList">
+    <article class="post" data-cat="Interview Tips" data-slug="why-your-resume-keeps-getting-rejected">
+      <div class="post-card" role="button" tabindex="0" aria-expanded="false">
+        <div class="post-meta">
+          <span class="post-tag">Interview Tips</span>
+          <span class="byline">2 August 2026</span>
+        </div>
+        <h2 class="post-title">Why Your Resume Keeps Getting Rejected (And How Recruiters Actually Read It)</h2>
+
+        <p class="lead">"Is it the market, or is it my resume?" If you've applied to hundreds of jobs and gotten nothing but rejection emails, you've probably asked yourself this. The honest answer is both — the market is tough, but a poorly built resume makes an already hard situation worse. One recruiter's own numbers: candidates following his approach land roughly one interview for every seven applications. If you're getting one interview after fifty-plus applications, the resume is very likely the bigger problem.</p>
+
+        <span class="read-toggle">Read the full guide →</span>
+      </div>
+
+      <div class="post-body"><div class="post-body-inner">
+      <img class="post-image" src="images/blog-resume-rejection.jpg" alt="A recruiter reviewing a resume at a desk, with a rejected resume burning in a wastebasket beside a sign reading 'we don't hire resumes, we hire potential'" loading="lazy">
+
+      <h3>Recruiters don't read your resume — they scan it</h3>
+      <p>A recruiter spends roughly 20 seconds on a resume before deciding whether to keep reading. That means your most important qualifications have to be visible immediately. If a recruiter can't quickly spot the skills they're looking for, the resume gets rejected — even if you actually have those skills. Buried is the same as missing, as far as a 20-second scan is concerned.</p>
+
+      <h3>Keywords matter more than you think</h3>
+      <p>For a role like Full Stack Software Engineer, recruiters and the ATS behind them are usually scanning for specific, named technologies:</p>
+      <div class="callout">
+        <ul>
+          <li>TypeScript, JavaScript, HTML, CSS</li>
+          <li>REST APIs, SQL</li>
+          <li>AWS, Azure, or GCP</li>
+          <li>React and backend technologies</li>
+          <li>Git / GitHub, CI/CD, Agile, DevOps</li>
+        </ul>
+      </div>
+      <p>The lesson worth remembering: don't assume a recruiter or an ATS will infer that TypeScript implies JavaScript, or that JavaScript implies HTML. Write every important technology out explicitly. It feels repetitive to you — it's exactly what the scan is searching for.</p>
+
+      <h3>Keywords alone aren't enough</h3>
+      <p>Plenty of candidates just list technologies in a Skills section and stop there. That doesn't prove anything — recruiters are looking for qualifications, not a word cloud. A real qualification has four parts:</p>
+      <div class="callout">
+        <ul>
+          <li><strong>What</strong> — the technology or skill you used. Example: React, Java, SQL.</li>
+          <li><strong>How</strong> — how you used it. Example: "Built responsive web applications using React."</li>
+          <li><strong>Why</strong> — the business value. Reduced manual work, improved performance, increased reliability, improved customer experience.</li>
+          <li><strong>Where</strong> — internship, company, or personal project.</li>
+        </ul>
+      </div>
+      <p>Miss one of the four, and a recruiter considers the bullet incomplete.</p>
+
+      <h3>The "hot dogs vs. hamburgers" rule</h3>
+      <p>One of the better analogies from the recruiter's own review process: imagine walking into a restaurant and ordering a hamburger, and the waiter brings you three hot dogs instead, insisting "they're basically the same." They aren't — and that's exactly what happens in a lot of resumes.</p>
+      <p>Candidates fill bullet points with interesting technical detail a recruiter never asked for — AI agents, Pydantic, Recharts, OpenAI APIs, custom frameworks. Those are extra credit. Recruiters want the basics first: Java, Python, React, SQL, REST APIs, cloud, Git. Call the basics the hamburgers and everything else the hot dogs. Always deliver the hamburger first.</p>
+
+      <h3>Stop assuming recruiters will infer your skills</h3>
+      <p>A common developer assumption: "If I used Pydantic, recruiters will know I know Python." Wrong — never assume, state it directly.</p>
+      <p class="answer-weak">Weak: "Built authentication using Pydantic."</p>
+      <p class="answer-strong">Strong: "Built Python REST APIs using FastAPI and Pydantic to improve application security and reduce authentication errors."</p>
+      <p>The second version names Python, REST API, and FastAPI explicitly, and closes with the business value — all four qualification parts in one line, instead of leaving the reader to connect the dots.</p>
+
+      <h3>Bottom line</h3>
+      <p>None of this is about lying or padding a resume — it's about not making a recruiter guess. Twenty seconds isn't long enough for anyone to infer your skill set from a library name. Spell out the technology, show how you used it, say why it mattered, and say where — every time.</p>
+      </div></div>
+    </article>
+
     <article class="post" data-cat="Tech & Tools" data-slug="ai-wasnt-supposed-to-hire-engineers-back">
       <div class="post-card" role="button" tabindex="0" aria-expanded="false">
         <div class="post-meta">
@@ -503,6 +563,16 @@ document.getElementById('year').textContent = '© ' + new Date().getFullYear() +
     "@context": "https://schema.org",
     "@graph": [
       { "@type": "Blog", "name": "NOTES. Blog", "url": "https://pdfsent.com/blog.html" },
+      {
+        "@type": "BlogPosting",
+        "headline": "Why Your Resume Keeps Getting Rejected (And How Recruiters Actually Read It)",
+        "description": "How recruiters actually scan a resume in the first 20 seconds, why keywords alone don't prove a qualification, the four-part What/How/Why/Where framework, and the 'hot dogs vs. hamburgers' rule for prioritizing what goes first.",
+        "datePublished": "2026-08-02",
+        "dateModified": "2026-08-02",
+        "author": { "@type": "Person", "name": "NOTES. maintainer" },
+        "publisher": { "@type": "Organization", "name": "NOTES." },
+        "mainEntityOfPage": "https://pdfsent.com/blog.html"
+      },
       {
         "@type": "BlogPosting",
         "headline": "AI Was Supposed to Replace Software Engineers. So Why Are Companies Hiring Them Again?",
