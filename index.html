@@ -122,6 +122,14 @@
   .visitor-badge{
     height:20px; display:block;
   }
+  .store-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--black); text-decoration:none; border:1.5px solid var(--black); padding:6px 12px;
+    transition:background .18s var(--ease), color .18s var(--ease);
+  }
+  .store-link:hover{ background:var(--black); color:var(--white); }
+  .store-link svg{ width:14px; height:14px; stroke:currentColor; flex-shrink:0; }
 
   /* ---------- Hero ---------- */
   .hero{ padding:64px 0 40px; border-bottom:2px solid var(--black); }
@@ -700,6 +708,10 @@
   <div class="wrap top-row">
     <div class="logo">NOTES<span>.</span></div>
     <div class="header-right">
+      <a class="store-link" href="stores/" aria-label="Store">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M3 9a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5 9v10h14V9"/><path d="M9 21v-6h6v6"/></svg>
+        Store
+      </a>
       <div class="site-tag">Study &amp; Reference Archive — Black / White Edition</div>
       <img class="visitor-badge" src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fpdfsent.com&amp;labelColor=%230a0a0a&amp;countColor=%230a0a0a&amp;style=flat-square" alt="Visitor count" loading="lazy" onerror="this.style.display='none'">
     </div>
