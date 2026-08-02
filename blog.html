@@ -76,7 +76,8 @@
 
   article.post{ margin-bottom:32px; }
   .post-card{
-    border:1.5px solid var(--black); padding:28px; cursor:pointer;
+    display:block; border:1.5px solid var(--black); padding:28px; cursor:pointer;
+    text-decoration:none; color:var(--black);
     transition:background .18s var(--ease);
   }
   .post-card:hover{ background:var(--grey-light); }
@@ -92,22 +93,7 @@
     display:inline-block; margin-top:14px; font-family:'JetBrains Mono', monospace; font-size:11px;
     letter-spacing:.08em; text-transform:uppercase; color:var(--black); border-bottom:1px solid var(--black);
   }
-  .post-body{ display:none; padding:0 28px 28px; border:1.5px solid var(--black); border-top:none; }
-  article.post.expanded .post-body{ display:block; }
-  article.post.expanded .post-card{ border-bottom:none; }
-  .post-body-inner{ padding-top:28px; }
-  h3{ font-family:'Fraunces', serif; font-weight:600; font-size:22px; margin:32px 0 12px; letter-spacing:-0.01em; }
-  p{ font-size:16px; line-height:1.7; color:#2a2a2a; margin-bottom:18px; max-width:640px; }
   p.lead{ font-size:18px; line-height:1.65; color:var(--black); }
-  ul, ol{ margin:0 0 18px 20px; max-width:640px; }
-  li{ font-size:16px; line-height:1.7; color:#2a2a2a; margin-bottom:8px; }
-  p.subpoint{ font-weight:600; color:var(--black); margin-bottom:8px; }
-  .post-image{ width:100%; max-width:640px; height:auto; border:1.5px solid var(--black); margin:0 0 26px; display:block; }
-  .callout{ border-left:3px solid var(--black); padding:2px 0 2px 18px; margin:0 0 22px; max-width:640px; }
-  .callout li{ margin-bottom:10px; }
-  p.answer-weak{ color:var(--grey); font-style:italic; }
-  p.answer-strong{ color:var(--black); }
-  a.inline{ color:var(--black); }
   .back{ display:inline-block; margin-top:8px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--black); text-decoration:none; border-bottom:1px solid var(--black); }
   .empty-state{ display:none; font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--grey); padding:40px 0; }
   footer{ border-top:2px solid var(--black); padding:28px 0; }
@@ -144,321 +130,64 @@
   </nav>
 
   <div id="postList">
-    <article class="post" data-cat="Interview Tips" data-slug="why-your-resume-keeps-getting-rejected">
-      <div class="post-card" role="button" tabindex="0" aria-expanded="false">
+    <article class="post" data-cat="Interview Tips">
+      <a class="post-card" href="blog/why-your-resume-keeps-getting-rejected.html">
         <div class="post-meta">
           <span class="post-tag">Interview Tips</span>
           <span class="byline">2 August 2026</span>
         </div>
         <h2 class="post-title">Why Your Resume Keeps Getting Rejected (And How Recruiters Actually Read It)</h2>
-
         <p class="lead">"Is it the market, or is it my resume?" If you've applied to hundreds of jobs and gotten nothing but rejection emails, you've probably asked yourself this. The honest answer is both — the market is tough, but a poorly built resume makes an already hard situation worse. One recruiter's own numbers: candidates following his approach land roughly one interview for every seven applications. If you're getting one interview after fifty-plus applications, the resume is very likely the bigger problem.</p>
-
         <span class="read-toggle">Read the full guide →</span>
-      </div>
-
-      <div class="post-body"><div class="post-body-inner">
-      <img class="post-image" src="images/blog-resume-rejection.jpg" alt="A recruiter reviewing a resume at a desk, with a rejected resume burning in a wastebasket beside a sign reading 'we don't hire resumes, we hire potential'" loading="lazy">
-
-      <h3>Recruiters don't read your resume — they scan it</h3>
-      <p>A recruiter spends roughly 20 seconds on a resume before deciding whether to keep reading. That means your most important qualifications have to be visible immediately. If a recruiter can't quickly spot the skills they're looking for, the resume gets rejected — even if you actually have those skills. Buried is the same as missing, as far as a 20-second scan is concerned.</p>
-
-      <h3>Keywords matter more than you think</h3>
-      <p>For a role like Full Stack Software Engineer, recruiters and the ATS behind them are usually scanning for specific, named technologies:</p>
-      <div class="callout">
-        <ul>
-          <li>TypeScript, JavaScript, HTML, CSS</li>
-          <li>REST APIs, SQL</li>
-          <li>AWS, Azure, or GCP</li>
-          <li>React and backend technologies</li>
-          <li>Git / GitHub, CI/CD, Agile, DevOps</li>
-        </ul>
-      </div>
-      <p>The lesson worth remembering: don't assume a recruiter or an ATS will infer that TypeScript implies JavaScript, or that JavaScript implies HTML. Write every important technology out explicitly. It feels repetitive to you — it's exactly what the scan is searching for.</p>
-
-      <h3>Keywords alone aren't enough</h3>
-      <p>Plenty of candidates just list technologies in a Skills section and stop there. That doesn't prove anything — recruiters are looking for qualifications, not a word cloud. A real qualification has four parts:</p>
-      <div class="callout">
-        <ul>
-          <li><strong>What</strong> — the technology or skill you used. Example: React, Java, SQL.</li>
-          <li><strong>How</strong> — how you used it. Example: "Built responsive web applications using React."</li>
-          <li><strong>Why</strong> — the business value. Reduced manual work, improved performance, increased reliability, improved customer experience.</li>
-          <li><strong>Where</strong> — internship, company, or personal project.</li>
-        </ul>
-      </div>
-      <p>Miss one of the four, and a recruiter considers the bullet incomplete.</p>
-
-      <h3>The "hot dogs vs. hamburgers" rule</h3>
-      <p>One of the better analogies from the recruiter's own review process: imagine walking into a restaurant and ordering a hamburger, and the waiter brings you three hot dogs instead, insisting "they're basically the same." They aren't — and that's exactly what happens in a lot of resumes.</p>
-      <p>Candidates fill bullet points with interesting technical detail a recruiter never asked for — AI agents, Pydantic, Recharts, OpenAI APIs, custom frameworks. Those are extra credit. Recruiters want the basics first: Java, Python, React, SQL, REST APIs, cloud, Git. Call the basics the hamburgers and everything else the hot dogs. Always deliver the hamburger first.</p>
-
-      <h3>Stop assuming recruiters will infer your skills</h3>
-      <p>A common developer assumption: "If I used Pydantic, recruiters will know I know Python." Wrong — never assume, state it directly.</p>
-      <p class="answer-weak">Weak: "Built authentication using Pydantic."</p>
-      <p class="answer-strong">Strong: "Built Python REST APIs using FastAPI and Pydantic to improve application security and reduce authentication errors."</p>
-      <p>The second version names Python, REST API, and FastAPI explicitly, and closes with the business value — all four qualification parts in one line, instead of leaving the reader to connect the dots.</p>
-
-      <h3>Bottom line</h3>
-      <p>None of this is about lying or padding a resume — it's about not making a recruiter guess. Twenty seconds isn't long enough for anyone to infer your skill set from a library name. Spell out the technology, show how you used it, say why it mattered, and say where — every time.</p>
-      </div></div>
+      </a>
     </article>
 
-    <article class="post" data-cat="Tech & Tools" data-slug="ai-wasnt-supposed-to-hire-engineers-back">
-      <div class="post-card" role="button" tabindex="0" aria-expanded="false">
+    <article class="post" data-cat="Tech & Tools">
+      <a class="post-card" href="blog/ai-wasnt-supposed-to-hire-engineers-back.html">
         <div class="post-meta">
           <span class="post-tag">Tech & Tools</span>
           <span class="byline">30 July 2026</span>
         </div>
         <h2 class="post-title">AI Was Supposed to Replace Software Engineers. So Why Are Companies Hiring Them Again?</h2>
-
         <p class="lead">For the past few years we've heard the same prediction on repeat: AI will replace software engineers. When ChatGPT and GitHub Copilot exploded, it looked like the future had already arrived — tech CEOs talked about AI writing most of their code, startups claimed they needed a fraction of the engineers they used to, and thousands of developers lost their jobs. For a while it really did look like the profession was becoming obsolete. Then something quieter and stranger started happening: companies began hiring engineers back.</p>
-
         <span class="read-toggle">Read the full guide →</span>
-      </div>
-
-      <div class="post-body"><div class="post-body-inner">
-      <h3>It started before ChatGPT</h3>
-      <p>Most people assume the AI-replaces-coders story begins with ChatGPT, but it actually starts a year earlier. In 2021, GitHub Copilot introduced AI-assisted coding — nothing that could build a full application on its own, but something that could autocomplete functions and shave real time off a developer's day. That alone was enough to spark the fear. Articles started asking, half-seriously, whether programmers would soon be unnecessary. Nobody had a confident answer yet.</p>
-
-      <h3>Then ChatGPT changed the conversation</h3>
-      <p>When ChatGPT launched in late 2022, AI-assisted coding stopped being a niche developer tool and became something anyone could use. You no longer needed years of programming experience to get working code — you could describe what you wanted in plain English and get something functional back. That same period happened to coincide with one of the worst tech job markets in years, with layoffs announced almost weekly. People connected the two trends immediately: AI is improving, developers are losing jobs, therefore AI must be the cause. It was a tidy story, but it wasn't the whole one — a lot of companies had simply overhired during the pandemic and were now correcting course. AI became a convenient explanation for a decision that had already been made for other reasons.</p>
-
-      <h3>The hype peaked in 2024–2025</h3>
-      <p>By 2024 and into 2025, confidence in AI coding had reached a new level. Major tech companies proudly announced that AI was writing a significant share of their codebase. Founders claimed a small team could now do the work of a much larger engineering org. The pitch was simple and seductive: if AI can write code for $20 a month, why keep paying six-figure salaries for humans to do it? Plenty of companies believed it — hiring slowed, some engineering teams shrank, and AI became the centerpiece of the strategy rather than a tool inside it.</p>
-
-      <h3>Then reality hit</h3>
-      <p>Once these companies actually started shipping real products built on AI-generated code, they ran into something they hadn't priced in: writing code and building software aren't the same activity. AI is genuinely good at producing code fast. But software engineering is understanding requirements, designing systems that hold up under load, debugging problems nobody's seen before, keeping a large codebase maintainable, reviewing architecture, and making dozens of judgment calls a day that never show up in a prompt. That's the part AI still struggles with.</p>
-
-      <h3>The problem nobody was talking about out loud</h3>
-      <p>One of the more insidious issues with AI-generated code is that it usually <em>looks</em> right — until it isn't. A comparison operator flipped the wrong way. An edge case quietly missed. Code that sails through testing and then breaks in production under conditions nobody thought to simulate. These aren't the kind of bugs a linter catches; they're the kind an experienced engineer catches because they've been burned by the same shape of problem before. And when AI is generating thousands of lines at a time, even a small error rate compounds into something expensive fast.</p>
-
-      <h3>More code isn't the same as better code</h3>
-      <p>There's a second, quieter problem: volume. A human engineer solving a problem will often reach for the simplest function that does the job. AI tends to reach for more — extra helper classes, additional abstraction layers, complexity that wasn't asked for but arrived anyway. The code still works. But now somebody has to read it, maintain it, and understand why it's shaped that way six months from now. Codebases grow bigger, slower to reason about, and more expensive to touch. More than one company ended up hiring experienced engineers specifically to clean up the code AI had written for them.</p>
-
-      <h3>Companies are quietly hiring again</h3>
-      <p>This is the part that doesn't make headlines. Instead of publicly admitting the AI-first bet hadn't paid off, a lot of companies just started hiring software engineers again — in some cases the very people they'd laid off a year or two earlier. Those returning engineers already know the systems, the architecture, and the way the team works, so they can start improving AI-generated code immediately instead of spending months ramping up. Most of this hiring is happening quietly, through recruiters, referrals, alumni networks, and personal connections rather than public job postings. Nobody's putting out a press release that says "we were wrong about AI." But the hiring data is telling a different story than the headlines from two years ago.</p>
-      </div></div>
+      </a>
     </article>
 
-    <article class="post" data-cat="How to Study" data-slug="discipline-was-never-the-problem">
-      <div class="post-card" role="button" tabindex="0" aria-expanded="false">
+    <article class="post" data-cat="How to Study">
+      <a class="post-card" href="blog/discipline-was-never-the-problem.html">
         <div class="post-meta">
           <span class="post-tag">How to Study</span>
           <span class="byline">28 July 2026</span>
         </div>
         <h2 class="post-title">The Morning I Realised Discipline Was Never the Problem</h2>
-
         <p class="lead">At 7:30 on a Monday morning, I sat at my desk with a cup of coffee beside my laptop. I had the perfect plan. Twenty minutes later, I had somehow checked my email twice, watched three short videos, and reorganised a folder that didn't need organising. I hadn't been lazy. I hadn't forgotten my goal. I simply couldn't focus.</p>
-
         <span class="read-toggle">Read the full guide →</span>
-      </div>
-
-      <div class="post-body"><div class="post-body-inner">
-      <p>For years, I believed the problem was a lack of discipline. Every productivity video repeated the same advice: work harder, wake up earlier, stay motivated, and push through the discomfort.</p>
-      <p>So I tried.</p>
-      <p>I downloaded productivity apps. I bought expensive planners. I experimented with Pomodoro timers, motivational playlists, and colour-coded schedules. Some methods worked — for a day or two. Then everything fell apart, and I found myself back at the beginning.</p>
-      <p>Eventually, I started asking a different question.</p>
-      <p class="subpoint">What if focus isn't something you force? What if it's something you design?</p>
-
-      <h3>What high performers actually do differently</h3>
-      <p>That question led me into neuroscience, behavioural psychology, and the daily routines of students who consistently perform under immense academic pressure. Among them are many preparing for China's Gaokao, one of the most demanding university entrance examinations in the world. Their success isn't simply a story of extraordinary intelligence or endless hours of study. Much of it comes from carefully designed habits and environments that make deep concentration easier to achieve.</p>
-      <p>The more I learned, the more one idea stood out.</p>
-      <p>Highly focused people don't spend every minute fighting distractions. Instead, they build systems that remove distractions before they appear. They don't rely on motivation because motivation is unpredictable. They rely on routines that make concentration feel almost automatic.</p>
-
-      <h3>A different question</h3>
-      <p>This completely changed the way I looked at productivity. Instead of asking, "How can I become more disciplined?", I began asking, "How can I make focusing the easiest thing to do?"</p>
-      <p>The answer wasn't hidden inside another productivity app or an expensive online course. It was hidden in something much simpler: the way our brains naturally work.</p>
-      <p>Once you understand that, studying no longer feels like a constant battle against yourself. It becomes a process of working with your brain instead of against it.</p>
-      <p>In this article, we'll explore four principles that can dramatically improve your ability to concentrate. They're not magic tricks, and they're certainly not shortcuts. Instead, they're practical strategies grounded in neuroscience and behavioural science — ideas that help explain why some people can work deeply for hours while others struggle to stay focused for ten minutes.</p>
-      <p>By the end, you'll have a simple system you can start using tomorrow morning. It won't make studying effortless, but it can make deep focus far more achievable than relying on willpower alone.</p>
-      </div></div>
+      </a>
     </article>
 
-    <article class="post" data-cat="Career Growth" data-slug="right-order-invest-money">
-      <div class="post-card" role="button" tabindex="0" aria-expanded="false">
+    <article class="post" data-cat="Career Growth">
+      <a class="post-card" href="blog/right-order-invest-money.html">
         <div class="post-meta">
           <span class="post-tag">Career Growth</span>
           <span class="byline">28 July 2026</span>
         </div>
         <h2 class="post-title">The Right Order to Invest Your Money (Most People Get This Backwards)</h2>
-
         <p class="lead">Most people get excited about the wrong part of investing first. They want to pick the winning stock, the right ETF, the next big thing — while they're still carrying a credit card balance at 22% interest, have no emergency fund, and are leaving free money on the table at work. Wealth isn't built by finding a great investment. It's built by doing the right things in the right order.</p>
-
         <span class="read-toggle">Read the full guide →</span>
-      </div>
-
-      <div class="post-body"><div class="post-body-inner">
-      <p>That's building a house on a cracked foundation. It might look fine for a while. It won't hold. Get the sequence wrong and you can lose tens of thousands of dollars over a lifetime — not to bad luck, but to bad ordering.</p>
-
-      <h3>Why sequence beats timing</h3>
-      <p>Here's the thing nobody tells you: investing earlier isn't automatically better. Investing while you're bleeding 22% interest on a credit card is worse than not investing at all, because the debt is growing faster than almost any portfolio can.</p>
-      <p>Three things quietly cost people the most money, and none of them are "picking the wrong stock":</p>
-      <div class="callout">
-        <ul>
-          <li>Carrying high-interest debt while investing elsewhere</li>
-          <li>Not claiming an employer's matching contribution</li>
-          <li>Ignoring tax-advantaged accounts and paying more tax than necessary</li>
-        </ul>
-      </div>
-      <p>None of these are investing mistakes. They're sequencing mistakes.</p>
-
-      <h3>Step 1: Build an emergency fund first</h3>
-      <p>Before a single dollar goes into the market, build a cash buffer. This isn't about returns — it's about not being forced to sell your investments at the worst possible moment because your car broke down or you lost your job. Without one, a single bad month can force you to sell at a loss, run up a credit card, or abandon a goal you'd been working toward for years.</p>
-      <p>Don't try to save six months of expenses in one leap. Build it in stages:</p>
-      <ol>
-        <li><strong>First $1,000.</strong> Covers most small emergencies and buys you peace of mind immediately.</li>
-        <li><strong>One month of expenses.</strong> The real cushion starts here.</li>
-        <li><strong>Three to six months.</strong> Three if your income is stable, six or more if it's variable (freelance, commission, etc.).</li>
-      </ol>
-      <p>This money isn't meant to grow. It's meant to absorb shocks.</p>
-
-      <h3>Step 2: Kill high-interest debt</h3>
-      <p>Once the emergency fund is underway, turn to debt — specifically anything charging more than roughly 8% a year. Credit cards are usually the worst offender.</p>
-      <p>Think about what it actually means to invest while paying 22% interest: your portfolio would need to earn more than 22%, after tax, just to break even against that debt. That basically never happens. Paying off the debt, on the other hand, is a guaranteed return equal to the interest rate — no investment beats that reliably.</p>
-      <p class="subpoint">The debt avalanche</p>
-      <ol>
-        <li>List every debt you have.</li>
-        <li>Note the interest rate on each.</li>
-        <li>Pay the minimum on everything.</li>
-        <li>Throw every spare dollar at the highest-rate debt until it's gone, then move to the next.</li>
-      </ol>
-      <p>Some people prefer the "snowball" method — smallest balance first, for the psychological win. It works too, just costs more in total interest. Pick whichever one you'll actually stick with.</p>
-
-      <h3>Step 3: Grab the employer match</h3>
-      <p>This is the one exception to "debt before investing." If your employer matches retirement contributions, get the full match before you finish paying off debt.</p>
-      <p>Why the exception? Because it's not really an investment — it's free money with a guaranteed, immediate return. Put in $3,000, get an extra $1,500 from your employer, and you've made 50% before your investments have done anything at all. Nothing else offers that.</p>
-      <p>So: contribute up to the match, then go back to attacking your debt. (One caveat — check your plan's vesting schedule. Some employers require you to stay a certain number of years before that matched money is fully yours.)</p>
-
-      <h3>Step 4: Max out an IRA</h3>
-      <p>With the fund, the debt, and the match handled, it's time to optimize for taxes. An IRA typically beats a workplace plan on investment choice and fees — many 401(k)-style plans lock you into a handful of expensive mutual funds, while an IRA opens the door to low-cost index funds and ETFs.</p>
-      <p>That fee difference matters more than it looks. Shaving even 1% off annual fees can mean tens of thousands more in your pocket over a few decades, purely from compounding.</p>
-
-      <h3>Step 5: Traditional or Roth?</h3>
-      <p>This is one of the bigger tax decisions you'll make, and there's no universal right answer.</p>
-      <p><strong>Traditional</strong> accounts give you a tax break now — contributions lower your taxable income today — but you pay tax on withdrawals in retirement. This favors people who expect to be in a lower tax bracket once they retire.</p>
-      <p><strong>Roth</strong> accounts flip it: you pay tax on the money now, but withdrawals in retirement are completely tax-free. This favors people who expect to earn — and be taxed — more later, which often means younger workers early in their careers.</p>
-      <p>If you genuinely don't know which camp you're in, split contributions between both. That gives you tax diversification and more flexibility later, rather than betting everything on one prediction about your future tax rate.</p>
-
-      <h3>Step 6: Don't sleep on an HSA</h3>
-      <p>If you're eligible for a Health Savings Account, it's arguably the single best account available — better than either IRA. It's the only account with a triple tax advantage: contributions are deductible, growth is tax-free, and qualified medical withdrawals are tax-free.</p>
-      <p>Here's the move most people miss: pay today's medical bills out of pocket if you can afford to, leave the HSA invested, and keep the receipts. There's generally no deadline on reimbursing yourself for a qualified expense — so a $200 doctor's visit today can be "reimbursed" tax-free 20 years from now, after that $200 has been compounding the whole time.</p>
-      <p>After 65, an HSA behaves almost like a second retirement account: withdraw for non-medical reasons and it's taxed like a traditional IRA, no penalty. Combined with how expensive healthcare gets in retirement, this account does a lot of quiet heavy lifting.</p>
-
-      <h3>Step 7: Go back and max the employer plan</h3>
-      <p>Once the IRA and HSA are maxed, go back to your employer plan and push contributions past the match, up to the full allowed limit. For higher earners especially, this is one of the most effective ways to shrink your current tax bill while stacking more money into tax-advantaged growth.</p>
-
-      <h3>Step 8: Taxable brokerage accounts</h3>
-      <p>Only after all the tax-advantaged space is full should serious money go into a regular taxable brokerage account.</p>
-      <p>The tradeoff here is flexibility for cost. Taxable accounts have no contribution limits and no withdrawal restrictions — you can pull money out anytime for a house deposit, an early retirement, or anything else. But you'll pay tax along the way on dividends, capital gains, and distributions. That ongoing tax bite is called <strong>tax drag</strong>, and it quietly erodes returns compared to a tax-sheltered account.</p>
-      <p>Even so, this is where money for medium-term goals belongs, since retirement accounts lock your money up until a certain age. When investing here, resist the urge to get clever. The investors who do best over decades usually aren't picking hot stocks — they're holding broad index funds and low-cost ETFs and leaving them alone.</p>
-
-      <h3>The full order, one more time</h3>
-      <ol>
-        <li>Emergency fund</li>
-        <li>High-interest debt</li>
-        <li>Employer match</li>
-        <li>IRA (max it out)</li>
-        <li>HSA, if eligible (max it out)</li>
-        <li>Employer plan, beyond the match</li>
-        <li>Taxable brokerage account</li>
-      </ol>
-      <p>Each step exists because it protects or amplifies the one after it. Skip ahead — say, jumping into a taxable brokerage account while still carrying credit card debt — and you're taking on investment risk you haven't earned yet, while a guaranteed cost keeps compounding against you in the background.</p>
-
-      <h3>Bottom line</h3>
-      <p>Nobody builds real wealth by finding one brilliant stock. They build it by doing unglamorous things in the right order: a cash cushion, no expensive debt, free money captured, taxes minimized, and then market risk.</p>
-      <p>It's boring. It's also what works.</p>
-      </div></div>
+      </a>
     </article>
 
-    <article class="post" data-cat="Interview Tips" data-slug="how-to-ace-interview">
-      <div class="post-card" role="button" tabindex="0" aria-expanded="false">
+    <article class="post" data-cat="Interview Tips">
+      <a class="post-card" href="blog/how-to-ace-interview.html">
         <div class="post-meta">
           <span class="post-tag">Interview Tips</span>
           <span class="byline">24 July 2026</span>
         </div>
         <h2 class="post-title">How to Ace Your Next Job Interview: Tips &amp; Strategies</h2>
-
         <p class="lead">Landing an interview is a win in itself — but stepping into the room, or logging into the call, can still feel daunting. Standing out in today's market takes a strategic approach that goes beyond memorizing your resume. Here's the preparation framework, the psychology, and the follow-up that turn an interview into an offer.</p>
-
         <span class="read-toggle">Read the full guide →</span>
-      </div>
-
-      <div class="post-body"><div class="post-body-inner">
-      <h3>1. The pre-interview blueprint: research and target</h3>
-      <p>Success in an interview is directly proportional to preparation. Companies don't just hire credentials — they hire problem solvers who understand their mission.</p>
-
-      <p class="subpoint">Decode the job description</p>
-      <p>Don't just skim the posting. Read it line by line to identify the core competencies the employer values most.</p>
-      <ul>
-        <li>Look for recurring keywords — "cross-functional collaboration," "data-driven decisions," "agile methodologies."</li>
-        <li>Circle the top three technical skills and top three soft skills requested.</li>
-        <li>Align your own career wins directly with those specific keywords.</li>
-      </ul>
-
-      <p class="subpoint">Deep-dive into company culture</p>
-      <p>Spend an hour on the company's digital footprint — not just the homepage, but its current trajectory and internal values.</p>
-      <ul>
-        <li><strong>Company website:</strong> the "About Us" page, mission statement, and recent press releases.</li>
-        <li><strong>Social media:</strong> LinkedIn, X, and Instagram, to gauge workplace culture and public voice.</li>
-        <li><strong>Review sites:</strong> Glassdoor and Indeed, for insider perspectives on interview process and management style.</li>
-      </ul>
-
-      <h3>2. Master the STAR method for behavioral questions</h3>
-      <p>Most interviewers lean heavily on behavioral questions — "Tell me about a time when..." or "Describe a situation where..." The STAR method keeps answers structured, concise, and focused on results instead of rambling.</p>
-
-      <div class="callout">
-        <ul>
-          <li><strong>S — Situation:</strong> set the scene and provide context.</li>
-          <li><strong>T — Task:</strong> explain the challenge or goal at hand.</li>
-          <li><strong>A — Action:</strong> detail the specific steps <em>you</em> took to solve it.</li>
-          <li><strong>R — Result:</strong> share the quantifiable outcome of your actions.</li>
-        </ul>
-      </div>
-
-      <p class="subpoint">The STAR method in action</p>
-      <p class="answer-weak">Weak answer: "I used to manage difficult clients at my old job and always made them happy."</p>
-      <p class="answer-strong">STAR answer: "At my last agency, an enterprise client was ready to cancel over a missed deadline (Situation). My task was to salvage the relationship and retain the account (Task). I scheduled an immediate call, took full ownership of the oversight, and presented a revised 30-day roadmap with daily status updates (Action). The client renewed their annual contract — retaining $50,000 in revenue (Result)."</p>
-      <p>Always land on the result. Use hard percentages, dollar amounts, or time saved wherever possible to prove the value.</p>
-
-      <h3>3. How to answer the 3 most common interview questions</h3>
-
-      <p class="subpoint">"Tell me about yourself."</p>
-      <p>This is an elevator pitch, not a chronological resume read-out. Use a Present – Past – Future structure:</p>
-      <ol>
-        <li><strong>Present:</strong> current role, key expertise, and a recent major achievement.</li>
-        <li><strong>Past:</strong> the career trajectory that built the foundational skills.</li>
-        <li><strong>Future:</strong> why this specific role is the natural next step.</li>
-      </ol>
-
-      <p class="subpoint">"What is your greatest weakness?"</p>
-      <p>Skip the clichés — "I'm a perfectionist," "I work too hard." Choose a genuine, non-essential weakness, then pivot straight to how it's being actively addressed.</p>
-      <p>Example: "I used to struggle with public speaking. I joined a local Toastmasters chapter last year and started leading our weekly team presentations — it's significantly boosted my confidence speaking to large groups."</p>
-
-      <p class="subpoint">"Why do you want to work here?"</p>
-      <p>Never salary or remote flexibility. Make the answer about them: connect personal career goals or values to the company's products, culture, or recent achievements.</p>
-
-      <h3>4. The power of asking smart questions</h3>
-      <p>An interview is a two-way street. "No questions" signals a lack of interest. Strategic questions shift the dynamic from interrogation to a collaborative conversation:</p>
-      <ul>
-        <li>"What does success look like in the first 90 days of this role?"</li>
-        <li>"What's the biggest challenge the team is facing that I'd be helping to solve?"</li>
-        <li>"If you could design the ideal candidate from scratch, what trait would they have that isn't on the job description?"</li>
-      </ul>
-
-      <h3>5. Nail the closing and post-interview follow-up</h3>
-      <p class="subpoint">The professional close</p>
-      <p>Before leaving the room or hanging up, explicitly restate enthusiasm for the role and ask about next steps: "Thank you so much for your time today — I'm genuinely excited about this opportunity. Could you share what the next steps look like?"</p>
-
-      <p class="subpoint">Send a personal thank-you email</p>
-      <p>Within 24 hours, to everyone who interviewed:</p>
-      <ul>
-        <li>Express gratitude for their time.</li>
-        <li>Mention a specific topic or moment from the conversation to jog their memory.</li>
-        <li>Reiterate how your skills line up with their immediate needs.</li>
-      </ul>
-
-      <p>Thorough research, structured storytelling through the STAR method, and a proactive follow-up together make a top-tier candidate. Prepare well, speak with clarity, and treat the meeting as a mutual exploration of fit.</p>
-      </div></div>
+      </a>
     </article>
   </div>
 
@@ -510,52 +239,9 @@ document.getElementById('year').textContent = '© ' + new Date().getFullYear() +
   });
 
   applyFilter('All');
-
-  // Clicking a post's box expands it in place and deep-links to it (?post=<slug>),
-  // the same way note cards deep-link with ?note=<id> on the homepage.
-  posts.forEach(article => {
-    const card = article.querySelector('.post-card');
-    const toggle = article.querySelector('.read-toggle');
-    const slug = article.dataset.slug;
-    if (!card || !slug) return;
-
-    function togglePost(){
-      const opening = !article.classList.contains('expanded');
-      article.classList.toggle('expanded', opening);
-      card.setAttribute('aria-expanded', String(opening));
-      if (toggle) toggle.textContent = opening ? '↑ Show less' : 'Read the full guide →';
-      const url = opening ? `blog.html?post=${slug}` : 'blog.html';
-      history.pushState(null, '', url);
-      if (opening) article.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    card.addEventListener('click', togglePost);
-    // Post cards are role="button" divs, not real button elements (they
-    // contain a heading, not just label text), so Enter/Space activation has
-    // to be wired manually — browsers only do this automatically for real buttons.
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        togglePost();
-      }
-    });
-  });
-
-  function openPostFromUrl(){
-    const slug = new URLSearchParams(window.location.search).get('post');
-    if (!slug) return;
-    const article = posts.find(p => p.dataset.slug === slug);
-    if (!article) return;
-    const matchingChip = chips.find(c => c.dataset.cat === article.dataset.cat);
-    if (matchingChip) matchingChip.click();
-    article.classList.add('expanded');
-    const card = article.querySelector('.post-card');
-    if (card) card.setAttribute('aria-expanded', 'true');
-    const toggle = article.querySelector('.read-toggle');
-    if (toggle) toggle.textContent = '↑ Show less';
-    article.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-  openPostFromUrl();
+  // Each post card is now a real <a> linking straight to its own page under
+  // blog/<slug>.html (a static SSG page, same pattern as the note pages) —
+  // no more in-place expand/collapse, so there's nothing further to wire up.
 })();
 
 (function injectBlogStructuredData(){
@@ -567,51 +253,56 @@ document.getElementById('year').textContent = '© ' + new Date().getFullYear() +
         "@type": "BlogPosting",
         "headline": "Why Your Resume Keeps Getting Rejected (And How Recruiters Actually Read It)",
         "description": "How recruiters actually scan a resume in the first 20 seconds, why keywords alone don't prove a qualification, the four-part What/How/Why/Where framework, and the 'hot dogs vs. hamburgers' rule for prioritizing what goes first.",
+        "url": "https://pdfsent.com/blog/why-your-resume-keeps-getting-rejected.html",
         "datePublished": "2026-08-02",
         "dateModified": "2026-08-02",
         "author": { "@type": "Person", "name": "NOTES. maintainer" },
         "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog.html"
+        "mainEntityOfPage": "https://pdfsent.com/blog/why-your-resume-keeps-getting-rejected.html"
       },
       {
         "@type": "BlogPosting",
         "headline": "AI Was Supposed to Replace Software Engineers. So Why Are Companies Hiring Them Again?",
         "description": "Why the AI-replaces-engineers narrative hasn't held up in practice — the gap between writing code and building software, the hidden bugs in AI-generated code, and why companies are quietly rehiring the engineers they laid off.",
+        "url": "https://pdfsent.com/blog/ai-wasnt-supposed-to-hire-engineers-back.html",
         "datePublished": "2026-07-30",
         "dateModified": "2026-07-30",
         "author": { "@type": "Person", "name": "NOTES. maintainer" },
         "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog.html"
+        "mainEntityOfPage": "https://pdfsent.com/blog/ai-wasnt-supposed-to-hire-engineers-back.html"
       },
       {
         "@type": "BlogPosting",
         "headline": "The Morning I Realised Discipline Was Never the Problem",
         "description": "Why focus isn't something you force but something you design — how highly focused people build systems and routines that remove distractions before they appear, instead of relying on willpower.",
+        "url": "https://pdfsent.com/blog/discipline-was-never-the-problem.html",
         "datePublished": "2026-07-28",
         "dateModified": "2026-07-28",
         "author": { "@type": "Person", "name": "NOTES. maintainer" },
         "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog.html"
+        "mainEntityOfPage": "https://pdfsent.com/blog/discipline-was-never-the-problem.html"
       },
       {
         "@type": "BlogPosting",
         "headline": "The Right Order to Invest Your Money (Most People Get This Backwards)",
         "description": "Why sequence beats timing when it comes to building wealth — emergency fund, high-interest debt, employer match, IRA, HSA, and taxable brokerage accounts, in the order that actually protects and compounds your money.",
+        "url": "https://pdfsent.com/blog/right-order-invest-money.html",
         "datePublished": "2026-07-28",
         "dateModified": "2026-07-28",
         "author": { "@type": "Person", "name": "NOTES. maintainer" },
         "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog.html"
+        "mainEntityOfPage": "https://pdfsent.com/blog/right-order-invest-money.html"
       },
       {
         "@type": "BlogPosting",
         "headline": "How to Ace Your Next Job Interview: Tips & Strategies",
         "description": "A practical guide to interview preparation, the STAR method for behavioral questions, answering the most common questions, asking smart questions, and following up after the interview.",
+        "url": "https://pdfsent.com/blog/how-to-ace-interview.html",
         "datePublished": "2026-07-24",
         "dateModified": "2026-07-24",
         "author": { "@type": "Person", "name": "NOTES. maintainer" },
         "publisher": { "@type": "Organization", "name": "NOTES." },
-        "mainEntityOfPage": "https://pdfsent.com/blog.html"
+        "mainEntityOfPage": "https://pdfsent.com/blog/how-to-ace-interview.html"
       }
     ]
   };
