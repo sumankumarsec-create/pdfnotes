@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Software Testing</div>
   <h1>REST Assured API Automation Framework</h1>
+  
   <p class="desc">Complete architecture, code, and concept reference for building a Java test automation framework with REST Assured and TestNG — covers GET/POST/PUT/PATCH/DELETE, POJOs, schema validation, auth flows, and reporting.</p>
   <div class="note-meta">
     <span>45 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/rest-assured-api-framework.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=rest-assured">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>I built this framework doc after wiring up REST Assured for the third time across different teams and getting tired of hunting my old code every time. If you already know Java and TestNG basics and just need the actual working piece — POJOs, schema validation, auth handling — skip the theory-heavy tutorials and start here. The auth flow section is where it earns its keep, because that's the part every &quot;getting started&quot; guide skips and every real project needs on day one. Best for QA engineers past the beginner stage who need a reference to copy-adapt from, not a first introduction to API testing.</p>
   </div>
 
   <section class="related">

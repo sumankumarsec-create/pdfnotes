@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Computer Science</div>
   <h1>Python: Zero to Hero</h1>
+  
   <p class="desc">A complete beginner-to-professional Python course in 20 chapters, built to be read top to bottom in one sitting — how Python runs, variables and data types, operators, strings, lists and tuples, dictionaries and sets, conditionals, loops, functions, error handling, file I/O, modules/packages/pip, object-oriented programming, comprehensions and lambdas, scope and copy gotchas, and the standard library, followed by a mini command-line to-do app project, a cheat sheet, and the common beginner mistakes to avoid.</p>
   <div class="note-meta">
     <span>22 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/python-zero-to-hero.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=python-zero-to-hero">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>Built to be read top to bottom in one sitting rather than dipped into — that's a real design choice, not marketing copy, because Python's early chapters on types and operators set up assumptions the later chapters on OOP and comprehensions depend on. The scope and copy gotchas chapter is the one experienced-in-other-languages readers most need and most often skip, because it's exactly where Python behaves differently from what they expect.</p>
   </div>
 
   <section class="related">

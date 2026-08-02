@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Software Testing</div>
   <h1>100 Conflicts, Resolutions &amp; Steps — Mobile &amp; Web Test Automation</h1>
+  
   <p class="desc">100 real-world conflicts across mobile and web test automation, each paired with a resolution and concrete implementation steps — flaky tests from animations, device/state isolation, deep link and push notification testing, Appium/driver version management, parallel execution and device-farm scaling, CAPTCHA/MFA/OTP blockers, headless vs headed mismatches, tool trade-offs (open-source vs paid, AI self-healing locators, codeless tools), and team/process conflicts like QA being blamed for slow releases, siloed automation engineers, and device-lab vs cloud budget decisions.</p>
   <div class="note-meta">
     <span>13 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/mobile-web-automation-conflicts.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=mobile-web-automation-conflicts">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>Every one of these 100 conflicts is something I've actually hit, or a teammate has — not hypothetical scenarios written to fill a page count. Flaky tests from animations and device or state isolation are the two I'd flag as underrated; most automation guides skip them because they're messy problems, not clean textbook ones. The team and process conflicts near the end — QA getting blamed for slow releases, siloed automation engineers — are worth reading even if you're not the one writing the automation.</p>
   </div>
 
   <section class="related">

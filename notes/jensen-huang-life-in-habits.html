@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Career &amp; Productivity</div>
   <h1>Jensen Huang: A Life in Habits</h1>
+  
   <p class="desc">A twenty-page productivity portrait of NVIDIA's co-founder — not his net worth, but the discipline underneath it. Covers his origins, the founding years, mindset, daily routines, leadership style, vision, personal life, and mentorship, distilled into what any of it is actually worth borrowing.</p>
   <div class="note-meta">
     <span>20 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/jensen-huang-life-in-habits.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=jensen-huang-life-in-habits">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>I didn't want another &quot;billionaire success secrets&quot; piece — those are mostly survivorship bias dressed up as advice. What made this worth writing was separating what's actually replicable, the daily habits and how he structures decisions, from what isn't, being early to a category that later became enormous. Read it for the habits section, and stay skeptical of anything in it that sounds like a shortcut.</p>
   </div>
 
   <section class="related">

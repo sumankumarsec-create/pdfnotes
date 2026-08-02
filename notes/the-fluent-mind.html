@@ -103,6 +103,20 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } .note-actions{ flex-direction:column; align-items:stretch; } }
+  .author-byline{
+    display:flex; align-items:center; gap:10px; margin-bottom:26px;
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--grey);
+  }
+  .author-byline .author-name{ color:var(--black); font-weight:600; }
+  .curation{
+    margin:0 0 44px; padding:22px 24px; border-left:3px solid var(--black); background:#fafafa;
+    max-width:640px;
+  }
+  .curation .curation-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:10px; display:block;
+  }
+  .curation p{ font-size:15px; line-height:1.7; color:#2a2a2a; }
 </style>
 </head>
 <body>
@@ -122,6 +136,7 @@
   </nav>
   <div class="kicker">Language &amp; Literature</div>
   <h1>The Fluent Mind: A Complete American English &amp; Literature Course</h1>
+  
   <p class="desc">A 30-chapter, six-part course in American English and literature, built for a 12-week self-study program with a full answer key. Part I covers how English actually works — sound system, grammar, and vocabulary as a system rather than a list. Part II builds spoken fluency: pronunciation, connected speech, conversation architecture, and professional speaking. Part III moves to writing — sentence craft, paragraph and essay structure, and argument. Part IV and V teach close reading of literature and the literary tradition, using passages drawn entirely from the public domain. Part VI is the practice engine — drills, a 12-week schedule, and reference material to keep the rest from decaying.</p>
   <div class="note-meta">
     <span>133 pages</span>
@@ -131,6 +146,10 @@
   <div class="note-actions">
     <a class="dl-btn" href="../pdfs/the-fluent-mind.pdf" download>Download PDF</a>
     <a class="preview-link" href="../index.html?note=the-fluent-mind">Preview in browser</a>
+  </div>
+  <div class="curation">
+    <span class="curation-label">Why it's on this site</span>
+    <p>Different category from the rest of the archive, and worth explaining why it's here: English fluency is a career skill for a huge number of people in tech, not just a language-learning nice-to-have. What makes this different from a generic English course is the 12-week structure with an actual answer key — you can tell if you're improving, not just guess. The public-domain literature passages in Parts IV and V are a genuinely good choice, since the reading material won't disappear behind a paywall later.</p>
   </div>
 
   <a class="back" href="../index.html">← Back to the full archive</a>
