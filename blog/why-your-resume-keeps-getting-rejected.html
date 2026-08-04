@@ -116,6 +116,33 @@
   .footer-nav a:hover{ border-color:var(--black); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
   @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } }
+
+  /* --- inline diagram animations (post SVGs) --- */
+  @keyframes swPulse{ 0%,100%{ opacity:.3; } 50%{ opacity:1; } }
+  @keyframes swGrow{ from{ stroke-width:1; opacity:.35; } to{ stroke-width:2.5; opacity:1; } }
+  @keyframes swFade{ 0%{ opacity:.8; } 55%{ opacity:.8; } 100%{ opacity:.1; } }
+  @keyframes swNarrow{ 0%,100%{ transform:scaleY(1); } 50%{ transform:scaleY(.18); } }
+  @keyframes swDotMove{ from{ offset-distance:0%; } to{ offset-distance:100%; } }
+  @keyframes swStepPulse{ 0%,8%{ opacity:1; } 20%,100%{ opacity:.3; } }
+  @media (prefers-reduced-motion: no-preference){
+    .sw-pulse{ animation: swPulse 2.4s ease-in-out infinite; }
+    .sw-grow{ animation: swGrow 2.2s ease-out forwards; }
+    .sw-fade{ animation: swFade 3.4s ease-in-out infinite; }
+    .sw-narrow{ animation: swNarrow 3.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .sw-dot1{ animation: swDotMove 3s linear infinite; }
+    .sw-dot2{ animation: swDotMove 5s linear infinite; }
+    .sw-step{ opacity:.3; }
+    .sw-step-1{ animation: swStepPulse 5s ease-in-out infinite; animation-delay:0s; }
+    .sw-step-2{ animation: swStepPulse 5s ease-in-out infinite; animation-delay:1s; }
+    .sw-step-3{ animation: swStepPulse 5s ease-in-out infinite; animation-delay:2s; }
+    .sw-step-4{ animation: swStepPulse 5s ease-in-out infinite; animation-delay:3s; }
+    .sw-step-5{ animation: swStepPulse 5s ease-in-out infinite; animation-delay:4s; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .sw-pulse, .sw-grow, .sw-fade, .sw-narrow, .sw-dot1, .sw-dot2, .sw-step{ animation:none !important; }
+    .sw-fade{ opacity:.35; }
+    .sw-step{ opacity:.75; }
+  }
 </style>
 </head>
 <body>
