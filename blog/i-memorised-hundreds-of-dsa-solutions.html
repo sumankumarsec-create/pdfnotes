@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>I Memorised Hundreds of DSA Solutions. One Question Undid All of Them. — NOTES. Blog</title>
+<meta name="description" content="The question was Two Sum. I solved it in about ninety seconds. Not because I understood it. Because I had watched the same solution three times that week…">
+<link rel="canonical" href="https://pdfsent.com/blog/i-memorised-hundreds-of-dsa-solutions.html">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="NOTES.">
+<meta property="og:url" content="https://pdfsent.com/blog/i-memorised-hundreds-of-dsa-solutions.html">
+<meta property="og:title" content="I Memorised Hundreds of DSA Solutions. One Question Undid All of Them. — NOTES. Blog">
+<meta property="og:description" content="The question was Two Sum. I solved it in about ninety seconds. Not because I understood it. Because I had watched the same solution three times that week…">
+<meta property="og:image" content="https://pdfsent.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="I Memorised Hundreds of DSA Solutions. One Question Undid All of Them. — NOTES. Blog">
+<meta name="twitter:description" content="The question was Two Sum. I solved it in about ninety seconds. Not because I understood it. Because I had watched the same solution three times that week…">
+<meta name="twitter:image" content="https://pdfsent.com/og-image.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8827355390995789"
+     crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --black:#0a0a0a; --white:#ffffff; --grey:#6b6b6b; --grey-light:#e8e8e8; --ease:cubic-bezier(.22,.61,.36,1); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  .skip-link{
+    position:absolute; left:-9999px; top:0; z-index:1200;
+    background:var(--black); color:var(--white);
+    padding:12px 18px;
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.04em;
+    text-decoration:none;
+  }
+  .skip-link:focus{ left:12px; top:12px; }
+  a:focus-visible, button:focus-visible{ outline:2.5px solid var(--black); outline-offset:2px; }
+  body{ background:var(--white); color:var(--black); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap{ max-width:720px; margin:0 auto; padding:0 32px; }
+  header.site{ border-bottom:2px solid var(--black); padding:28px 0 20px; }
+  .top-row{ display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap; max-width:820px; margin:0 auto; padding:0 32px; }
+  .logo{ font-family:'Fraunces', serif; font-weight:600; font-size:28px; letter-spacing:-0.01em; text-decoration:none; color:var(--black); }
+  .logo span{ font-style:italic; font-weight:500; color:var(--grey); }
+  .site-tag{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey); }
+  .header-right{ display:flex; align-items:center; gap:14px; }
+  .store-link, .blog-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--black); text-decoration:none; border:1.5px solid var(--black); padding:6px 12px;
+    transition:background .18s var(--ease), color .18s var(--ease);
+  }
+  .store-link:hover, .blog-link:hover{ background:var(--black); color:var(--white); }
+  .store-link svg, .blog-link svg{ width:14px; height:14px; stroke:currentColor; flex-shrink:0; }
+  main{ padding:56px 0 80px; }
+  .breadcrumb{
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:22px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;
+  }
+  .breadcrumb a{ color:var(--grey); text-decoration:none; border-bottom:1px solid transparent; transition:border-color .15s var(--ease); }
+  .breadcrumb a:hover{ color:var(--black); border-color:var(--black); }
+  .post-meta{ display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+  .post-tag{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--grey); border:1px solid var(--grey-light); padding:3px 8px;
+  }
+  .byline{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--grey); }
+  h1.post-title{ font-family:'Fraunces', serif; font-weight:600; font-size:clamp(30px, 4.6vw, 44px); line-height:1.1; letter-spacing:-0.015em; margin-bottom:22px; }
+  p.lead{ font-size:18px; line-height:1.65; color:var(--black); margin-bottom:34px; }
+  h2{ font-family:'Fraunces', serif; font-weight:600; font-size:28px; margin:48px 0 16px; letter-spacing:-0.01em; }
+  h3{ font-family:'Fraunces', serif; font-weight:600; font-size:22px; margin:32px 0 12px; letter-spacing:-0.01em; }
+  p{ font-size:16px; line-height:1.7; color:#2a2a2a; margin-bottom:18px; }
+  ul, ol{ margin:0 0 18px 20px; }
+  li{ font-size:16px; line-height:1.7; color:#2a2a2a; margin-bottom:8px; }
+  p.subpoint{ font-weight:600; color:var(--black); margin-bottom:8px; }
+  .post-image{ width:100%; height:auto; border:1.5px solid var(--black); margin:0 0 30px; display:block; }
+  .callout{ border-left:3px solid var(--black); padding:2px 0 2px 18px; margin:0 0 22px; }
+  .callout li{ margin-bottom:10px; }
+  p.answer-weak{ color:var(--grey); font-style:italic; }
+  p.answer-strong{ color:var(--black); }
+  pre{ background:#fafafa; border:1.5px solid var(--grey-light); border-left:3px solid var(--black); padding:16px 18px; overflow-x:auto; font-size:13.5px; line-height:1.6; margin:0 0 22px; }
+  code{ font-family:'JetBrains Mono', monospace; font-size:0.875em; }
+  :not(pre) > code{ background:var(--grey-light); padding:.1em .4em; border-radius:2px; }
+  table{ width:100%; border-collapse:collapse; margin:24px 0; font-size:14.5px; }
+  th, td{ border-bottom:1px solid var(--grey-light); padding:10px; text-align:left; vertical-align:top; }
+  th{ border-bottom:2px solid var(--black); font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; font-weight:600; }
+  blockquote{ border-left:3px solid var(--black); margin:24px 0; padding:2px 0 2px 18px; font-style:normal; color:var(--black); }
+  figure{ margin:32px 0; }
+  figure svg{ display:block; width:100%; height:auto; color:var(--black); }
+  figcaption{ margin-top:10px; font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--grey); text-align:center; }
+  hr{ border:0; border-top:1px solid var(--grey-light); margin:40px 0; }
+  .related{ margin:56px 0 40px; }
+  h2.related-h{ font-family:'Fraunces', serif; font-weight:600; font-size:20px; margin-bottom:16px; letter-spacing:-0.01em; }
+  .related ul{ list-style:none; display:flex; flex-direction:column; gap:10px; margin:0; }
+  .related a{
+    display:block; padding:14px 16px; border:1.5px solid var(--black);
+    color:var(--black); text-decoration:none; font-size:14.5px;
+    transition:background .15s var(--ease), color .15s var(--ease);
+  }
+  .related a:hover{ background:var(--black); color:var(--white); }
+  .related .rel-cat{
+    display:block; font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--grey); margin-bottom:4px;
+  }
+  .related a:hover .rel-cat{ color:var(--white); opacity:.7; }
+  .back{ display:inline-block; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--black); text-decoration:none; border-bottom:1px solid var(--black); }
+  footer{ border-top:2px solid var(--black); padding:28px 0; }
+  .footer-nav{ display:flex; flex-wrap:wrap; gap:20px; margin-bottom:18px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; }
+  .footer-nav a{ color:var(--black); text-decoration:none; border-bottom:1px solid transparent; transition:border-color .15s var(--ease); }
+  .footer-nav a:hover{ border-color:var(--black); }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
+  @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site">
+  <div class="top-row">
+    <a class="logo" href="../index.html">NOTES<span>.</span></a>
+    <div class="header-right">
+      <a class="store-link" href="../stores/" aria-label="Store">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M3 9a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5 9v10h14V9"/><path d="M9 21v-6h6v6"/></svg>
+        Store
+      </a>
+      <a class="blog-link" href="../blogs/" aria-label="Blog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
+        Blog
+      </a>
+      <div class="site-tag">Study &amp; Reference Archive — Black / White Edition</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="main-content">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../blogs/">Blog</a> / <span>How to Study</span>
+  </nav>
+  <div class="post-meta">
+    <span class="post-tag">How to Study</span>
+    <span class="byline">4 August 2026</span>
+  </div>
+  <h1 class="post-title">I Memorised Hundreds of DSA Solutions. One Question Undid All of Them.</h1>
+  <p class="lead">The question was Two Sum. I solved it in about ninety seconds. Not because I understood it. Because I had watched the same solution three times that week and my fingers knew where the HashMap went before my brain did. I remember feeling quietly pleased with myself. This was working. Two hundred problems in, and the answers were coming faster.</p>
+  <p>Then I opened the next one: <em>find the length of the longest substring without repeating characters.</em></p>
+
+<p>I sat there for forty minutes.</p>
+
+<p>It wasn't a harder problem. It used the same data structure I'd just used. But nobody had shown me <em>this</em> one, and without a solution to recall, I had nothing. No approach, no starting point, not even a way to describe what I was looking for. I could recite an answer. I couldn't produce one.</p>
+
+<p>That was the day I understood what I'd actually been doing for two months. I hadn't been learning to solve problems. I'd been building a lookup table in my head — and a lookup table only works when the question matches a key.</p>
+
+<h2>What memorisation actually stores</h2>
+
+<p>When you memorise a solution, you store the <em>output</em> of someone else's thinking. What you don't store is the part that matters: the sequence of decisions that produced it.</p>
+
+<p>Watch a tutorial and you see a finished, edited artefact. The instructor says "so we'll use a HashMap here" and moves on. What you never see is the fifteen minutes where they tried something worse, noticed it was slow, worked out <em>why</em> it was slow, and only then reached for the HashMap. That missing middle is the entire skill.</p>
+
+<p>So when a new problem arrives, you have a shelf full of answers and no idea which one to reach for — because reaching for the right one was never the thing you practised.</p>
+
+<p>Experienced engineers are not carrying a bigger shelf. Plenty of them see an unfamiliar problem and have no idea what to do for the first few minutes either. The difference is that they have a reliable procedure for those first few minutes, and you don't. That procedure is learnable. Below is mine, run end to end on the exact problem that broke me.</p>
+
+<h2>First, what a data structure actually is</h2>
+
+<p>A quick correction before the process, because most explanations of this are too vague to be useful.</p>
+
+<p>You'll often hear that a data structure is "a way to organise data." True, but it doesn't tell you anything you can act on. Here's the version that does:</p>
+
+<blockquote>
+  <p>A data structure is a set of trade-offs about which operations are cheap and which are expensive.</p>
+</blockquote>
+
+<p>An array gives you instant access by index but slow insertion in the middle. A linked list flips that. A hash map gives you near-instant lookup by key but throws away ordering. A heap gives you the smallest element instantly and doesn't care about anything else.</p>
+
+<p>None of them is better. Each one buys speed in one place by paying for it somewhere else. Once you see them this way, choosing a data structure stops being trivia recall and becomes a question you can answer: <em>which operation is my solution doing over and over, and which structure makes that one cheap?</em></p>
+
+<p>Hold on to that. It's the hinge for the whole process.</p>
+
+<h2>The process, on one real problem</h2>
+
+<p><strong>The problem:</strong> given a string, return the length of the longest substring that contains no repeated characters. For <code>"abcabcbb"</code>, the answer is <code>3</code> (<code>"abc"</code>).</p>
+
+<h3>1. Restate it before you touch the keyboard</h3>
+
+<p>Not "read it carefully" — everyone says that and nobody knows what it means. Here's a concrete test: can you restate the problem in your own words without looking at it?</p>
+
+<p>If you can't, you don't understand it yet, and any code you write is a guess.</p>
+
+<p>While restating, pin down the boundaries:</p>
+
+<ul>
+  <li><strong>Substring or subsequence?</strong> Substring means contiguous. This turns out to decide almost everything.</li>
+  <li>What's the character set — lowercase letters, ASCII, Unicode?</li>
+  <li>What should an empty string return?</li>
+  <li>Am I returning the length, or the substring itself?</li>
+</ul>
+
+<p>I got this wrong the first time. I read "substring" and solved it as though characters could be skipped. Five minutes of reading would have saved me twenty-five of confusion.</p>
+
+<h3>2. Name the shape, not the trick</h3>
+
+<p>This is the step that separates people who improve from people who plateau.</p>
+
+<p>Beginners ask "which algorithm is this?" — which only works if you've seen it before. The better question is "what <em>shape</em> is this?", because shape is visible even on a problem you've never encountered.</p>
+
+<p>Read the restated problem and pull out its structural features:</p>
+
+<ul>
+  <li>It's over a <strong>contiguous</strong> run of elements.</li>
+  <li>I want the <strong>longest</strong> such run.</li>
+  <li>The run must satisfy a <strong>constraint</strong> (no repeats).</li>
+</ul>
+
+<p>Contiguous + optimise a length + constraint. That combination has a name: it's a <strong>sliding window</strong>. I didn't need to have seen this problem before to get there. I needed to notice those three features.</p>
+
+<figure>
+<svg viewBox="0 0 580 288" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="swTitle swDesc" style="width:100%;height:auto">
+  <title id="swTitle">A sliding window moving across the string abcabcbb</title>
+  <desc id="swDesc">Four frames. The window first grows from one character to three, then its left edge jumps forward each time a repeated character enters on the right, so the window never contains a duplicate.</desc>
+  <g fill="currentColor" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+
+    <!-- index ruler -->
+    <g font-size="10" opacity=".45" text-anchor="middle">
+      <text x="140" y="36">0</text><text x="185" y="36">1</text><text x="230" y="36">2</text><text x="275" y="36">3</text>
+      <text x="320" y="36">4</text><text x="365" y="36">5</text><text x="410" y="36">6</text><text x="455" y="36">7</text>
+    </g>
+
+    <!-- window highlights -->
+    <g opacity=".10">
+      <rect x="120" y="46"  width="40"  height="40" rx="3"/>
+      <rect x="120" y="108" width="130" height="40" rx="3"/>
+      <rect x="165" y="170" width="130" height="40" rx="3"/>
+      <rect x="210" y="232" width="130" height="40" rx="3"/>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="120" y="46"  width="40"  height="40" rx="3"/>
+      <rect x="120" y="108" width="130" height="40" rx="3"/>
+      <rect x="165" y="170" width="130" height="40" rx="3"/>
+      <rect x="210" y="232" width="130" height="40" rx="3"/>
+    </g>
+
+    <!-- character cells -->
+    <g fill="none" stroke="currentColor" stroke-width="1" opacity=".25">
+      <rect x="120" y="46"  width="40" height="40" rx="3"/><rect x="165" y="46"  width="40" height="40" rx="3"/><rect x="210" y="46"  width="40" height="40" rx="3"/><rect x="255" y="46"  width="40" height="40" rx="3"/><rect x="300" y="46"  width="40" height="40" rx="3"/><rect x="345" y="46"  width="40" height="40" rx="3"/><rect x="390" y="46"  width="40" height="40" rx="3"/><rect x="435" y="46"  width="40" height="40" rx="3"/>
+      <rect x="120" y="108" width="40" height="40" rx="3"/><rect x="165" y="108" width="40" height="40" rx="3"/><rect x="210" y="108" width="40" height="40" rx="3"/><rect x="255" y="108" width="40" height="40" rx="3"/><rect x="300" y="108" width="40" height="40" rx="3"/><rect x="345" y="108" width="40" height="40" rx="3"/><rect x="390" y="108" width="40" height="40" rx="3"/><rect x="435" y="108" width="40" height="40" rx="3"/>
+      <rect x="120" y="170" width="40" height="40" rx="3"/><rect x="165" y="170" width="40" height="40" rx="3"/><rect x="210" y="170" width="40" height="40" rx="3"/><rect x="255" y="170" width="40" height="40" rx="3"/><rect x="300" y="170" width="40" height="40" rx="3"/><rect x="345" y="170" width="40" height="40" rx="3"/><rect x="390" y="170" width="40" height="40" rx="3"/><rect x="435" y="170" width="40" height="40" rx="3"/>
+      <rect x="120" y="232" width="40" height="40" rx="3"/><rect x="165" y="232" width="40" height="40" rx="3"/><rect x="210" y="232" width="40" height="40" rx="3"/><rect x="255" y="232" width="40" height="40" rx="3"/><rect x="300" y="232" width="40" height="40" rx="3"/><rect x="345" y="232" width="40" height="40" rx="3"/><rect x="390" y="232" width="40" height="40" rx="3"/><rect x="435" y="232" width="40" height="40" rx="3"/>
+    </g>
+
+    <!-- characters: a b c a b c b b -->
+    <g font-size="16" text-anchor="middle">
+      <!-- frame 1: window [0,0] -->
+      <text x="140" y="72">a</text>
+      <g opacity=".3"><text x="185" y="72">b</text><text x="230" y="72">c</text><text x="275" y="72">a</text><text x="320" y="72">b</text><text x="365" y="72">c</text><text x="410" y="72">b</text><text x="455" y="72">b</text></g>
+      <!-- frame 2: window [0,2] -->
+      <text x="140" y="134">a</text><text x="185" y="134">b</text><text x="230" y="134">c</text>
+      <g opacity=".3"><text x="275" y="134">a</text><text x="320" y="134">b</text><text x="365" y="134">c</text><text x="410" y="134">b</text><text x="455" y="134">b</text></g>
+      <!-- frame 3: window [1,3] -->
+      <g opacity=".3"><text x="140" y="196">a</text></g>
+      <text x="185" y="196">b</text><text x="230" y="196">c</text><text x="275" y="196">a</text>
+      <g opacity=".3"><text x="320" y="196">b</text><text x="365" y="196">c</text><text x="410" y="196">b</text><text x="455" y="196">b</text></g>
+      <!-- frame 4: window [2,4] -->
+      <g opacity=".3"><text x="140" y="258">a</text><text x="185" y="258">b</text></g>
+      <text x="230" y="258">c</text><text x="275" y="258">a</text><text x="320" y="258">b</text>
+      <g opacity=".3"><text x="365" y="258">c</text><text x="410" y="258">b</text><text x="455" y="258">b</text></g>
+    </g>
+
+    <!-- left labels -->
+    <g font-size="11">
+      <text x="10" y="64">end = 0</text><text x="10" y="80" opacity=".5">grow</text>
+      <text x="10" y="126">end = 2</text><text x="10" y="142" opacity=".5">grow</text>
+      <text x="10" y="188">end = 3</text><text x="10" y="204" opacity=".5">'a' repeats</text>
+      <text x="10" y="250">end = 4</text><text x="10" y="266" opacity=".5">'b' repeats</text>
+    </g>
+
+    <!-- right labels -->
+    <g font-size="11">
+      <text x="490" y="70">len 1</text>
+      <text x="490" y="132">len 3</text>
+      <text x="490" y="194">len 3</text>
+      <text x="490" y="256">len 3</text>
+    </g>
+
+    <!-- start-edge movement arrows -->
+    <g stroke="currentColor" stroke-width="1.5" fill="none" opacity=".55">
+      <path d="M124 158 L161 166" marker-end="url(#swArrow)"/>
+      <path d="M169 220 L206 228" marker-end="url(#swArrow)"/>
+    </g>
+  </g>
+  <defs>
+    <marker id="swArrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L8 4 L0 8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>The window grows on the right, and its left edge jumps forward only when a repeat forces it to.</figcaption>
+</figure>
+
+<p>A rough map from shape to family:</p>
+
+<table>
+  <thead>
+    <tr><th>What the problem looks like</th><th>Where to look first</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Sorted input, searching</td><td>Binary search</td></tr>
+    <tr><td>Contiguous run, best length or sum</td><td>Sliding window</td></tr>
+    <tr><td>Pairs from a sorted array</td><td>Two pointers</td></tr>
+    <tr><td>"Have I seen this before?"</td><td>Hash map or set</td></tr>
+    <tr><td>Repeated range sums</td><td>Prefix sum</td></tr>
+    <tr><td>Most recent thing matters</td><td>Stack</td></tr>
+    <tr><td>Explore choices, undo, retry</td><td>Recursion / backtracking</td></tr>
+  </tbody>
+</table>
+
+<p>This is a starting direction, not an answer. It's enough.</p>
+
+<h3>3. Write the stupid version first</h3>
+
+<p>Resist optimising. Write the solution you'd get by doing exactly what the problem describes — check every substring, keep the longest valid one:</p>
+
+<pre><code class="language-java">int longest = 0;
+for (int i = 0; i &lt; s.length(); i++) {
+    Set&lt;Character&gt; seen = new HashSet&lt;&gt;();
+    int j = i;
+    while (j &lt; s.length() &amp;&amp; !seen.contains(s.charAt(j))) {
+        seen.add(s.charAt(j));
+        j++;
+    }
+    longest = Math.max(longest, j - i);
+}
+return longest;
+</code></pre>
+
+<p>That's O(n²). It's slow. It is also <em>correct</em>, and correct is the only thing you can optimise. You cannot speed up code that produces the wrong answer — you can only produce wrong answers faster.</p>
+
+<p>There's a second reason this step matters, and it's the one people miss. The brute force is where the optimisation comes from. You can't see the waste until you've written the thing that wastes.</p>
+
+<h3>4. Find the waste, then remove it</h3>
+
+<p>Now look at what the naive version repeats. Restart at <code>i = 1</code> and you re-scan almost the entire string you just scanned at <code>i = 0</code>. Every outer iteration throws away everything the previous one learned.</p>
+
+<p>So the question becomes concrete: <em>what did I learn last pass that I'm discarding?</em></p>
+
+<p>The answer: I already know where each character last appeared. If I kept that, I wouldn't have to restart from scratch — I could jump the left edge of my window straight past the duplicate.</p>
+
+<p>Which operation do I need to be cheap? "Where did I last see this character?" — a lookup by key. Hash map. This is the trade-off framing from earlier doing actual work, rather than me remembering that Two Sum used a HashMap.</p>
+
+<pre><code class="language-java">Map&lt;Character, Integer&gt; lastSeen = new HashMap&lt;&gt;();
+int longest = 0, start = 0;
+
+for (int end = 0; end &lt; s.length(); end++) {
+    char c = s.charAt(end);
+    if (lastSeen.containsKey(c) &amp;&amp; lastSeen.get(c) &gt;= start) {
+        start = lastSeen.get(c) + 1;
+    }
+    lastSeen.put(c, end);
+    longest = Math.max(longest, end - start + 1);
+}
+return longest;
+</code></pre>
+
+<p>One pass. O(n).</p>
+
+<p>Notice what happened: the optimisation wasn't a trick I recalled. It fell out of asking what the slow version was throwing away. That question works on problems you've never seen.</p>
+
+<h3>5. State the complexity out loud</h3>
+
+<p>Time: O(n) — each index is visited once by <code>end</code>, and <code>start</code> only ever moves forward. Space: O(k), where k is the size of the character set.</p>
+
+<p>The habit that matters here isn't reciting Big-O notation. It's asking: <em>what happens when the input gets a thousand times bigger?</em> The O(n²) version handles a 10,000-character string fine and dies on ten million. The O(n) version doesn't notice the difference. That gap is the whole reason complexity analysis exists.</p>
+
+<figure>
+<svg viewBox="0 0 580 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cxTitle cxDesc" style="width:100%;height:auto">
+  <title id="cxTitle">Growth of O(n) against O(n squared)</title>
+  <desc id="cxDesc">As input size grows, the work done by the linear solution rises gently while the quadratic solution curves sharply upward. The shaded gap between them widens continuously.</desc>
+  <g fill="currentColor" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+
+    <!-- gap between the two curves -->
+    <path opacity=".08" d="M78 262 L148.5 257.1 L219 242.6 L289.5 218.3 L360 184.2 L430.5 140.5 L501 87 L548 46 L548 224 Z"/>
+
+    <!-- axes -->
+    <g stroke="currentColor" stroke-width="1" opacity=".35">
+      <path d="M78 40 L78 262 L556 262" fill="none"/>
+    </g>
+
+    <!-- O(n^2) -->
+    <path fill="none" stroke="currentColor" stroke-width="2.5"
+          d="M78 262 L148.5 257.1 L219 242.6 L289.5 218.3 L360 184.2 L430.5 140.5 L501 87 L548 46"/>
+
+    <!-- O(n) -->
+    <path fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4" opacity=".75"
+          d="M78 262 L548 224"/>
+
+    <!-- curve labels -->
+    <g font-size="12">
+      <text x="544" y="32" text-anchor="end">O(n²) — brute force</text>
+      <text x="544" y="212" text-anchor="end">O(n) — sliding window</text>
+    </g>
+
+    <!-- axis titles -->
+    <text x="317" y="288" font-size="11.5" text-anchor="middle" opacity=".65">input size n →</text>
+    <text x="24" y="151" font-size="11.5" text-anchor="middle" opacity=".65" transform="rotate(-90 24 151)">work done</text>
+  </g>
+</svg>
+<figcaption>Both solutions look acceptable on a short string. The shaded gap is what the second version buys you as the input grows.</figcaption>
+</figure>
+
+<h3>6. Dry run it on paper — and pick a hostile input</h3>
+
+<p>Do not run <code>"abcabcbb"</code>. It works, it'll pass, and it will teach you nothing.</p>
+
+<p>Pick the input designed to break you. For this problem it's <code>"abba"</code>:</p>
+
+<table>
+  <thead>
+    <tr><th><code>end</code></th><th>char</th><th>last seen at</th><th><code>start</code></th><th>window</th><th>longest</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>a</td><td>—</td><td>0</td><td><code>a</code></td><td>1</td></tr>
+    <tr><td>1</td><td>b</td><td>—</td><td>0</td><td><code>ab</code></td><td>2</td></tr>
+    <tr><td>2</td><td>b</td><td>1 (≥ start) → start = 2</td><td>2</td><td><code>b</code></td><td>2</td></tr>
+    <tr><td>3</td><td>a</td><td>0 (<strong>&lt; start</strong>) → leave alone</td><td>2</td><td><code>ba</code></td><td>2</td></tr>
+  </tbody>
+</table>
+
+<p>Answer: 2. Correct.</p>
+
+<p>Now look at row 3, and at the <code>lastSeen.get(c) &gt;= start</code> condition in the code. Drop that <code>&gt;= start</code> guard and <code>start</code> jumps <em>backwards</em> to 1 at the final step, producing 3. A wrong answer, from code that looks completely reasonable and passes the sample input.</p>
+
+<p>That single comparison is the actual difficulty of this problem. No tutorial ever flagged it to me. Four rows of pen and paper did.</p>
+
+<h3>7. Attack your own edge cases</h3>
+
+<p>Sample inputs are written to be friendly. Hidden test cases are not. Before submitting, run through:</p>
+
+<ul>
+  <li>Empty string → should return 0. It does; the loop never executes.</li>
+  <li>One character → 1.</li>
+  <li>All identical, <code>"bbbb"</code> → 1.</li>
+  <li>No repeats at all, <code>"abcdef"</code> → 6, the whole string.</li>
+  <li>Spaces, digits, symbols — is my character set assumption still true?</li>
+</ul>
+
+<p>This list takes ninety seconds and catches most of what separates "passed 34/40 test cases" from "accepted."</p>
+
+<h2>No, there is no pattern that solves everything</h2>
+
+<p>I want to be direct about this, because a lot of content online implies otherwise.</p>
+
+<p>There is no master pattern. Interview questions are built by composing concepts — a graph problem with a dynamic-programming layer, a binary search over an answer space instead of an array. Any list of patterns you memorise will eventually meet a problem that sits between two of them.</p>
+
+<p>That isn't a gap in your preparation. It's the permanent condition of the work.</p>
+
+<p>What changes with experience isn't that unfamiliar problems stop appearing. It's that you stop treating an unfamiliar problem as evidence that you're not good enough, and start treating it as ordinary — something to be worked through with a procedure rather than recognised on sight.</p>
+
+<h2>What actually transfers</h2>
+
+<p>I still don't remember the code for most problems I've solved. I'd have to derive the sliding-window version above again if you asked me cold.</p>
+
+<p>What I do have is a reliable sequence for the first ten minutes, which used to be the part where I panicked:</p>
+
+<blockquote>
+  <p><strong>Restate it → name the shape → write the slow version → find what it wastes → check the complexity → dry run something hostile → break your own edge cases.</strong></p>
+</blockquote>
+
+<p>That's it. Seven steps, and none of them require you to have seen the problem before.</p>
+
+<p>If you're two months in and quietly worried that you're not getting it — you might just be doing what I was doing. Collecting answers instead of practising the thing that produces them.</p>
+
+<p>Stop memorising solutions. Start recording your reasoning.</p>
+
+<hr>
+
+<p><em>Working through DSA? The <a href="https://pdfsent.com/index.html">archive</a> has free PDF notes on data structures, algorithms, and computer science fundamentals — no account needed.</em></p>
+
+  <section class="related">
+    <h2 class="related-h">Read next</h2>
+    <ul>
+      <li><a href="why-nothing-feels-interesting-anymore.html"><span class="rel-cat">How to Study</span>Why Nothing Feels Interesting Anymore: The Science Behind Lost Curiosity</a></li>
+      <li><a href="discipline-was-never-the-problem.html"><span class="rel-cat">How to Study</span>The Morning I Realised Discipline Was Never the Problem</a></li>
+      <li><a href="why-your-resume-keeps-getting-rejected.html"><span class="rel-cat">Interview Tips</span>Why Your Resume Keeps Getting Rejected (And How Recruiters Actually Read It)</a></li>
+    </ul>
+  </section>
+  <a class="back" href="../blogs/">← Back to the blog</a>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="footer-nav">
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Use</a>
+    </nav>
+    <div class="foot-row">
+      <span>NOTES. — a static, offline-friendly archive</span>
+      <span id="year"></span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NOTES.","item":"https://pdfsent.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://pdfsent.com/blogs/"},{"@type":"ListItem","position":3,"name":"I Memorised Hundreds of DSA Solutions. One Question Undid All of Them.","item":"https://pdfsent.com/blog/i-memorised-hundreds-of-dsa-solutions.html"}]},{"@type":"BlogPosting","headline":"I Memorised Hundreds of DSA Solutions. One Question Undid All of Them.","description":"The question was Two Sum. I solved it in about ninety seconds. Not because I understood it. Because I had watched the same solution three times that week…","url":"https://pdfsent.com/blog/i-memorised-hundreds-of-dsa-solutions.html","datePublished":"2026-08-04","dateModified":"2026-08-04","author":{"@type":"Person","name":"NOTES. maintainer"},"publisher":{"@type":"Organization","name":"NOTES."},"mainEntityOfPage":"https://pdfsent.com/blog/i-memorised-hundreds-of-dsa-solutions.html"}]}</script>
+<script>document.getElementById('year').textContent = '© ' + new Date().getFullYear() + ' NOTES. All rights reserved.';</script>
+</body>
+</html>
