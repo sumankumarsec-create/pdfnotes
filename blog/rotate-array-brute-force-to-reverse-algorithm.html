@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<title>Rotate an Array in Java: From Brute Force to the Optimal Reverse Algorithm — NOTES. Blog</title>
+<meta name="description" content="The first time array rotation showed up in an interview, I solved it in about four minutes and felt pretty good about myself. Then the interviewer asked…">
+<link rel="canonical" href="https://pdfsent.com/blog/rotate-array-brute-force-to-reverse-algorithm.html">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="NOTES.">
+<meta property="og:url" content="https://pdfsent.com/blog/rotate-array-brute-force-to-reverse-algorithm.html">
+<meta property="og:title" content="Rotate an Array in Java: From Brute Force to the Optimal Reverse Algorithm — NOTES. Blog">
+<meta property="og:description" content="The first time array rotation showed up in an interview, I solved it in about four minutes and felt pretty good about myself. Then the interviewer asked…">
+<meta property="og:image" content="https://pdfsent.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rotate an Array in Java: From Brute Force to the Optimal Reverse Algorithm — NOTES. Blog">
+<meta name="twitter:description" content="The first time array rotation showed up in an interview, I solved it in about four minutes and felt pretty good about myself. Then the interviewer asked…">
+<meta name="twitter:image" content="https://pdfsent.com/og-image.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8827355390995789"
+     crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --black:#0a0a0a; --white:#ffffff; --grey:#6b6b6b; --grey-light:#e8e8e8; --ease:cubic-bezier(.22,.61,.36,1); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  .skip-link{
+    position:absolute; left:-9999px; top:0; z-index:1200;
+    background:var(--black); color:var(--white);
+    padding:12px 18px;
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.04em;
+    text-decoration:none;
+  }
+  .skip-link:focus{ left:12px; top:12px; }
+  a:focus-visible, button:focus-visible{ outline:2.5px solid var(--black); outline-offset:2px; }
+  body{ background:var(--white); color:var(--black); font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap{ max-width:720px; margin:0 auto; padding:0 32px; }
+  header.site{ border-bottom:2px solid var(--black); padding:28px 0 20px; }
+  .top-row{ display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap; max-width:820px; margin:0 auto; padding:0 32px; }
+  .logo{ font-family:'Fraunces', serif; font-weight:600; font-size:28px; letter-spacing:-0.01em; text-decoration:none; color:var(--black); }
+  .logo span{ font-style:italic; font-weight:500; color:var(--grey); }
+  .site-tag{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey); }
+  .header-right{ display:flex; align-items:center; gap:14px; }
+  .store-link, .blog-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--black); text-decoration:none; border:1.5px solid var(--black); padding:6px 12px;
+    transition:background .18s var(--ease), color .18s var(--ease);
+  }
+  .store-link:hover, .blog-link:hover{ background:var(--black); color:var(--white); }
+  .store-link svg, .blog-link svg{ width:14px; height:14px; stroke:currentColor; flex-shrink:0; }
+  main{ padding:56px 0 80px; }
+  .breadcrumb{
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--grey); margin-bottom:22px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;
+  }
+  .breadcrumb a{ color:var(--grey); text-decoration:none; border-bottom:1px solid transparent; transition:border-color .15s var(--ease); }
+  .breadcrumb a:hover{ color:var(--black); border-color:var(--black); }
+  .post-meta{ display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+  .post-tag{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--grey); border:1px solid var(--grey-light); padding:3px 8px;
+  }
+  .byline{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--grey); }
+  h1.post-title{ font-family:'Fraunces', serif; font-weight:600; font-size:clamp(30px, 4.6vw, 44px); line-height:1.1; letter-spacing:-0.015em; margin-bottom:22px; }
+  p.lead{ font-size:18px; line-height:1.65; color:var(--black); margin-bottom:34px; }
+  h2{ font-family:'Fraunces', serif; font-weight:600; font-size:28px; margin:48px 0 16px; letter-spacing:-0.01em; }
+  h3{ font-family:'Fraunces', serif; font-weight:600; font-size:22px; margin:32px 0 12px; letter-spacing:-0.01em; }
+  p{ font-size:16px; line-height:1.7; color:#2a2a2a; margin-bottom:18px; }
+  ul, ol{ margin:0 0 18px 20px; }
+  li{ font-size:16px; line-height:1.7; color:#2a2a2a; margin-bottom:8px; }
+  p.subpoint{ font-weight:600; color:var(--black); margin-bottom:8px; }
+  .post-image{ width:100%; height:auto; border:1.5px solid var(--black); margin:0 0 30px; display:block; }
+  .callout{ border-left:3px solid var(--black); padding:2px 0 2px 18px; margin:0 0 22px; }
+  .callout li{ margin-bottom:10px; }
+  p.answer-weak{ color:var(--grey); font-style:italic; }
+  p.answer-strong{ color:var(--black); }
+  pre{ background:#fafafa; border:1.5px solid var(--grey-light); border-left:3px solid var(--black); padding:16px 18px; overflow-x:auto; font-size:13.5px; line-height:1.6; margin:0 0 22px; }
+  code{ font-family:'JetBrains Mono', monospace; font-size:0.875em; }
+  :not(pre) > code{ background:var(--grey-light); padding:.1em .4em; border-radius:2px; }
+  table{ width:100%; border-collapse:collapse; margin:24px 0; font-size:14.5px; }
+  th, td{ border-bottom:1px solid var(--grey-light); padding:10px; text-align:left; vertical-align:top; }
+  th{ border-bottom:2px solid var(--black); font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; font-weight:600; }
+  blockquote{ border-left:3px solid var(--black); margin:24px 0; padding:2px 0 2px 18px; font-style:normal; color:var(--black); }
+  figure{ margin:32px 0; }
+  figure svg{ display:block; width:100%; height:auto; color:var(--black); }
+  figcaption{ margin-top:10px; font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--grey); text-align:center; }
+  hr{ border:0; border-top:1px solid var(--grey-light); margin:40px 0; }
+  .related{ margin:56px 0 40px; }
+  h2.related-h{ font-family:'Fraunces', serif; font-weight:600; font-size:20px; margin-bottom:16px; letter-spacing:-0.01em; }
+  .related ul{ list-style:none; display:flex; flex-direction:column; gap:10px; margin:0; }
+  .related a{
+    display:block; padding:14px 16px; border:1.5px solid var(--black);
+    color:var(--black); text-decoration:none; font-size:14.5px;
+    transition:background .15s var(--ease), color .15s var(--ease);
+  }
+  .related a:hover{ background:var(--black); color:var(--white); }
+  .related .rel-cat{
+    display:block; font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--grey); margin-bottom:4px;
+  }
+  .related a:hover .rel-cat{ color:var(--white); opacity:.7; }
+  .back{ display:inline-block; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--black); text-decoration:none; border-bottom:1px solid var(--black); }
+  footer{ border-top:2px solid var(--black); padding:28px 0; }
+  .footer-nav{ display:flex; flex-wrap:wrap; gap:20px; margin-bottom:18px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; }
+  .footer-nav a{ color:var(--black); text-decoration:none; border-bottom:1px solid transparent; transition:border-color .15s var(--ease); }
+  .footer-nav a:hover{ border-color:var(--black); }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--grey); }
+  @media (max-width:640px){ .wrap, .top-row{ padding:0 18px; } main{ padding:40px 0 60px; } }
+
+  /* --- inline diagram animations (post SVGs) --- */
+  @keyframes swPulse{ 0%,100%{ opacity:.3; } 50%{ opacity:1; } }
+  @keyframes swGrow{ from{ stroke-width:1; opacity:.35; } to{ stroke-width:2.5; opacity:1; } }
+  @keyframes swFade{ 0%{ opacity:.8; } 55%{ opacity:.8; } 100%{ opacity:.1; } }
+  @keyframes swNarrow{ 0%,100%{ transform:scaleY(1); } 50%{ transform:scaleY(.18); } }
+  @keyframes swDotMove{ from{ offset-distance:0%; } to{ offset-distance:100%; } }
+  @keyframes swStepPulse{ 0%,8%{ opacity:1; } 20%,100%{ opacity:.3; } }
+  @media (prefers-reduced-motion: no-preference){
+    .sw-pulse{ animation: swPulse 2.4s ease-in-out infinite; }
+    .sw-grow{ animation: swGrow 2.2s ease-out forwards; }
+    .sw-fade{ animation: swFade 3.4s ease-in-out infinite; }
+    .sw-narrow{ animation: swNarrow 3.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .sw-dot1{ animation: swDotMove 3s linear infinite; }
+    .sw-dot2{ animation: swDotMove 5s linear infinite; }
+    .sw-step{ opacity:.3; }
+    .sw-step-1{ animation: swStepPulse 5s ease-in-out infinite; animation-delay:0s; }
+    .sw-step-2{ animation: swStepPulse 5s ease-in-out infinite; animation-delay:1s; }
+    .sw-step-3{ animation: swStepPulse 5s ease-in-out infinite; animation-delay:2s; }
+    .sw-step-4{ animation: swStepPulse 5s ease-in-out infinite; animation-delay:3s; }
+    .sw-step-5{ animation: swStepPulse 5s ease-in-out infinite; animation-delay:4s; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .sw-pulse, .sw-grow, .sw-fade, .sw-narrow, .sw-dot1, .sw-dot2, .sw-step{ animation:none !important; }
+    .sw-fade{ opacity:.35; }
+    .sw-step{ opacity:.75; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="site">
+  <div class="top-row">
+    <a class="logo" href="../index.html">NOTES<span>.</span></a>
+    <div class="header-right">
+      <a class="store-link" href="../stores/" aria-label="Store">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5"/><path d="M3 9a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5 9v10h14V9"/><path d="M9 21v-6h6v6"/></svg>
+        Store
+      </a>
+      <a class="blog-link" href="../blogs/" aria-label="Blog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
+        Blog
+      </a>
+      <div class="site-tag">Study &amp; Reference Archive — Black / White Edition</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="main-content">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../blogs/">Blog</a> / <span>How to Study</span>
+  </nav>
+  <div class="post-meta">
+    <span class="post-tag">How to Study</span>
+    <span class="byline">5 August 2026</span>
+  </div>
+  <h1 class="post-title">Rotate an Array in Java: From Brute Force to the Optimal Reverse Algorithm</h1>
+  <p class="lead">The first time array rotation showed up in an interview, I solved it in about four minutes and felt pretty good about myself. Then the interviewer asked one follow-up question — "what if the array has ten million elements and you need to rotate it fifty thousand times?" — and the solution I was proud of fell apart almost instantly. That's the whole point of this problem. It isn't hard. It's designed to catch people who stop at the first thing that works.</p>
+  <h2>What rotating an array actually means</h2>
+<p>The first time array rotation showed up in an interview, I solved it in about four minutes and felt pretty good about myself. Then the interviewer asked one follow-up question — "what if the array has ten million elements and you need to rotate it fifty thousand times?" — and the solution I was proud of fell apart almost instantly. That's the whole point of this problem. It isn't hard. It's designed to catch people who stop at the first thing that works.</p>
+<p>Rotation itself is simple to picture. Take an array like this one:</p>
+<pre><code class="language-text">[1, 2, 3, 4, 5]</code></pre>
+<p>Rotate it left by one position, and the first element walks around to the back while everyone else shifts one seat to the left:</p>
+<pre><code class="language-text">Before: 1 2 3 4 5
+After:  2 3 4 5 1</code></pre>
+<p>Rotate it right by one instead, and it's the last element that walks around to the front:</p>
+<pre><code class="language-text">Before: 1 2 3 4 5
+After:  5 1 2 3 4</code></pre>
+<p>Same five numbers, same idea, opposite direction. Everything else in this post is really just answering one question: how do you do that efficiently, for any number of positions, without doing more work than the problem actually requires?</p>
+
+<figure>
+<svg viewBox="0 0 580 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="d1Title d1Desc" style="width:100%;height:auto">
+<title id="d1Title">Left rotation moves the front element to the back; right rotation moves the back element to the front</title>
+<desc id="d1Desc">Five boxes holding 1 through 5. A curved path above the array shows the first element traveling to the end for a left rotation. A curved path below shows the last element traveling to the front for a right rotation.</desc>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <g fill="none" stroke="currentColor" stroke-width="1.3">
+    <rect x="40" y="90" width="60" height="40" rx="4"/>
+    <rect x="110" y="90" width="60" height="40" rx="4"/>
+    <rect x="180" y="90" width="60" height="40" rx="4"/>
+    <rect x="250" y="90" width="60" height="40" rx="4"/>
+    <rect x="320" y="90" width="60" height="40" rx="4"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle" font-size="14">
+    <text x="70" y="115">1</text>
+    <text x="140" y="115">2</text>
+    <text x="210" y="115">3</text>
+    <text x="280" y="115">4</text>
+    <text x="350" y="115">5</text>
+  </g>
+  <path class="sw-grow" d="M70,90 C70,30 350,30 350,90" fill="none" stroke="currentColor" stroke-width="1.3"/>
+  <circle class="sw-dot1" r="3.5" fill="currentColor" style="offset-path:path('M70,90 C70,30 350,30 350,90');"/>
+  <circle class="sw-pulse" cx="70" cy="90" r="6" fill="currentColor"/>
+  <text x="210" y="20" text-anchor="middle" font-size="12" fill="currentColor">Left rotation by 1</text>
+
+  <path class="sw-grow" d="M350,130 C350,200 70,200 70,130" fill="none" stroke="currentColor" stroke-width="1.3"/>
+  <circle class="sw-dot2" r="3.5" fill="currentColor" style="offset-path:path('M350,130 C350,200 70,200 70,130');"/>
+  <circle class="sw-pulse" cx="350" cy="130" r="6" fill="currentColor"/>
+  <text x="210" y="228" text-anchor="middle" font-size="12" fill="currentColor">Right rotation by 1</text>
+</g>
+</svg>
+<figcaption>Same five boxes, two directions. Left rotation walks the front element to the back; right rotation walks the back element to the front.</figcaption>
+</figure>
+
+<h2>The brute-force instinct — and why it's worth starting there</h2>
+<p>Almost everyone reaches for the same first idea, and it's a good one to reach for. To rotate left by one position, you don't need anything clever. You just need three steps.</p>
+<p>First, save the element that's about to get displaced:</p>
+<pre><code class="language-java">int temp = arr[0];</code></pre>
+<p>Then slide everything else one seat to the left:</p>
+<pre><code class="language-text">Before shifting: 1 2 3 4 5
+After shifting:  2 3 4 5 _</code></pre>
+<p>And finally, drop the value you saved into the gap that's left behind:</p>
+<pre><code class="language-text">2 3 4 5 1</code></pre>
+<p>That's a full left rotation by one position, and it's genuinely the right way to think about the problem before you optimize anything. You can't skip a step to a shortcut you haven't earned an understanding of yet.</p>
+
+<figure>
+<svg viewBox="0 0 580 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="d2Title d2Desc" style="width:100%;height:auto">
+<title id="d2Title">The brute-force single rotation: save the first element, shift the rest, place the saved value at the end</title>
+<desc id="d2Desc">A before row of five boxes with the first element highlighted and lifted into a temp holder. Faint lines show the remaining elements sliding one position left into an after row. A curved path carries the saved value from the temp holder into the last position of the after row.</desc>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <text x="14" y="55" font-size="10" fill="currentColor" letter-spacing="1">BEFORE</text>
+  <g fill="none" stroke="currentColor" stroke-width="1.3">
+    <rect class="sw-pulse" x="40" y="60" width="60" height="40" rx="4"/>
+    <rect x="110" y="60" width="60" height="40" rx="4"/>
+    <rect x="180" y="60" width="60" height="40" rx="4"/>
+    <rect x="250" y="60" width="60" height="40" rx="4"/>
+    <rect x="320" y="60" width="60" height="40" rx="4"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle" font-size="14">
+    <text x="70" y="85">1</text>
+    <text x="140" y="85">2</text>
+    <text x="210" y="85">3</text>
+    <text x="280" y="85">4</text>
+    <text x="350" y="85">5</text>
+  </g>
+
+  <rect x="40" y="0" width="60" height="34" rx="4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="3,3"/>
+  <text x="70" y="22" text-anchor="middle" font-size="13" fill="currentColor">1</text>
+  <text x="105" y="22" font-size="10" fill="currentColor">temp</text>
+  <path class="sw-grow" d="M70,60 L70,34" fill="none" stroke="currentColor" stroke-width="1.3"/>
+  <circle class="sw-dot1" r="3" fill="currentColor" style="offset-path:path('M70,60 L70,34');"/>
+
+  <g stroke="currentColor" stroke-width="1" opacity=".35" stroke-dasharray="3,3">
+    <path d="M140,100 L70,170"/>
+    <path d="M210,100 L140,170"/>
+    <path d="M280,100 L210,170"/>
+    <path d="M350,100 L280,170"/>
+  </g>
+
+  <text x="14" y="165" font-size="10" fill="currentColor" letter-spacing="1">AFTER</text>
+  <g fill="none" stroke="currentColor" stroke-width="1.3">
+    <rect x="40" y="170" width="60" height="40" rx="4"/>
+    <rect x="110" y="170" width="60" height="40" rx="4"/>
+    <rect x="180" y="170" width="60" height="40" rx="4"/>
+    <rect x="250" y="170" width="60" height="40" rx="4"/>
+    <rect class="sw-pulse" x="320" y="170" width="60" height="40" rx="4"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle" font-size="14">
+    <text x="70" y="195">2</text>
+    <text x="140" y="195">3</text>
+    <text x="210" y="195">4</text>
+    <text x="280" y="195">5</text>
+    <text x="350" y="195">1</text>
+  </g>
+
+  <path class="sw-grow" d="M70,34 C70,140 350,60 350,170" fill="none" stroke="currentColor" stroke-width="1.3"/>
+  <circle class="sw-dot2" r="3.5" fill="currentColor" style="offset-path:path('M70,34 C70,140 350,60 350,170');"/>
+</g>
+</svg>
+<figcaption>Save the first element, shift everyone else left by one, then carry the saved value all the way around to the last position.</figcaption>
+</figure>
+
+<h2>Why repeating that K times gets expensive</h2>
+<p>Once you can rotate by one position, rotating by K looks trivial: just do the same three steps K times in a row. It works. It's also the part of the solution that quietly turns into a performance problem the moment the numbers get realistic.</p>
+<p>Each single rotation touches every element in the array once, which is O(N) work. Do that K times and the total cost is:</p>
+<pre><code class="language-text">O(K × N)</code></pre>
+<p>That looks abstract until you put real numbers in it. Say you're working with an array of 100,000 elements and you need to rotate it 50,000 times:</p>
+<pre><code class="language-text">n = 100000
+k = 50000</code></pre>
+<p>You are now sliding elements one step at a time, five billion times over, to accomplish something that — as you're about to see — doesn't need repetition at all.</p>
+
+<h2>The shortcut hiding inside K: k % n</h2>
+<p>Here's the observation that breaks the problem open. Rotate an array exactly N times, where N is its length, and you get the original array back:</p>
+<pre><code class="language-text">Array:        1 2 3 4 5
+Rotate by 2:  3 4 5 1 2
+Rotate by 3:  4 5 1 2 3
+Rotate by 4:  5 1 2 3 4
+Rotate by 5:  1 2 3 4 5   ← back to the start</code></pre>
+<p>Once you notice that, the rest follows immediately. Rotating six times is identical to rotating once. Rotating seven times is identical to rotating twice. Every full lap around the array is wasted motion — it lands you exactly where you started, so it never needed to happen. The only part of K that actually changes anything is the remainder after you divide out every complete lap:</p>
+<pre><code class="language-java">k = k % n;</code></pre>
+<p>Seventeen rotations on an array of five elements is the same as two rotations:</p>
+<pre><code class="language-text">k = 17
+n = 5
+17 % 5 = 2</code></pre>
+<p>One line of arithmetic just deleted every unnecessary rotation before you've written a single line of the actual algorithm.</p>
+
+<figure>
+<svg viewBox="0 0 580 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="d3Title d3Desc" style="width:100%;height:auto">
+<title id="d3Title">Rotating by k on an array of length n cycles through only n distinct positions</title>
+<desc id="d3Desc">Five points arranged in a circle, labeled 0 through 4, connected in a loop. A dot travels continuously around the loop, and each point pulses in turn, showing that any rotation count eventually lands back on one of these five positions.</desc>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <path class="sw-grow" d="M290,60 L394.6,136.0 L354.7,259.0 L225.3,259.0 L185.4,136.0 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <circle class="sw-dot2" r="4" fill="currentColor" style="offset-path:path('M290,60 L394.6,136.0 L354.7,259.0 L225.3,259.0 L185.4,136.0 Z');"/>
+
+  <g stroke="currentColor" stroke-width="1.5" fill="none">
+    <circle class="sw-step sw-step-1" cx="290" cy="60" r="16"/>
+    <circle class="sw-step sw-step-2" cx="394.6" cy="136.0" r="16"/>
+    <circle class="sw-step sw-step-3" cx="354.7" cy="259.0" r="16"/>
+    <circle class="sw-step sw-step-4" cx="225.3" cy="259.0" r="16"/>
+    <circle class="sw-step sw-step-5" cx="185.4" cy="136.0" r="16"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle" font-size="14">
+    <text x="290" y="65">0</text>
+    <text x="394.6" y="141.0">1</text>
+    <text x="354.7" y="264.0">2</text>
+    <text x="225.3" y="264.0">3</text>
+    <text x="185.4" y="141.0">4</text>
+  </g>
+  <text x="290" y="168" text-anchor="middle" font-size="13" fill="currentColor">n = 5</text>
+</g>
+</svg>
+<figcaption>Every rotation count lands on one of these five positions. k % n tells you which one — no lap around the circle is ever wasted.</figcaption>
+</figure>
+
+<h2>What negative K actually means</h2>
+<p>K isn't always positive. Sometimes a problem hands you a negative rotation count, and it's less mysterious than it looks: a negative rotation just means rotate the other direction.</p>
+<p>Take k = -1 on an array of five elements. Rotating right by one and rotating left by four land you in exactly the same place:</p>
+<pre><code class="language-text">Right rotate by 1  ==  Left rotate by 4</code></pre>
+<p>because</p>
+<pre><code class="language-text">-1 + 5 = 4</code></pre>
+<p>So the fix is one conditional, applied once, before anything else runs:</p>
+<pre><code class="language-java">if (k < 0) k += n;</code></pre>
+<p>After that line, K is always a positive number pointing in a consistent direction, and every rule you already worked out — including k % n — applies without a single exception.</p>
+
+<figure>
+<svg viewBox="0 0 580 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="d4Title d4Desc" style="width:100%;height:auto">
+<title id="d4Title">A negative rotation count of -1 on an array of length 5 is equivalent to a positive rotation count of 4</title>
+<desc id="d4Desc">A number line marked from -1 to 4. An arc above the line connects -1 to 4, with a dot traveling along the arc, showing the two values are the same rotation once the array length is added back.</desc>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <text x="290" y="18" text-anchor="middle" font-size="12" fill="currentColor">k = -1 is the same rotation as k = 4, when n = 5</text>
+  <path class="sw-grow" d="M60,85 C60,30 510,30 510,85" fill="none" stroke="currentColor" stroke-width="1.3"/>
+  <circle class="sw-dot1" r="3.5" fill="currentColor" style="offset-path:path('M60,85 C60,30 510,30 510,85');"/>
+
+  <line x1="40" y1="90" x2="540" y2="90" stroke="currentColor" stroke-width="1.2"/>
+  <g stroke="currentColor" stroke-width="1.2">
+    <line x1="60" y1="85" x2="60" y2="95"/>
+    <line x1="150" y1="85" x2="150" y2="95"/>
+    <line x1="240" y1="85" x2="240" y2="95"/>
+    <line x1="330" y1="85" x2="330" y2="95"/>
+    <line x1="420" y1="85" x2="420" y2="95"/>
+    <line x1="510" y1="85" x2="510" y2="95"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle" font-size="13">
+    <text x="60" y="115">-1</text>
+    <text x="150" y="115">0</text>
+    <text x="240" y="115">1</text>
+    <text x="330" y="115">2</text>
+    <text x="420" y="115">3</text>
+    <text x="510" y="115">4</text>
+  </g>
+  <circle class="sw-pulse" cx="60" cy="90" r="6" fill="currentColor"/>
+  <circle class="sw-pulse" cx="510" cy="90" r="6" fill="currentColor"/>
+  <text x="60" y="150" text-anchor="middle" font-size="10" fill="currentColor">right by 1</text>
+  <text x="510" y="150" text-anchor="middle" font-size="10" fill="currentColor">left by 4</text>
+</g>
+</svg>
+<figcaption>Add n to a negative k and it stops being a special case — it's just another point on the same number line.</figcaption>
+</figure>
+
+<h2>Doing it in one pass: the reverse algorithm</h2>
+<p>Repeating the single-rotation trick K times is easy to write and easy to justify, right up until K and N are both large. If n = 100,000 and k = 50,000, the brute-force approach is doing roughly five billion units of work for a result that a smarter approach reaches in three passes over the array.</p>
+<p>The smarter approach doesn't shift anything at all. It reverses.</p>
+<p>Take an array of ten values and rotate it left by four:</p>
+<pre><code class="language-text">Array:  10 20 30 40 50 60 70 80 90
+k = 4
+Expected: 50 60 70 80 90 10 20 30 40</code></pre>
+<p>Three reversals get you there. First, split the array at position k and reverse the first block on its own:</p>
+<pre><code class="language-text">10 20 30 40 | 50 60 70 80 90
+40 30 20 10 | 50 60 70 80 90</code></pre>
+<p>Then reverse the second block on its own:</p>
+<pre><code class="language-text">40 30 20 10 | 90 80 70 60 50</code></pre>
+<p>And finally, reverse the entire array, both blocks together:</p>
+<pre><code class="language-text">50 60 70 80 90 10 20 30 40</code></pre>
+<p>That's the answer. No shifting, no temp variable passed around K times, no loop that runs longer the bigger K gets. Just three reversals, applied in order.</p>
+
+<figure>
+<svg viewBox="0 0 580 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="d5Title d5Desc" style="width:100%;height:auto">
+<title id="d5Title">The reverse algorithm walked through on a five-element array rotated by two</title>
+<desc id="d5Desc">Four rows. The first splits 1 2 3 4 5 at position two. The second reverses the first block to 2 1. The third also reverses the second block to 5 4 3. The fourth reverses the entire row, producing the final rotated array 3 4 5 1 2.</desc>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <path class="sw-grow" d="M15,60 L15,160 L15,260 L15,360" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <circle class="sw-dot2" r="3.5" fill="currentColor" style="offset-path:path('M15,60 L15,160 L15,260 L15,360');"/>
+  <g stroke="currentColor" stroke-width="1.4" fill="none">
+    <circle class="sw-step sw-step-1" cx="15" cy="60" r="12"/>
+    <circle class="sw-step sw-step-2" cx="15" cy="160" r="12"/>
+    <circle class="sw-step sw-step-3" cx="15" cy="260" r="12"/>
+    <circle class="sw-step sw-step-4" cx="15" cy="360" r="12"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle" font-size="12">
+    <text x="15" y="64">1</text>
+    <text x="15" y="164">2</text>
+    <text x="15" y="264">3</text>
+    <text x="15" y="364">4</text>
+  </g>
+
+  <text x="210" y="28" text-anchor="middle" font-size="12" fill="currentColor">Split at k = 2</text>
+  <g fill="none" stroke="currentColor" stroke-width="1.3">
+    <rect x="40" y="40" width="60" height="40" rx="4"/><rect x="110" y="40" width="60" height="40" rx="4"/>
+    <rect x="180" y="40" width="60" height="40" rx="4"/><rect x="250" y="40" width="60" height="40" rx="4"/><rect x="320" y="40" width="60" height="40" rx="4"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle" font-size="14">
+    <text x="70" y="65">1</text><text x="140" y="65">2</text><text x="210" y="65">3</text><text x="280" y="65">4</text><text x="350" y="65">5</text>
+  </g>
+  <line x1="175" y1="32" x2="175" y2="85" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3,3"/>
+
+  <text x="210" y="128" text-anchor="middle" font-size="12" fill="currentColor">Reverse the first part</text>
+  <g fill="none" stroke="currentColor" stroke-width="1.3">
+    <rect x="40" y="140" width="60" height="40" rx="4"/><rect x="110" y="140" width="60" height="40" rx="4"/>
+    <rect x="180" y="140" width="60" height="40" rx="4"/><rect x="250" y="140" width="60" height="40" rx="4"/><rect x="320" y="140" width="60" height="40" rx="4"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle" font-size="14">
+    <text x="70" y="165">2</text><text x="140" y="165">1</text><text x="210" y="165">3</text><text x="280" y="165">4</text><text x="350" y="165">5</text>
+  </g>
+
+  <text x="210" y="228" text-anchor="middle" font-size="12" fill="currentColor">Reverse the second part</text>
+  <g fill="none" stroke="currentColor" stroke-width="1.3">
+    <rect x="40" y="240" width="60" height="40" rx="4"/><rect x="110" y="240" width="60" height="40" rx="4"/>
+    <rect x="180" y="240" width="60" height="40" rx="4"/><rect x="250" y="240" width="60" height="40" rx="4"/><rect x="320" y="240" width="60" height="40" rx="4"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle" font-size="14">
+    <text x="70" y="265">2</text><text x="140" y="265">1</text><text x="210" y="265">5</text><text x="280" y="265">4</text><text x="350" y="265">3</text>
+  </g>
+
+  <text x="210" y="328" text-anchor="middle" font-size="12" fill="currentColor">Reverse the whole array</text>
+  <g class="sw-grow" fill="none" stroke="currentColor" stroke-width="1.3">
+    <rect x="40" y="340" width="60" height="40" rx="4"/><rect x="110" y="340" width="60" height="40" rx="4"/>
+    <rect x="180" y="340" width="60" height="40" rx="4"/><rect x="250" y="340" width="60" height="40" rx="4"/><rect x="320" y="340" width="60" height="40" rx="4"/>
+  </g>
+  <g fill="currentColor" text-anchor="middle" font-size="14">
+    <text x="70" y="365">3</text><text x="140" y="365">4</text><text x="210" y="365">5</text><text x="280" y="365">1</text><text x="350" y="365">2</text>
+  </g>
+</g>
+</svg>
+<figcaption>The same five boxes used throughout this post, carried through all three reversals — split, reverse each half, reverse everything.</figcaption>
+</figure>
+
+<h2>Why the reversal trick actually works</h2>
+<p>It looks like a magic trick the first time you see it, but the mechanism is simple once you look at what each reversal is undoing.</p>
+<p>Reversing the first block flips its internal order. Reversing the second block flips its internal order too. Both blocks are now backwards relative to how they started — and that's exactly the state you want, because the final step, reversing the entire array, flips everything backwards one more time. Flip something twice and it lands back in its original order, except now the two blocks have also swapped positions with each other, which is precisely what a rotation is: two blocks trading places while keeping their own internal order intact.</p>
+<p>It's a small piece of reasoning, but it's worth sitting with, because it's the kind of pattern — do a smaller, controlled version of an operation on two pieces, then apply the same operation to the whole — that shows up again in other places once you know to look for it.</p>
+
+<h2>Comparing the two approaches</h2>
+<p>Put side by side, the difference isn't subtle.</p>
+<table>
+  <thead>
+    <tr><th>Approach</th><th>What it does</th><th>Time complexity</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Brute force</td><td>Rotate by one, K times in a row</td><td>O(K × N)</td></tr>
+    <tr><td>Reverse algorithm</td><td>Reverse first part, reverse second part, reverse everything</td><td>O(N)</td></tr>
+  </tbody>
+</table>
+<p>Three reversals, each one a single O(N) pass, add up to O(3N) — and since constants don't change how an algorithm scales, that simplifies to O(N). For an array of 100,000 elements rotated 50,000 times, that's the difference between roughly five billion operations and about three hundred thousand.</p>
+
+<figure>
+<svg viewBox="0 0 580 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="d6Title d6Desc" style="width:100%;height:auto">
+<title id="d6Title">Bar chart comparing the brute-force approach at O(K times N) against the reverse algorithm at O(N)</title>
+<desc id="d6Desc">Two bars above a baseline. The brute-force bar is tall, representing cost that grows with both K and N, and fades in and out. The reverse-algorithm bar is short, representing linear cost, and is marked as the better choice.</desc>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+  <line x1="60" y1="220" x2="500" y2="220" stroke="currentColor" stroke-width="1.2"/>
+
+  <rect class="sw-fade" x="150" y="60" width="100" height="160" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <text x="200" y="240" text-anchor="middle" font-size="12" fill="currentColor">Brute force</text>
+  <text x="200" y="255" text-anchor="middle" font-size="12" fill="currentColor">O(K × N)</text>
+
+  <rect class="sw-grow" x="330" y="180" width="100" height="40" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  <circle class="sw-pulse" cx="380" cy="165" r="9" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <text x="380" y="170" text-anchor="middle" font-size="11" fill="currentColor">✓</text>
+  <text x="380" y="240" text-anchor="middle" font-size="12" fill="currentColor">Reverse algorithm</text>
+  <text x="380" y="255" text-anchor="middle" font-size="12" fill="currentColor">O(N)</text>
+</g>
+</svg>
+<figcaption>Same problem, same answer, wildly different cost. One of these scales with how many times you rotate. The other doesn't care.</figcaption>
+</figure>
+
+<h2>What this problem is really teaching you</h2>
+<p>Rotate Array shows up in interviews so often not because rotating an array is a useful skill on its own, but because the problem is a small, contained rehearsal of a habit that matters everywhere in engineering: getting something working is the beginning of the work, not the end of it.</p>
+<p>The brute-force approach isn't wrong. It's necessary — it's how you build the intuition that makes the optimization make sense in the first place. But stopping there means missing the two ideas sitting quietly underneath the problem: that <code>k % n</code> deletes an entire category of wasted work before you write a single line of algorithm, and that a sequence of small reversals can replace a much larger amount of shifting because of how the operations compose.</p>
+<p>The habit worth taking with you isn't the reverse algorithm specifically. It's the question to ask after any solution that works: is there a mathematical observation hiding in here, is there a pattern replacing repeated work, and is there a smaller operation I could compose differently to get the same result for less. Rotate Array is a small problem. That question isn't.</p>
+<hr>
+<p><em>Working through DSA problems like this one? The <a href="https://pdfsent.com/index.html">archive</a> has free PDF notes on data structures, algorithms, and computer science fundamentals — no account needed.</em></p>
+
+
+  <section class="related">
+    <h2 class="related-h">Read next</h2>
+    <ul>
+      <li><a href="why-nothing-feels-interesting-anymore.html"><span class="rel-cat">How to Study</span>Why Nothing Feels Interesting Anymore: The Science Behind Lost Curiosity</a></li>
+      <li><a href="discipline-was-never-the-problem.html"><span class="rel-cat">How to Study</span>The Morning I Realised Discipline Was Never the Problem</a></li>
+      <li><a href="i-memorised-hundreds-of-dsa-solutions.html"><span class="rel-cat">How to Study</span>I Memorised Hundreds of DSA Solutions. One Question Undid All of Them.</a></li>
+    </ul>
+  </section>
+  <a class="back" href="../blogs/">← Back to the blog</a>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="footer-nav">
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Use</a>
+    </nav>
+    <div class="foot-row">
+      <span>NOTES. — a static, offline-friendly archive</span>
+      <span id="year"></span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NOTES.","item":"https://pdfsent.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://pdfsent.com/blogs/"},{"@type":"ListItem","position":3,"name":"Rotate an Array in Java: From Brute Force to the Optimal Reverse Algorithm","item":"https://pdfsent.com/blog/rotate-array-brute-force-to-reverse-algorithm.html"}]},{"@type":"BlogPosting","headline":"Rotate an Array in Java: From Brute Force to the Optimal Reverse Algorithm","description":"The first time array rotation showed up in an interview, I solved it in about four minutes and felt pretty good about myself. Then the interviewer asked…","url":"https://pdfsent.com/blog/rotate-array-brute-force-to-reverse-algorithm.html","datePublished":"2026-08-05","dateModified":"2026-08-05","author":{"@type":"Person","name":"NOTES. maintainer"},"publisher":{"@type":"Organization","name":"NOTES."},"mainEntityOfPage":"https://pdfsent.com/blog/rotate-array-brute-force-to-reverse-algorithm.html"}]}</script>
+<script>document.getElementById('year').textContent = '© ' + new Date().getFullYear() + ' NOTES. All rights reserved.';</script>
+</body>
+</html>
