@@ -19,6 +19,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://pdfsent.com/blog/two-sum-hashmap-beats-nested-loop.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://pdfsent.com/blog/rotate-array-brute-force-to-reverse-algorithm.html</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
