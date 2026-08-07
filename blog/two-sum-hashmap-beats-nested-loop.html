@@ -109,6 +109,18 @@
     text-transform:uppercase; color:var(--grey); margin-bottom:4px;
   }
   .related a:hover .rel-cat{ color:var(--white); opacity:.7; }
+  .faq{ margin:48px 0 40px; }
+  h2.faq-h{ font-family:'Fraunces', serif; font-weight:600; font-size:20px; margin-bottom:16px; letter-spacing:-0.01em; }
+  .faq details{ border-bottom:1px solid var(--grey-light); padding:16px 0; }
+  .faq details:first-of-type{ border-top:1.5px solid var(--black); }
+  .faq summary{
+    font-family:'Fraunces', serif; font-weight:500; font-size:16.5px; cursor:pointer;
+    list-style:none; display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+  }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::after{ content:'+'; font-family:'JetBrains Mono', monospace; font-size:16px; color:var(--grey); flex-shrink:0; transition:transform .15s var(--ease); }
+  .faq details[open] summary::after{ content:'−'; }
+  .faq p.faq-a{ margin:12px 0 0; font-size:15px; color:#2a2a2a; }
   .back{ display:inline-block; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--black); text-decoration:none; border-bottom:1px solid var(--black); }
   footer{ border-top:2px solid var(--black); padding:28px 0; }
   .footer-nav{ display:flex; flex-wrap:wrap; gap:20px; margin-bottom:18px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; }
@@ -122,7 +134,7 @@
   @keyframes swGrow{ from{ stroke-width:1; opacity:.35; } to{ stroke-width:2.5; opacity:1; } }
   @keyframes swFade{ 0%{ opacity:.8; } 55%{ opacity:.8; } 100%{ opacity:.1; } }
   @keyframes swNarrow{ 0%,100%{ transform:scaleY(1); } 50%{ transform:scaleY(.18); } }
-  @keyframes swDotMove{ frof{ offset-distance:0%; } to{ offset-distance:100%; } }
+  @keyframes swDotMove{ from{ offset-distance:0%; } to{ offset-distance:100%; } }
   @keyframes swStepPulse{ 0%,8%{ opacity:1; } 20%,100%{ opacity:.3; } }
   @media (prefers-reduced-motion: no-preference){
     .sw-pulse{ animation: swPulse 2.4s ease-in-out infinite; }
@@ -345,6 +357,30 @@ class Solution {
 <p><em>Working through DSA fundamentals like this one? The <a href="https://pdfsent.com/index.html">archive</a> has free PDF notes on data structures, algorithms, and computer science fundamentals — no account needed.</em></p>
 
 
+  <section class="faq">
+    <h2 class="faq-h">Frequently asked questions</h2>
+    <details open>
+      <summary>What is the time complexity of Two Sum using a HashMap?</summary>
+      <p class="faq-a">The HashMap approach runs in O(n) time and O(n) space, since it walks the array once and each lookup or insert into the HashMap is O(1) on average. That's a full factor of n faster than the O(n²) brute-force nested loop.</p>
+    </details>
+    <details>
+      <summary>Why is the HashMap solution faster than the brute-force nested loop?</summary>
+      <p class="faq-a">The nested loop re-scans the rest of the array for every element, doing roughly n²/2 comparisons. The HashMap solution replaces that re-scanning with a single lookup — "have I already seen the complement?" — which is O(1) on average no matter how large the array is.</p>
+    </details>
+    <details>
+      <summary>Can the same array element be used twice in Two Sum?</summary>
+      <p class="faq-a">No. LeetCode's Two Sum requires two different indices. That's exactly why the Java solution checks the HashMap for the complement before storing the current number — checking first guarantees the map only ever contains earlier elements, so a match is always two distinct indices.</p>
+    </details>
+    <details>
+      <summary>What is the space complexity trade-off in the Two Sum HashMap solution?</summary>
+      <p class="faq-a">You trade O(1) space in the brute-force version for O(n) space in the HashMap version, since you're storing up to n numbers and their indices. In exchange you get O(n) time instead of O(n²) — worth it for anything but the smallest arrays.</p>
+    </details>
+    <details>
+      <summary>Does Two Sum in Java need to return values or indices?</summary>
+      <p class="faq-a">LeetCode's Two Sum asks for indices, not values. That detail matters: values can repeat (like [3, 3]), which would make a values-only answer ambiguous, but indices are always unique.</p>
+    </details>
+  </section>
+
   <section class="related">
     <h2 class="related-h">Read next</h2>
     <ul>
@@ -371,7 +407,7 @@ class Solution {
   </div>
 </footer>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NOTES.","item":"https://pdfsent.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://pdfsent.com/blogs/"},{"@type":"ListItem","position":3,"name":"Two Sum in Java: Why a HashMap Beats the Nested Loop","item":"https://pdfsent.com/blog/two-sum-hashmap-beats-nested-loop.html"}]},{"@type":"BlogPosting","headline":"Two Sum in Java: Why a HashMap Beats the Nested Loop","description":"Two Sum is usually the very first problem anyone solves in Data Structures and Algorithms, which is exactly why it's easy to underrate. It takes about two…","url":"https://pdfsent.com/blog/two-sum-hashmap-beats-nested-loop.html","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"NOTES. maintainer"},"publisher":{"@type":"Organization","name":"NOTES."},"mainEntityOfPage":"https://pdfsent.com/blog/two-sum-hashmap-beats-nested-loop.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NOTES.","item":"https://pdfsent.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://pdfsent.com/blogs/"},{"@type":"ListItem","position":3,"name":"Two Sum in Java: Why a HashMap Beats the Nested Loop","item":"https://pdfsent.com/blog/two-sum-hashmap-beats-nested-loop.html"}]},{"@type":"BlogPosting","headline":"Two Sum in Java: Why a HashMap Beats the Nested Loop","description":"Two Sum is usually the very first problem anyone solves in Data Structures and Algorithms, which is exactly why it's easy to underrate. It takes about two…","url":"https://pdfsent.com/blog/two-sum-hashmap-beats-nested-loop.html","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"NOTES. maintainer"},"publisher":{"@type":"Organization","name":"NOTES."},"mainEntityOfPage":"https://pdfsent.com/blog/two-sum-hashmap-beats-nested-loop.html"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the time complexity of Two Sum using a HashMap?","acceptedAnswer":{"@type":"Answer","text":"The HashMap approach runs in O(n) time and O(n) space, since it walks the array once and each lookup or insert into the HashMap is O(1) on average. That's a full factor of n faster than the O(n²) brute-force nested loop."}},{"@type":"Question","name":"Why is the HashMap solution faster than the brute-force nested loop?","acceptedAnswer":{"@type":"Answer","text":"The nested loop re-scans the rest of the array for every element, doing roughly n²/2 comparisons. The HashMap solution replaces that re-scanning with a single lookup — \"have I already seen the complement?\" — which is O(1) on average no matter how large the array is."}},{"@type":"Question","name":"Can the same array element be used twice in Two Sum?","acceptedAnswer":{"@type":"Answer","text":"No. LeetCode's Two Sum requires two different indices. That's exactly why the Java solution checks the HashMap for the complement before storing the current number — checking first guarantees the map only ever contains earlier elements, so a match is always two distinct indices."}},{"@type":"Question","name":"What is the space complexity trade-off in the Two Sum HashMap solution?","acceptedAnswer":{"@type":"Answer","text":"You trade O(1) space in the brute-force version for O(n) space in the HashMap version, since you're storing up to n numbers and their indices. In exchange you get O(n) time instead of O(n²) — worth it for anything but the smallest arrays."}},{"@type":"Question","name":"Does Two Sum in Java need to return values or indices?","acceptedAnswer":{"@type":"Answer","text":"LeetCode's Two Sum asks for indices, not values. That detail matters: values can repeat (like [3, 3]), which would make a values-only answer ambiguous, but indices are always unique."}}]}]}</script>
 <script>document.getElementById('year').textContent = '© ' + new Date().getFullYear() + ' NOTES. All rights reserved.';</script>
 </body>
 </html>
